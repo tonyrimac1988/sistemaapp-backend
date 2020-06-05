@@ -18,52 +18,51 @@ public class Area {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idArea; 
+	@Column(name = "nidarea")
+	private Integer nIdArea; 
 	
-	@Column(name = "nombre", nullable = false, length = 100)
-	private String nombre;
+	@Column(name = "snombre", nullable = false, length = 100)
+	private String sNombre;
 	
-	@Column(name = "observacion", nullable = false, length = 500)
-	private String observacion;
+	@Column(name = "sobservacion", nullable = false, length = 500)
+	private String sObservacion;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_sede", nullable = false, foreignKey = @ForeignKey(name = "id_area_sede"))
-	private Sede sede;
+	@Column(name = "nidareapadre", nullable = false)
+	private Integer nIdAreaPadre;
 	
-	@Column(name = "idAreaPadre", nullable = false)
-	private Integer idAreaPadre;
-	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 
-//	@Column(name = "id_sesion", nullable = false)
-//	private Sesion sesion;
+	@ManyToOne
+	@JoinColumn(name = "nidsede", nullable = false, foreignKey = @ForeignKey(name = "fk_area_nidarea_sede_nidsede"))
+	private Sede sede;
+	 
 	
-	public Integer getIdArea() {
-		return idArea;
+	public Integer getnIdArea() {
+		return nIdArea;
 	}
 
-	public void setIdArea(Integer idArea) {
-		this.idArea = idArea;
+	public void setnIdArea(Integer nIdArea) {
+		this.nIdArea = nIdArea;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getsNombre() {
+		return sNombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setsNombre(String sNombre) {
+		this.sNombre = sNombre;
 	}
 
-	public String getObservacion() {
-		return observacion;
+	public String getsObservacion() {
+		return sObservacion;
 	}
 
-	public void setObservacion(String observacion) {
-		this.observacion = observacion;
+	public void setsObservacion(String sObservacion) {
+		this.sObservacion = sObservacion;
 	}
 
 	public Sede getSede() {
@@ -74,12 +73,12 @@ public class Area {
 		this.sede = sede;
 	}
 
-	public Integer getIdAreaPadre() {
-		return idAreaPadre;
+	public Integer getnIdAreaPadre() {
+		return nIdAreaPadre;
 	}
 
-	public void setIdAreaPadre(Integer idAreaPadre) {
-		this.idAreaPadre = idAreaPadre;
+	public void setnIdAreaPadre(Integer nIdAreaPadre) {
+		this.nIdAreaPadre = nIdAreaPadre;
 	}
 
 	public boolean isbActivo() {
@@ -90,13 +89,20 @@ public class Area {
 		this.bActivo = bActivo;
 	}
 
-	public LocalDate getFechaReg() {
-		return fechaReg;
+	public LocalDate getdFechaReg() {
+		return dFechaReg;
 	}
 
-	public void setFechaReg(LocalDate fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setdFechaReg(LocalDate dFechaReg) {
+		this.dFechaReg = dFechaReg;
 	}
+
+//	@Column(name = "id_sesion", nullable = false)
+//	private Sesion sesion;
+	
+
+
+	
 	
 
 }

@@ -36,7 +36,7 @@ public class Sesion {
 	private LocalDate fechaReg;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "id_sesion_usuario"))
+	@JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "fk_sesion_idusuario_usuario_idusuario"))
 	private Usuario usuario;
 
 	

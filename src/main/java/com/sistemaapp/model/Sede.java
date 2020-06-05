@@ -15,66 +15,65 @@ public class Sede {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idSede;
+	@Column(name = "nidsede")
+	private Integer nIdSede;
 	
-	@Column(name = "nombre", nullable = false, length = 100)
-	private String nombre;
+	@Column(name = "snombre", nullable = false, length = 100)
+	private String sNombre;
 	
-	@Column(name = "ubigeo", nullable = false, length = 50)
-	private String ubigeo;
+	@Column(name = "subigeo", nullable = false, length = 50)
+	private String sUbigeo;
 	
-	@Column(name = "direccion", nullable = false, length = 150)
-	private String direccion;
+	@Column(name = "sdireccion", nullable = false, length = 150)
+	private String sDireccion;
 	
-	@Column(name = "id_sede_padre", nullable = false)
-	private Integer idSedePadre;
+	@Column(name = "nidsedepadre", nullable = false)
+	private Integer nIdSedePadre;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDateTime fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDateTime dFechaReg;
 
-	
-	
-	public Integer getIdSede() {
-		return idSede;
+	public Integer getnIdSede() {
+		return nIdSede;
 	}
 
-	public void setIdSede(Integer idSede) {
-		this.idSede = idSede;
+	public void setnIdSede(Integer nIdSede) {
+		this.nIdSede = nIdSede;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getsNombre() {
+		return sNombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setsNombre(String sNombre) {
+		this.sNombre = sNombre;
 	}
 
-	public String getUbigeo() {
-		return ubigeo;
+	public String getsUbigeo() {
+		return sUbigeo;
 	}
 
-	public void setUbigeo(String ubigeo) {
-		this.ubigeo = ubigeo;
+	public void setsUbigeo(String sUbigeo) {
+		this.sUbigeo = sUbigeo;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public String getsDireccion() {
+		return sDireccion;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setsDireccion(String sDireccion) {
+		this.sDireccion = sDireccion;
 	}
 
-	public Integer getIdSedePadre() {
-		return idSedePadre;
+	public Integer getnIdSedePadre() {
+		return nIdSedePadre;
 	}
 
-	public void setIdSedePadre(Integer idSedePadre) {
-		this.idSedePadre = idSedePadre;
+	public void setnIdSedePadre(Integer nIdSedePadre) {
+		this.nIdSedePadre = nIdSedePadre;
 	}
 
 	public boolean isbActivo() {
@@ -85,14 +84,15 @@ public class Sede {
 		this.bActivo = bActivo;
 	}
 
-	public LocalDateTime getFechaReg() {
-		return fechaReg;
+	public LocalDateTime getdFechaReg() {
+		return dFechaReg;
 	}
 
-	public void setFechaReg(LocalDateTime fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setdFechaReg(LocalDateTime dFechaReg) {
+		this.dFechaReg = dFechaReg;
 	}
-	
+
+	 
 //	@Column(name = "id_sesion", nullable = false)
 //	private Sesion sesion;
 	

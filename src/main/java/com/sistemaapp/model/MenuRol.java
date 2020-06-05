@@ -19,11 +19,11 @@ public class MenuRol {
 	@Id
 	private Menu menu;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dfechaReg;
 	
 //	@Column(name = "id_sesion", nullable = false)
 //	private Sesion idSesion;

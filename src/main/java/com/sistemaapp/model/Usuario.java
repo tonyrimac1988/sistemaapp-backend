@@ -15,142 +15,142 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idUsuario;
+	@Column(name = "nidusuario")
+	private Integer nIdUsuario;
 	
-	@Column(name = "login", nullable = false, length = 50)
-	private String login;
+	@Column(name = "slogin", nullable = false, length = 50)
+	private String sLogin;
 	
-	@Column(name = "password", nullable = false, length = 30)
-	private String password;
+	@Column(name = "spassword", nullable = false, length = 100)
+	private String sPassword;
 	
-	@Column(name = "num_docu", nullable = false, length = 15)
-	private String numDocu;
+	@Column(name = "snumdocu", nullable = false, length = 15)
+	private String sNumDocu;
 	
-	@Column(name = "nombre", nullable = false, length = 80)
-	private String nombre;
+	@Column(name = "snombre", nullable = false, length = 80)
+	private String sNombre;
 	
-	@Column(name = "ape_paterno", nullable = false, length = 80)
-	private String apePaterno;
+	@Column(name = "sapepaterno", nullable = false, length = 80)
+	private String sApePaterno;
 	
-	@Column(name = "ape_materno", nullable = false, length = 80)
-	private String apeMaterno;
+	@Column(name = "sapematerno", nullable = false, length = 80)
+	private String sApeMaterno;
 	
-	@Column(name = "fecha_nac", nullable = false)
-	private LocalDate fechaNac;
+	@Column(name = "dfechanac", nullable = false)
+	private LocalDate dFechaNac;
 	
-	@Column(name = "genero", nullable = false, length = 1)
-	private String genero;
+	@Column(name = "sgenero", nullable = false, length = 1)
+	private String sGenero;
 	
-	@Column(name = "observacion", length = 500)
-	private String observacion;
+	@Column(name = "sobservacion", length = 500)
+	private String sObservacion;
 	
-	@Column(name = "idUsuarioPadre", nullable = false)
-	private Integer idUsuarioPadre;
+	@Column(name = "nidusuariopadre", nullable = false)
+	private Integer nIdUsuarioPadre;
 //	
 //	@Column(name = "id_sesion", nullable = false)
 //	private Sesion sesion;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
-  
-	
-	public Integer getIdUsuario() {
-		return idUsuario;
+
+	public Integer getnIdUsuario() {
+		return nIdUsuario;
 	}
 
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setnIdUsuario(Integer nIdUsuario) {
+		this.nIdUsuario = nIdUsuario;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getsLogin() {
+		return sLogin;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setsLogin(String sLogin) {
+		this.sLogin = sLogin;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getsPassword() {
+		return sPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setsPassword(String sPassword) {
+		this.sPassword = sPassword;
 	}
 
-	public String getNumDocu() {
-		return numDocu;
+	public String getsNumDocu() {
+		return sNumDocu;
 	}
 
-	public void setNumDocu(String numDocu) {
-		this.numDocu = numDocu;
+	public void setsNumDocu(String sNumDocu) {
+		this.sNumDocu = sNumDocu;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getsNombre() {
+		return sNombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setsNombre(String sNombre) {
+		this.sNombre = sNombre;
 	}
 
-	public String getApePaterno() {
-		return apePaterno;
+	public String getsApePaterno() {
+		return sApePaterno;
 	}
 
-	public void setApePaterno(String apePaterno) {
-		this.apePaterno = apePaterno;
+	public void setsApePaterno(String sApePaterno) {
+		this.sApePaterno = sApePaterno;
 	}
 
-	public String getApeMaterno() {
-		return apeMaterno;
+	public String getsApeMaterno() {
+		return sApeMaterno;
 	}
 
-	public void setApeMaterno(String apeMaterno) {
-		this.apeMaterno = apeMaterno;
+	public void setsApeMaterno(String sApeMaterno) {
+		this.sApeMaterno = sApeMaterno;
 	}
 
-	public LocalDate getFechaNac() {
-		return fechaNac;
+	public LocalDate getdFechaNac() {
+		return dFechaNac;
 	}
 
-	public void setFechaNac(LocalDate fechaNac) {
-		this.fechaNac = fechaNac;
+	public void setdFechaNac(LocalDate dFechaNac) {
+		this.dFechaNac = dFechaNac;
 	}
 
-	public String getGenero() {
-		return genero;
+	public String getsGenero() {
+		return sGenero;
 	}
 
-	public void setGenero(String genero) {
-		this.genero = genero;
+	public void setsGenero(String sGenero) {
+		this.sGenero = sGenero;
 	}
 
-	public String getObservacion() {
-		return observacion;
+	public String getsObservacion() {
+		return sObservacion;
 	}
 
-	public void setObservacion(String observacion) {
-		this.observacion = observacion;
+	public void setsObservacion(String sObservacion) {
+		this.sObservacion = sObservacion;
 	}
 
-	public Integer getIdUsuarioPadre() {
-		return idUsuarioPadre;
+	public Integer getnIdUsuarioPadre() {
+		return nIdUsuarioPadre;
 	}
 
-	public void setIdUsuarioPadre(Integer idUsuarioPadre) {
-		this.idUsuarioPadre = idUsuarioPadre;
+	public void setnIdUsuarioPadre(Integer nIdUsuarioPadre) {
+		this.nIdUsuarioPadre = nIdUsuarioPadre;
 	}
 
-	public LocalDate getFechaReg() {
-		return fechaReg;
+	public LocalDate getdFechaReg() {
+		return dFechaReg;
 	}
 
-	public void setFechaReg(LocalDate fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setdFechaReg(LocalDate dFechaReg) {
+		this.dFechaReg = dFechaReg;
 	}
 
 	public boolean isbActivo() {
@@ -160,6 +160,10 @@ public class Usuario {
 	public void setbActivo(boolean bActivo) {
 		this.bActivo = bActivo;
 	}
+
+	 
+	
+	
 	
 	
 	

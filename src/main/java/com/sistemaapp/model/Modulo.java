@@ -15,57 +15,54 @@ public class Modulo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idModulo;
+	@Column(name = "nidmodulo")
+	private Integer nIdModulo;
 	
-	@Column(name = "nombre_modulo", nullable = false, length = 100)
-	private String nombreModulo;
+	@Column(name = "snombremodulo", nullable = false, length = 100)
+	private String sNombreModulo;
 	
-	@Column(name = "siglas", nullable = false, length = 10)
-	private String siglas;
+	@Column(name = "ssiglas", nullable = false, length = 10)
+	private String sSiglas;
 	
-	@Column(name = "observacion", nullable = false, length = 500)
-	private String observacion;
+	@Column(name = "sobservacion", nullable = false, length = 500)
+	private String sObservacion;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
-	
-//	@Column(name = "id_sesion", nullable = false)
-//	private Sesion sesion;
-	
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 
-	public Integer getIdModulo() {
-		return idModulo;
+	public Integer getnIdModulo() {
+		return nIdModulo;
 	}
 
-	public void setIdModulo(Integer idModulo) {
-		this.idModulo = idModulo;
+	public void setnIdModulo(Integer nIdModulo) {
+		this.nIdModulo = nIdModulo;
 	}
 
-	public String getNombreModulo() {
-		return nombreModulo;
+	public String getsNombreModulo() {
+		return sNombreModulo;
 	}
 
-	public void setNombreModulo(String nombreModulo) {
-		this.nombreModulo = nombreModulo;
+	public void setsNombreModulo(String sNombreModulo) {
+		this.sNombreModulo = sNombreModulo;
 	}
 
-	public String getSiglas() {
-		return siglas;
+	public String getsSiglas() {
+		return sSiglas;
 	}
 
-	public void setSiglas(String siglas) {
-		this.siglas = siglas;
+	public void setsSiglas(String sSiglas) {
+		this.sSiglas = sSiglas;
 	}
 
-	public String getObservacion() {
-		return observacion;
+	public String getsObservacion() {
+		return sObservacion;
 	}
 
-	public void setObservacion(String observacion) {
-		this.observacion = observacion;
+	public void setsObservacion(String sObservacion) {
+		this.sObservacion = sObservacion;
 	}
 
 	public boolean isbActivo() {
@@ -76,16 +73,23 @@ public class Modulo {
 		this.bActivo = bActivo;
 	}
 
-	public LocalDate getFechaReg() {
-		return fechaReg;
+	public LocalDate getdFechaReg() {
+		return dFechaReg;
 	}
 
-	public void setFechaReg(LocalDate fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setdFechaReg(LocalDate dFechaReg) {
+		this.dFechaReg = dFechaReg;
 	}
 	
 //	@Column(name = "id_sesion", nullable = false)
 //	private Sesion sesion;
 	
 
+	
+//	@Column(name = "id_sesion", nullable = false)
+//	private Sesion sesion;
+	
+
+	
+	
 }

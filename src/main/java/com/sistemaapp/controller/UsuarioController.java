@@ -35,7 +35,7 @@ public class UsuarioController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarUsuario(Usuario obj){
 		Usuario usu = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usu.getIdUsuario()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usu.getnIdUsuario()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

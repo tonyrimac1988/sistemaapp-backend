@@ -13,77 +13,74 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "menú")
+@Table(name = "menu")
 public class Menu {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idMenu;
+	@Column(name = "nidmenu")
+	private Integer nIdMenu;
 	
-	@Column(name = "des_menu", nullable = false, length = 100)
-	private String desMenu;
+	@Column(name = "snombremenu", nullable = false, length = 100)
+	private String sNombreMenu;
 	
-	@Column(name = "tag_menu", nullable = false, length = 15)
-	private String tagMenu;
+	@Column(name = "sLogoMenu", nullable = false, length = 50)
+	private String sLogoMenu;
 	
-	@Column(name = "tipo_menu", nullable = false, length = 50)
-	private String tipoMenu;
+	@Column(name = "srutamenu", nullable = false, length = 50)
+	private String sRutaMenu;
 	
-	@Column(name = "id_menu_padre", nullable = false)
-	private Integer idMenuPadre;
+	@Column(name = "nidmenupadre", nullable = false)
+	private Integer nIdMenuPadre;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_modulo", nullable = false, foreignKey = @ForeignKey(name = "id_menu_modulo"))
+	@JoinColumn(name = "nidmodulo", nullable = false, foreignKey = @ForeignKey(name = "fk_menu_nidmodulo_modulo_nidmodulo"))
 	private Modulo modulo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 
-//	@Column(name = "id_sesion", nullable = false)
-//	private Sesion sesion;
-	
-	
-	public Integer getIdMenu() {
-		return idMenu;
-	}
-	
-	public void setIdMenu(Integer idMenu) {
-		this.idMenu = idMenu;
+	public Integer getnIdMenu() {
+		return nIdMenu;
 	}
 
-	public String getDesMenu() {
-		return desMenu;
+	public void setnIdMenu(Integer nIdMenu) {
+		this.nIdMenu = nIdMenu;
 	}
 
-	public void setDesMenu(String desMenu) {
-		this.desMenu = desMenu;
+	public String getsNombreMenu() {
+		return sNombreMenu;
 	}
 
-	public String getTagMenu() {
-		return tagMenu;
+	public void setsNombreMenu(String sNombreMenu) {
+		this.sNombreMenu = sNombreMenu;
 	}
 
-	public void setTagMenu(String tagMenu) {
-		this.tagMenu = tagMenu;
+	public String getsLogoMenu() {
+		return sLogoMenu;
 	}
 
-	public String getTipoMenu() {
-		return tipoMenu;
+	public void setsLogoMenu(String sLogoMenu) {
+		this.sLogoMenu = sLogoMenu;
 	}
 
-	public void setTipoMenu(String tipoMenu) {
-		this.tipoMenu = tipoMenu;
+	public String getsRutaMenu() {
+		return sRutaMenu;
 	}
 
-	public Integer getIdMenuPadre() {
-		return idMenuPadre;
+	public void setsRutaMenu(String sRutaMenu) {
+		this.sRutaMenu = sRutaMenu;
 	}
 
-	public void setIdMenuPadre(Integer idMenuPadre) {
-		this.idMenuPadre = idMenuPadre;
+	public Integer getnIdMenuPadre() {
+		return nIdMenuPadre;
+	}
+
+	public void setnIdMenuPadre(Integer nIdMenuPadre) {
+		this.nIdMenuPadre = nIdMenuPadre;
 	}
 
 	public boolean isbActivo() {
@@ -102,13 +99,17 @@ public class Menu {
 		this.modulo = modulo;
 	}
 
-	public LocalDate getFechaReg() {
-		return fechaReg;
+	public LocalDate getdFechaReg() {
+		return dFechaReg;
 	}
 
-	public void setFechaReg(LocalDate fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setdFechaReg(LocalDate dFechaReg) {
+		this.dFechaReg = dFechaReg;
 	}
+
+//	@Column(name = "id_sesion", nullable = false)
+//	private Sesion sesion;
+	 
 	
 
 }

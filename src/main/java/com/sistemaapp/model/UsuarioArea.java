@@ -18,26 +18,77 @@ public class UsuarioArea {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer IdUsuarioArea;
+	@Column(name = "nidusuarioarea")
+	private Integer nIdUsuarioArea;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "id_usuario_area"))
+	@JoinColumn(name = "nidusuario", nullable = false, foreignKey = @ForeignKey(name = "fk_usuarioarea_nidusuarioarea_usuario_nidusuario"))
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_area", nullable = false, foreignKey = @ForeignKey(name = "id_area_usuario"))
+	@JoinColumn(name = "nidarea", nullable = false, foreignKey = @ForeignKey(name = "fk_usuarioarea_nidusuarioarea_area_nidarea"))
 	private Area area;
 	
-	@Column(name = "observacion", nullable = false, length = 200)
-	private String observacion;
+	@Column(name = "sobservacion", nullable = false, length = 200)
+	private String sObservacion;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
+
+	public Integer getnIdUsuarioArea() {
+		return nIdUsuarioArea;
+	}
+
+	public void setnIdUsuarioArea(Integer nIdUsuarioArea) {
+		this.nIdUsuarioArea = nIdUsuarioArea;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+	public String getsObservacion() {
+		return sObservacion;
+	}
+
+	public void setsObservacion(String sObservacion) {
+		this.sObservacion = sObservacion;
+	}
+
+	public boolean isbActivo() {
+		return bActivo;
+	}
+
+	public void setbActivo(boolean bActivo) {
+		this.bActivo = bActivo;
+	}
+
+	public LocalDate getdFechaReg() {
+		return dFechaReg;
+	}
+
+	public void setdFechaReg(LocalDate dFechaReg) {
+		this.dFechaReg = dFechaReg;
+	}
 	
 //	@Column(name = "id_sesion", nullable = false)
 //	private Sesion sesion;
 
+	
+	
 }

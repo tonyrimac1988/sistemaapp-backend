@@ -34,7 +34,7 @@ public class MenuController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarMenu(@Valid @RequestBody Menu obj){
 		Menu men = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(men.getIdMenu()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(men.getnIdMenu()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

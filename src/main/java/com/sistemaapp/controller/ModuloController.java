@@ -34,7 +34,7 @@ public class ModuloController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarModulo(@Valid @RequestBody Modulo obj){
 		Modulo mod = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(mod.getIdModulo()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(mod.getnIdModulo()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

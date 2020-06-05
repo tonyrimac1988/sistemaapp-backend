@@ -15,90 +15,65 @@ public class Perfil {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idPerfil;
+	@Column(name = "nidperfil")
+	private Integer nIdPerfil;
 	
-	@Column(name = "nombre_perfil", nullable = false, length = 80)
-	private String nombrePerfil;
+	@Column(name = "snombreperfil", nullable = false, length = 80)
+	private String sNombrePerfil;
 	
-	@Column(name = "sesion_por_usuario", nullable = false)
-	private Integer sesionPorUsuario;
+	@Column(name = "nsesionporusuario", nullable = false)
+	private Integer nSesionPorUsuario;
 	
-	@Column(name = "tiempo_conexion", nullable = false)
-	private Integer tiempoConexion;
+	@Column(name = "ntiempoconexion", nullable = false)
+	private Integer nTiempoConexion;
 	
-	@Column(name = "pasword_tiempo_vida", nullable = false)
-	private Integer paswordTiempoVida;
-	
-	@Column(name = "intentos_logeo", nullable = false)
-	private Integer intentosLogeo;
-	
-	@Column(name = "cantidad_estacion", nullable = false)
-	private Integer cantidadEstacion;
-	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "ntiempovidapasword", nullable = false)
+	private Integer nTiempoVidaPasword;
+	  
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
-	
-//	@Column(name = "id_sesion", nullable = false)
-//	private Sesion sesion;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 
-	
-	public Integer getIdPerfil() {
-		return idPerfil;
+	public Integer getnIdPerfil() {
+		return nIdPerfil;
 	}
 
-	public void setIdPerfil(Integer idPefil) {
-		this.idPerfil = idPefil;
+	public void setnIdPerfil(Integer nIdPerfil) {
+		this.nIdPerfil = nIdPerfil;
 	}
 
-	public String getNombrePerfil() {
-		return nombrePerfil;
+	public String getsNombrePerfil() {
+		return sNombrePerfil;
 	}
 
-	public void setNombrePerfil(String nombrePerfil) {
-		this.nombrePerfil = nombrePerfil;
+	public void setsNombrePerfil(String sNombrePerfil) {
+		this.sNombrePerfil = sNombrePerfil;
 	}
 
-	public Integer getSesionPorUsuario() {
-		return sesionPorUsuario;
+	public Integer getnSesionPorUsuario() {
+		return nSesionPorUsuario;
 	}
 
-	public void setSesionPorUsuario(Integer sesionPorUsuario) {
-		this.sesionPorUsuario = sesionPorUsuario;
+	public void setnSesionPorUsuario(Integer nSesionPorUsuario) {
+		this.nSesionPorUsuario = nSesionPorUsuario;
 	}
 
-	public Integer getTiempoConexion() {
-		return tiempoConexion;
+	public Integer getnTiempoConexion() {
+		return nTiempoConexion;
 	}
 
-	public void setTiempoConexion(Integer tiempoConexion) {
-		this.tiempoConexion = tiempoConexion;
+	public void setnTiempoConexion(Integer nTiempoConexion) {
+		this.nTiempoConexion = nTiempoConexion;
 	}
 
-	public Integer getPaswordTiempoVida() {
-		return paswordTiempoVida;
+	public Integer getnTiempoVidaPasword() {
+		return nTiempoVidaPasword;
 	}
 
-	public void setPaswordTiempoVida(Integer paswordTiempoVida) {
-		this.paswordTiempoVida = paswordTiempoVida;
-	}
-
-	public Integer getIntentosLogeo() {
-		return intentosLogeo;
-	}
-
-	public void setIntentosLogeo(Integer intentosLogeo) {
-		this.intentosLogeo = intentosLogeo;
-	}
-
-	public Integer getCantidadEstacion() {
-		return cantidadEstacion;
-	}
-
-	public void setCantidadEstacion(Integer cantidadEstacion) {
-		this.cantidadEstacion = cantidadEstacion;
+	public void setnTiempoVidaPasword(Integer nTiempoVidaPasword) {
+		this.nTiempoVidaPasword = nTiempoVidaPasword;
 	}
 
 	public boolean isbActivo() {
@@ -109,13 +84,18 @@ public class Perfil {
 		this.bActivo = bActivo;
 	}
 
-	public LocalDate getFechaReg() {
-		return fechaReg;
+	public LocalDate getdFechaReg() {
+		return dFechaReg;
 	}
 
-	public void setFechaReg(LocalDate fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setdFechaReg(LocalDate dFechaReg) {
+		this.dFechaReg = dFechaReg;
 	}
+	
+//	@Column(name = "id_sesion", nullable = false)
+//	private Sesion sesion;
+
+	 
 	
 
 }

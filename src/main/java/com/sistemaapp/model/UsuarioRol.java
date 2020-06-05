@@ -4,31 +4,44 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario_rol")
-@IdClass(UsuarioRolPK.class)
 public class UsuarioRol {
 	
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "nidusuariorol")
+	private Integer nIdUsuarioRol;
+	
+	@ManyToOne
+	@JoinColumn(name = "nidusuario", nullable = false, foreignKey = @ForeignKey(name = "fk_usuariorol_nidusuario_usuario_nidusuario"))
 	private Usuario usuario;
 	
-	@Id
+	@ManyToOne
+	@JoinColumn(name = "nidrol", nullable = false, foreignKey = @ForeignKey(name = "fk_usuariorol_nidrol_rol_nidrol"))
 	private Rol rol;
 	
-	@Column(name = "observacion", nullable = false, length = 500)
-	private String observacion;
+	@Column(name = "sobservacion", nullable = false, length = 500)
+	private String sObservacion;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 	
 //	@Column(name = "id_sesion", nullable = false)
 //	private Sesion sesion;
 
+	
+	
 }

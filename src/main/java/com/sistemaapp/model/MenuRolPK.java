@@ -12,11 +12,11 @@ public class MenuRolPK implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_rol", nullable = false)
+	@JoinColumn(name = "nidrol", nullable = false)
 	private Rol rol;
 
 	@ManyToOne
-	@JoinColumn(name = "id_menu", nullable = false)
+	@JoinColumn(name = "nidmenu", nullable = false)
 	private Menu menu;
 
 	

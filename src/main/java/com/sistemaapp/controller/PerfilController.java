@@ -34,7 +34,7 @@ public class PerfilController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarPerfil(@Valid @RequestBody Perfil obj){
 		Perfil per = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(per.getIdPerfil()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(per.getnIdPerfil()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	
