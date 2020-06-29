@@ -25,7 +25,7 @@ import com.sistemaapp.model.Perfil;
 import com.sistemaapp.service.IPerfilService;
 
 @RestController
-@RequestMapping("/perfil")
+@RequestMapping("/perfiles")
 public class PerfilController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class PerfilController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarPerfil(@Valid @RequestBody Perfil obj){
 		Perfil per = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(per.getnIdPerfil()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(per.getNIdPerfil()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

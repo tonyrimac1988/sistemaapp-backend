@@ -25,7 +25,7 @@ import com.sistemaapp.model.Area;
 import com.sistemaapp.service.IAreaService;
 
 @RestController
-@RequestMapping("/area")
+@RequestMapping("/areas")
 public class AreaController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class AreaController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarArea(@Valid @RequestBody Area obj){
 		Area are = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(are.getnIdArea()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(are.getNIdArea()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

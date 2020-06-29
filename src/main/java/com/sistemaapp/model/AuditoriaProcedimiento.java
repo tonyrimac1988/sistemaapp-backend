@@ -9,21 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "auditoria_procedimiento")
 public class AuditoriaProcedimiento {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idAudProced;
+	@Column(name = "nidaudproced")
+	private Integer nIdAudProced;
 	
-	@Column(name = "data", nullable = false, length = 500)
-	private String data;
+	@Column(name = "sdata", nullable = false, length = 500)
+	private String sData;
 	
-	@Column(name = "palabra_clave", nullable = false, length = 100)
-	private String palabraClave;
+	@Column(name = "spalabraclave", nullable = false, length = 100)
+	private String sPalabraClave;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 
 }

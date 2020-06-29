@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "usuario_biometria")
 public class UsuarioBiometria {
@@ -25,7 +28,7 @@ public class UsuarioBiometria {
 	@Column(name = "ximagen", nullable = false)
 	private byte[] xImagen;
 	
-	@Column(name = "stipoimagen", nullable = false)
+	@Column(name = "stipoimagen", nullable = false , length = 25)
 	private String sTipoImagen;
 	
 	@Column(name = "bactivo", nullable = false)
@@ -38,56 +41,8 @@ public class UsuarioBiometria {
 	@JoinColumn(name = "nidusuario", nullable = false, foreignKey = @ForeignKey(name = "fk_usuariobiometria_nidusuario_usuario_nidusuario"))
 	private Usuario usuario;
 
-	public Integer getnIdUsuarioBiometria() {
-		return nIdUsuarioBiometria;
-	}
-
-	public void setnIdUsuarioBiometria(Integer nIdUsuarioBiometria) {
-		this.nIdUsuarioBiometria = nIdUsuarioBiometria;
-	}
-
-	public byte[] getxImagen() {
-		return xImagen;
-	}
-
-	public void setxImagen(byte[] xImagen) {
-		this.xImagen = xImagen;
-	}
-
-	public String getsTipoImagen() {
-		return sTipoImagen;
-	}
-
-	public void setsTipoImagen(String sTipoImagen) {
-		this.sTipoImagen = sTipoImagen;
-	}
-
-	public boolean isbActivo() {
-		return bActivo;
-	}
-
-	public void setbActivo(boolean bActivo) {
-		this.bActivo = bActivo;
-	}
-
-	public LocalDate getdFechaReg() {
-		return dFechaReg;
-	}
-
-	public void setdFechaReg(LocalDate dFechaReg) {
-		this.dFechaReg = dFechaReg;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	@Column(name = "nidsesion")
+	private Integer nIdSesion;
 	
-	
-	
-	
+	 
 }

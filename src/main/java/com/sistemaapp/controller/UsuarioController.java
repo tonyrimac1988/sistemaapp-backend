@@ -26,7 +26,7 @@ import com.sistemaapp.service.IUsuarioService;
 
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 	
 	@Autowired
@@ -35,7 +35,7 @@ public class UsuarioController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarUsuario(Usuario obj){
 		Usuario usu = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usu.getnIdUsuario()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usu.getNIdSesion()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

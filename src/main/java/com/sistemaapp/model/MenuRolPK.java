@@ -6,6 +6,9 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Data;
+
+@Data
 @Embeddable
 public class MenuRolPK implements Serializable{
 	
@@ -18,23 +21,7 @@ public class MenuRolPK implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "nidmenu", nullable = false)
 	private Menu menu;
-
-	
-	public Rol getRol() {
-		return rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-
-	public Menu getMenu() {
-		return menu;
-	}
-
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
+ 
 	
 	
 }

@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "usuario_rol")
 public class UsuarioRol {
@@ -39,9 +42,8 @@ public class UsuarioRol {
 	@Column(name = "dfechareg", nullable = false)
 	private LocalDate dFechaReg;
 	
-//	@Column(name = "id_sesion", nullable = false)
-//	private Sesion sesion;
-
-	
+	@Column(name = "nidsesion")
+	private Integer nIdSesion;
+  
 	
 }

@@ -12,89 +12,36 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "sesion")
 public class Sesion {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idSesion;
+	@Column(name = "nidsesion")
+	private Integer nIdSesion;
 	
-	@Column(name = "fecha_inicio", nullable = false)
-	private LocalDate fechaInicio;
+	@Column(name = "dfechainicio", nullable = false)
+	private LocalDate dFechaInicio;
 	
-	@Column(name = "fecha_fin", nullable = false)
-	private LocalDate fechaFin;
+	@Column(name = "dfechafin", nullable = false)
+	private LocalDate dFechaFin;
 	
-	@Column(name = "sistema_version", nullable = false, length = 50)
-	private String sistemaVersion;
+	@Column(name = "ssistemaversion", nullable = false, length = 50)
+	private String sSistemaVersion;
 	
-	@Column(name = "bActivo", nullable = false)
+	@Column(name = "bactivo", nullable = false)
 	private boolean bActivo;
 	
-	@Column(name = "fecha_reg", nullable = false)
-	private LocalDate fechaReg;
+	@Column(name = "dfechareg", nullable = false)
+	private LocalDate dFechaReg;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "fk_sesion_idusuario_usuario_idusuario"))
+	@JoinColumn(name = "nidusuario", nullable = false, foreignKey = @ForeignKey(name = "fk_sesion_nidusuario_usuario_nidusuario"))
 	private Usuario usuario;
-
-	
-	public Integer getIdSesion() {
-		return idSesion;
-	}
-
-	public void setIdSesion(Integer idSesion) {
-		this.idSesion = idSesion;
-	}
-
-	public LocalDate getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(LocalDate fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-
-	public LocalDate getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(LocalDate fechaFin) {
-		this.fechaFin = fechaFin;
-	}
-
-	public String getSistemaVersion() {
-		return sistemaVersion;
-	}
-
-	public void setSistemaVersion(String sistemaVersion) {
-		this.sistemaVersion = sistemaVersion;
-	}
-
-	public boolean isbActivo() {
-		return bActivo;
-	}
-
-	public void setbActivo(boolean bActivo) {
-		this.bActivo = bActivo;
-	}
-
-	public LocalDate getFechaReg() {
-		return fechaReg;
-	}
-
-	public void setFechaReg(LocalDate fechaReg) {
-		this.fechaReg = fechaReg;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
+ 
 	
 }

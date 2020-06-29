@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "menu_rol")
 @IdClass(MenuRolPK.class)
@@ -24,8 +27,6 @@ public class MenuRol {
 	
 	@Column(name = "dfechareg", nullable = false)
 	private LocalDate dfechaReg;
-	
-//	@Column(name = "id_sesion", nullable = false)
-//	private Sesion idSesion;
+ 
 
 }

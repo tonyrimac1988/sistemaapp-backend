@@ -25,7 +25,7 @@ import com.sistemaapp.model.Sesion;
 import com.sistemaapp.service.ISesionService;
 
 @RestController
-@RequestMapping("/sesion")
+@RequestMapping("/sesiones")
 public class SesionController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class SesionController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarSesion(@Valid @RequestBody Sesion obj){
 		Sesion ses = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ses.getIdSesion()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ses.getNIdSesion()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	
