@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sistemaapp.model.Perfil;
@@ -33,7 +35,7 @@ public class PerfilServiceImpl implements IPerfilService{
 	@Override
 	public List<Perfil> listar() {
 		// TODO Auto-generated method stub
-		return iperfilRepo.findAll();
+		return iperfilRepo.findAll(Sort.by("nIdPerfil").descending());
 	}
 
 	@Override
@@ -52,7 +54,8 @@ public class PerfilServiceImpl implements IPerfilService{
 	@Override
 	public Page<Perfil> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return iperfilRepo.findAll(pageable);
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdPerfil").descending());
+		return iperfilRepo.findAll(pageSortedBy);
 	}
 
 }

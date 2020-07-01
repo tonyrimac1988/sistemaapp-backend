@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sistemaapp.model.Sesion;
@@ -33,7 +35,7 @@ public class SesionServiceImpl implements ISesionService{
 	@Override
 	public List<Sesion> listar() {
 		// TODO Auto-generated method stub
-		return isesionRepo.findAll();
+		return isesionRepo.findAll(Sort.by("nIdSesion").descending());
 	}
 
 	@Override
@@ -52,7 +54,8 @@ public class SesionServiceImpl implements ISesionService{
 	@Override
 	public Page<Sesion> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return isesionRepo.findAll(pageable);
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdSesion").descending());
+		return isesionRepo.findAll(pageSortedBy);
 	}
 
 }

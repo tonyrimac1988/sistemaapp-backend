@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -53,7 +54,8 @@ public class AreaServiceImpl implements IAreaService{
 	@Override
 	public Page<Area> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return iareaRepo.findAll(pageable);
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdArea").descending());
+		return iareaRepo.findAll(pageSortedBy);
 	}
 
 }
