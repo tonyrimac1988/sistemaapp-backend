@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sistemaapp.model.Sede;
@@ -33,7 +35,7 @@ public class SedeServiceImpl implements ISedeService{
 	@Override
 	public List<Sede> listar() {
 		// TODO Auto-generated method stub
-		return isedeRepo.findAll();
+		return isedeRepo.findAll(Sort.by("nIdSede").descending());
 	}
 
 	@Override
@@ -53,7 +55,8 @@ public class SedeServiceImpl implements ISedeService{
 	@Override
 	public Page<Sede> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return isedeRepo.findAll(pageable);
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdSede").descending());
+		return isedeRepo.findAll(pageSortedBy);
 	}
 
 }
