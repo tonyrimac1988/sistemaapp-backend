@@ -96,4 +96,13 @@ public class MenuController {
 		return new ResponseEntity<List<Menu>>(menus, HttpStatus.OK);
 	}
 
+	@PostMapping(value = "/generarReporteExcel", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE, consumes = "application/json")
+	public ResponseEntity<byte[]> generarReporte() {
+		byte[] data = null;
+		data = service.generarReporte();
+		return new ResponseEntity<byte[]>(data, HttpStatus.OK);
+	}
+	
+	 
+	
 }
