@@ -102,6 +102,11 @@
 			</exclusions>
 		</dependency>
 
+		<!-- BASE64.DECODEBASE64 -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		</dependency>
 
 	</dependencies>
 

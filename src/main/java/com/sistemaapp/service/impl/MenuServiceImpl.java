@@ -28,6 +28,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ibm.icu.text.SimpleDateFormat;
+import com.sistemaapp._util.IReportUtil;
 import com.sistemaapp.model.Menu;
 import com.sistemaapp.repo.IMenuRepo;
 import com.sistemaapp.repo.ISubMenuRepo;
@@ -51,14 +52,17 @@ public class MenuServiceImpl implements IMenuService {
 
 	@Autowired
 	private IMenuRepo imenuRepo;
-
 	
     @Autowired
     private DataSource dataSource;
+    
+    @Autowired
+    private IReportUtil reporte;
     	
 	@Autowired
 	private ISubMenuRepo submenuRepo;
 
+	
 	@Override
 	public Menu registrar(Menu obj) {
 		// TODO Auto-generated method stub
@@ -131,39 +135,40 @@ public class MenuServiceImpl implements IMenuService {
 	}
 
 	@Override
-	public byte[] generarReporte() {
-
+	public byte[] generarReporte(String tipoReporte) {
 		byte[] data = null;
-
-		try {
+		
+		try { 
+			Map<String, Object> parametros = new HashMap<>();				
+			File file = new ClassPathResource("/reportes/menu/MenuReport.jasper").getFile();
 			
-			Map<String, Object> parametros = new HashMap<>();
+			
+			
+			if(tipoReporte.equals("xlsx")) {
 				
-			File file = new ClassPathResource("/reportes/menu/MenuReport.jasper").getFile();			
-			JasperPrint xlsPrint = JasperFillManager.fillReport(file.getPath(), parametros, dataSource.getConnection());
+				log.info("xlsx");
+				data = reporte.generarEXCEL(file, parametros);
+				
+			}else if (tipoReporte.equals("html")) {
+				
+				log.info("html");
+				data = reporte.generarHTML(file, parametros);
 			
-//			ByteArrayOutputStream xlsReport = new ByteArrayOutputStream();					
-//			JRXlsExporter xlsExporter = new JRXlsExporter();
-//			xlsExporter.setExporterInput(new SimpleExporterInput(xlsPrint));
-//			xlsExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(xlsReport));
-//			SimpleXlsReportConfiguration xlsReportConfiguration = new SimpleXlsReportConfiguration();
-//	        xlsReportConfiguration.setOnePagePerSheet(false);
-//	        xlsReportConfiguration.setRemoveEmptySpaceBetweenRows(true);
-//	        xlsReportConfiguration.setDetectCellType(false);
-//	        xlsReportConfiguration.setWhitePageBackground(false);
-//	        xlsExporter.setConfiguration(xlsReportConfiguration);
-//	        xlsExporter.exportReport();	
-//			data =  xlsReport.toByteArray() ; //JasperExportManager.exportReportToPdf(print);
+			}else if (tipoReporte.equals("pdf")) {
+				
+				log.info("pdf");
+				data = reporte.generarPDF(file, parametros);
+				
+			}else {
+				
+				log.info("FORMATO DE REPORTE DESCONOCIDO");
+			}
 			
 			
-			data =  JasperExportManager.exportReportToPdf(xlsPrint);
-			log.info("---> genera reporte " +data.length);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("ERRORRRRRRRRRR ");
 		}
-
-		
 		return data;
 	}
 

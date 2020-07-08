@@ -15,6 +15,6 @@ public interface IMenuService extends ICRUD<Menu, Integer>{
 	
 	List<Menu> listarMenuPorNombreMenu(String key);
 
-	byte[] generarReporte();
+	byte[] generarReporte(String tipoReporte);
 
 }
