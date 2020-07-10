@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,8 @@ import com.sistemaapp.service.ISesionService;
 @RestController
 @RequestMapping("/sesiones")
 public class SesionController {
+	
+	private static final Logger log = LoggerFactory.getLogger(SesionController.class);
 	
 	@Autowired
 	private ISesionService service;
@@ -71,4 +75,11 @@ public class SesionController {
 		return new ResponseEntity<Page<Sesion>>(ses, HttpStatus.OK);
 	}
 	
+	@PostMapping(value = "/generarReporte", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE, consumes = "text/plain")
+	public ResponseEntity<byte[]> generarReporte(@RequestBody String tipoReporte) {
+		byte[] data = null;
+		log.info(tipoReporte);
+		data = service.generarReporte(tipoReporte);
+		return new ResponseEntity<byte[]>(data, HttpStatus.OK);
+	}
 }

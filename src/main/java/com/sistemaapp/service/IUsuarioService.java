@@ -9,4 +9,7 @@ public interface IUsuarioService extends ICRUD<Usuario, Integer>{
 	
 	Page<Usuario> listarPageable(Pageable pageable);
 
+	byte[] generarReporte(String tipoReporte);
+
+	
 }

@@ -9,4 +9,7 @@ public interface IRolService extends ICRUD<Rol, Integer>{
 	
 	Page<Rol> listarPageable(Pageable pageable);
 
+	byte[] generarReporte(String tipoReporte);
+	
+
 }

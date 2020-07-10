@@ -9,4 +9,7 @@ public interface ISesionService extends ICRUD<Sesion, Integer>{
 	
 	Page<Sesion> listarPageable(Pageable pageable);
 
+	byte[] generarReporte(String tipoReporte);
+	
+
 }

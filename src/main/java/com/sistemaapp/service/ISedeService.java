@@ -9,4 +9,6 @@ public interface ISedeService extends ICRUD<Sede, Integer>{
 	
 	Page<Sede> listarPageable(Pageable pageable);
 
+	byte[] generarReporte(String tipoReporte);
+
 }

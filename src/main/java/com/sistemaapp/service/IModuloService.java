@@ -9,4 +9,6 @@ public interface IModuloService extends ICRUD<Modulo, Integer>{
 	
 	Page<Modulo> listarPageable(Pageable pageable);
 
+	byte[] generarReporte(String tipoReporte);
+
 }

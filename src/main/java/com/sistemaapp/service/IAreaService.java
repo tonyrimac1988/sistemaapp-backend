@@ -8,5 +8,7 @@ import com.sistemaapp.model.Area;
 public interface IAreaService extends ICRUD<Area, Integer>{
 	
 	Page<Area> listarPageable(Pageable pageable);
+
+	byte[] generarReporte(String tipoReporte);
 	
 }

@@ -64,7 +64,6 @@ public class MenuController {
 		return new ResponseEntity<List<Menu>>(lista, HttpStatus.OK);
 	}
 	
-
 	@PutMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Menu> modificarMenu(@Valid @RequestBody Menu obj) {
 		Menu men = service.modificar(obj);
@@ -104,9 +103,5 @@ public class MenuController {
 		return new ResponseEntity<byte[]>(data, HttpStatus.OK);
 	}
 	
-	
-	
-	
-	 
-	
+		
 }

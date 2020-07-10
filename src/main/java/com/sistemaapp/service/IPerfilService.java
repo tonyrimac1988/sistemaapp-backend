@@ -9,4 +9,7 @@ public interface IPerfilService extends ICRUD<Perfil, Integer>{
 	
 	Page<Perfil> listarPageable(Pageable pageable);
 
+	byte[] generarReporte(String tipoReporte);
+	
+
 }

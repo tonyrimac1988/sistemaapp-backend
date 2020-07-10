@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,8 @@ import com.sistemaapp.service.IModuloService;
 @RestController
 @RequestMapping("/modulos")
 public class ModuloController {
+	
+	private static final Logger log = LoggerFactory.getLogger(ModuloController.class);
 	
 	@Autowired
 	private IModuloService service;
@@ -70,4 +74,11 @@ public class ModuloController {
 		return new ResponseEntity<Page<Modulo>>(mod, HttpStatus.OK);
 	}
 
+	@PostMapping(value = "/generarReporte", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE, consumes = "text/plain")
+	public ResponseEntity<byte[]> generarReporte(@RequestBody String tipoReporte) {
+		byte[] data = null;
+		log.info(tipoReporte);
+		data = service.generarReporte(tipoReporte);
+		return new ResponseEntity<byte[]>(data, HttpStatus.OK);
+	}
 }
