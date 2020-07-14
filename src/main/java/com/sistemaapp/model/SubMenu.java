@@ -17,16 +17,19 @@ public class SubMenu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidsubmenu")
-	private Integer nIdSubMenu;
+	private Integer nidsubmenu;
 	
 	@Column(name = "snombremenu", nullable = false, length = 100)
-	private String sNombreMenu;
+	private String snombremenu;
 	
 	@Column(name = "siconomenu", nullable = false, length = 50)
-	private String sIconoMenu;
+	private String siconomenu;
 	
 	@Column(name = "surl", nullable = false, length = 50)
-	private String sUrl;
+	private String surl;
+	
+	@Column(name = "norden", nullable = false)
+	private Integer norden;
 	
 //	@ManyToOne
 //	@JoinColumn(name = "nidmenu", nullable = false, foreignKey = @ForeignKey(name = "fk_submenu_nidmenu_menu_nidmenu"))

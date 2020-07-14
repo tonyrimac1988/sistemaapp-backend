@@ -17,57 +17,57 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sistemaapp._util.IReportUtil;
-import com.sistemaapp.model.Rol;
-import com.sistemaapp.repo.IRolRepo;
-import com.sistemaapp.service.IRolService;
+import com.sistemaapp.model.Parametro;
+import com.sistemaapp.repo.IParametroRepo;
+import com.sistemaapp.service.IParametroService;
 
 @Service
-public class RolServiceImpl implements IRolService{
+public class ParametroServiceImpl implements IParametroService{
 	
-	private static final Logger log = LoggerFactory.getLogger(RolServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(PerfilServiceImpl.class);
 	
 	@Autowired
-	private IRolRepo irolRepo;
+	private IParametroRepo iparametroRepo;
 	
 	@Autowired
     private IReportUtil reporte;
 
 	@Override
-	public Rol registrar(Rol obj) {
+	public Parametro registrar(Parametro obj) {
 		// TODO Auto-generated method stub
-		return irolRepo.save(obj);
+		return iparametroRepo.save(obj);
 	}
 
 	@Override
-	public Rol modificar(Rol obj) {
+	public Parametro modificar(Parametro obj) {
 		// TODO Auto-generated method stub
-		return irolRepo.save(obj);
+		return iparametroRepo.save(obj);
 	}
 
 	@Override
-	public List<Rol> listar() {
+	public List<Parametro> listar() {
 		// TODO Auto-generated method stub
-		return irolRepo.findAll(Sort.by("nidrol").descending());
+		return iparametroRepo.findAll(Sort.by("nidparametro").descending());
 	}
 
 	@Override
-	public Rol listarPorId(Integer v) {
+	public Parametro listarPorId(Integer v) {
 		// TODO Auto-generated method stub
-		Optional<Rol> rol = irolRepo.findById(v);
-		return rol.isPresent() ? rol.get() : new Rol();
+		Optional<Parametro> par = iparametroRepo.findById(v);
+		return par.isPresent() ? par.get() : new Parametro();
 	}
 
 	@Override
 	public void eliminar(Integer v) {
 		// TODO Auto-generated method stub
-		irolRepo.deleteById(v);
+		iparametroRepo.deleteById(v);
 	}
 
 	@Override
-	public Page<Rol> listarPageable(Pageable pageable) {
+	public Page<Parametro> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidrol").descending());
-		return irolRepo.findAll(pageSortedBy);
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidparametro").descending());
+		return iparametroRepo.findAll(pageSortedBy);
 	}
 
 	@Override
@@ -77,8 +77,8 @@ public class RolServiceImpl implements IRolService{
 		
 		try { 
 			Map<String, Object> parametros = new HashMap<>();				
-			File file = new ClassPathResource("/reportes/rol/RolReport.jasper").getFile();
-						
+			File file = new ClassPathResource("/reportes/parametro/ParametroReport.jasper").getFile();
+					
 			if(tipoReporte.equals("xlsx")) {
 				
 				log.info("xlsx");
@@ -98,12 +98,14 @@ public class RolServiceImpl implements IRolService{
 				
 				log.info("FORMATO DE REPORTE DESCONOCIDO");
 			}
-						
+					
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("ERRORRRRRRRRRR ");
 		}
 		return data;
 	}
+	
+	
 
 }

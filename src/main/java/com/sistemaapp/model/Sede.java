@@ -19,22 +19,22 @@ public class Sede {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidsede")
-	private Integer nIdSede;
+	private Integer nidsede;
 	
 	@Column(name = "snombre", nullable = false, length = 100)
-	private String sNombre;
+	private String snombre;
 	
 	@Column(name = "subigeo", nullable = false, length = 50)
-	private String sUbigeo;
+	private String subigeo;
 	
 	@Column(name = "sdireccion", nullable = false, length = 150)
-	private String sDireccion;
+	private String sdireccion;
 		
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDateTime dFechaReg;
+	private LocalDateTime dfechareg;
  
 	  
 }

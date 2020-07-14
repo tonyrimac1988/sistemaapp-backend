@@ -47,7 +47,7 @@ public class SedeServiceImpl implements ISedeService{
 	@Override
 	public List<Sede> listar() {
 		// TODO Auto-generated method stub
-		return isedeRepo.findAll(Sort.by("nIdSede").descending());
+		return isedeRepo.findAll(Sort.by("nidsede").descending());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class SedeServiceImpl implements ISedeService{
 	@Override
 	public Page<Sede> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdSede").descending());
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidsede").descending());
 		return isedeRepo.findAll(pageSortedBy);
 	}
 

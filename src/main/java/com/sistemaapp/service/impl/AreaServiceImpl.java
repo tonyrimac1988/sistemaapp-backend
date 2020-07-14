@@ -47,7 +47,7 @@ public class AreaServiceImpl implements IAreaService{
 	@Override
 	public List<Area> listar() {
 		// TODO Auto-generated method stub
-		return iareaRepo.findAll(Sort.by("nIdArea").descending());
+		return iareaRepo.findAll(Sort.by("nidarea").descending());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class AreaServiceImpl implements IAreaService{
 	@Override
 	public Page<Area> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdArea").descending());
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidarea").descending());
 		return iareaRepo.findAll(pageSortedBy);
 	}
 

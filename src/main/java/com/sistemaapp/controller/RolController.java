@@ -39,7 +39,7 @@ public class RolController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarRol(@Valid @RequestBody Rol obj){
 		Rol rol = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(rol.getNIdRol()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(rol.getNidrol()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

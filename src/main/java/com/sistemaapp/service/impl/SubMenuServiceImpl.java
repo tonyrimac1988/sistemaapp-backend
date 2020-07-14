@@ -35,7 +35,7 @@ public class SubMenuServiceImpl implements ISubMenuService{
 	@Override
 	public List<SubMenu> listar() {
 		// TODO Auto-generated method stub
-		return isubRepo.findAll(Sort.by("nIdSubMenu").descending());
+		return isubRepo.findAll(Sort.by("norden").descending());
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class SubMenuServiceImpl implements ISubMenuService{
 	@Override
 	public Page<SubMenu> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdSubMenu").descending());
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("norden").descending());
 		return isubRepo.findAll(pageSortedBy);
 	}
 	

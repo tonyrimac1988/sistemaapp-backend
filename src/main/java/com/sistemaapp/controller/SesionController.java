@@ -38,7 +38,7 @@ public class SesionController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarSesion(@Valid @RequestBody Sesion obj){
 		Sesion ses = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ses.getNIdSesion()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ses.getNidsesion()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

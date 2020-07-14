@@ -23,61 +23,60 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sistemaapp.model.Perfil;
-import com.sistemaapp.service.IPerfilService;
+import com.sistemaapp.model.Parametro;
+import com.sistemaapp.service.IParametroService;
 
 @RestController
-@RequestMapping("/perfiles")
-public class PerfilController {
-	
-	private static final Logger log = LoggerFactory.getLogger(PerfilController.class);
-	
+@RequestMapping("/parametros")
+public class ParametroController {
+
+	private static final Logger log = LoggerFactory.getLogger(ParametroController.class);
+
 	@Autowired
-	private IPerfilService service;
-	
+	private IParametroService service;
+
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> registrarPerfil(@Valid @RequestBody Perfil obj){
-		Perfil per = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(per.getNidperfil()).toUri();
-		return ResponseEntity.created(location).build();		
+	public ResponseEntity<Object> registrarParametro(@Valid @RequestBody Parametro obj) {
+		Parametro par = service.registrar(obj);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(par.getNidparametro())
+				.toUri();
+		return ResponseEntity.created(location).build();
 	}
-	
-	
+
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Perfil>> listarPerfil(){
-		List<Perfil> lista = service.listar();
-		return new ResponseEntity<List<Perfil>>(lista, HttpStatus.OK);
+	public ResponseEntity<List<Parametro>> listarParametro() {
+		List<Parametro> lista = service.listar();
+		return new ResponseEntity<List<Parametro>>(lista, HttpStatus.OK);
 	}
-	
 	
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Perfil> listarPorId(@PathVariable Integer id){
-		Perfil per = service.listarPorId(id);
-		return new ResponseEntity<Perfil>(per, HttpStatus.OK);		
+	public ResponseEntity<Parametro> listarPorId(@PathVariable Integer id) {
+		Parametro par = service.listarPorId(id);
+		return new ResponseEntity<Parametro>(par, HttpStatus.OK);
 	}
 	
 	
 	@PutMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Perfil> modificarPerfil(@Valid @RequestBody Perfil obj){
-		Perfil per = service.modificar(obj);
-		return new ResponseEntity<Perfil>(per, HttpStatus.OK);
+	public ResponseEntity<Parametro> modificarParametro(@Valid @RequestBody Parametro obj) {
+		Parametro par = service.modificar(obj);
+		return new ResponseEntity<Parametro>(par, HttpStatus.OK);
 	}
-	
-	
+
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> eliminarPerfil(@PathVariable Integer id){
+	public ResponseEntity<Object> eliminarParametro(@PathVariable Integer id) {
 		service.eliminar(id);
 		return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
 	}
-	
-	@GetMapping(value="/pageable", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Page<Perfil>> listarPageable(Pageable pageable){
-		
-		Page<Perfil> per = service.listarPageable(pageable);
-		
-		return new ResponseEntity<Page<Perfil>>(per, HttpStatus.OK);
+
+	@GetMapping(value = "/pageable", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<Parametro>> listarPageable(Pageable pageable) {
+
+		Page<Parametro> par = service.listarPageable(pageable);
+
+		return new ResponseEntity<Page<Parametro>>(par, HttpStatus.OK);
 	}
-	
+
+
 	@PostMapping(value = "/generarReporte", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE, consumes = "text/plain")
 	public ResponseEntity<byte[]> generarReporte(@RequestBody String tipoReporte) {
 		byte[] data = null;
@@ -85,5 +84,5 @@ public class PerfilController {
 		data = service.generarReporte(tipoReporte);
 		return new ResponseEntity<byte[]>(data, HttpStatus.OK);
 	}
-
+	
 }

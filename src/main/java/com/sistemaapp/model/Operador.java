@@ -23,37 +23,37 @@ public class Operador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidoperador")
-	private Integer nIdOperador;
+	private Integer nidoperador;
 	
 	@Column(name = "snumdocu", nullable = false, length = 15)
-	private String sNumDocu;
+	private String snumdocu;
 	
 	@Column(name = "snombre", nullable = false, length = 80)
-	private String sNombre;
+	private String snombre;
 	
 	@Column(name = "sapepaterno", nullable = false, length = 80)
-	private String sApePaterno;
+	private String sapepaterno;
 	
 	@Column(name = "sapematerno", nullable = false, length = 80)
-	private String sApeMaterno;
+	private String sapematerno;
 	
 	@Column(name = "dfechanac", nullable = false)
-	private LocalDate dFechaNac;
+	private LocalDate dfechanac;
 	
 	@Column(name = "sgenero", nullable = false, length = 1)
-	private String sGenero;
+	private String sgenero;
 	
 	@Column(name = "sobservacion", length = 500)
-	private String sObservacion;
+	private String sobservacion;
 		
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDate dfechareg;
 	
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 
 	@Column(name = "nidsesion")
-	private Integer nIdSesion;
+	private Integer nidsesion;
 
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "operador")

@@ -22,22 +22,22 @@ public class Sesion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidsesion")
-	private Integer nIdSesion;
+	private Integer nidsesion;
 	
 	@Column(name = "dfechainicio", nullable = false)
-	private LocalDate dFechaInicio;
+	private LocalDate dfechainicio;
 	
 	@Column(name = "dfechafin", nullable = false)
-	private LocalDate dFechaFin;
+	private LocalDate dfechafin;
 	
 	@Column(name = "ssistemaversion", nullable = false, length = 50)
-	private String sSistemaVersion;
+	private String ssistemaversion;
 	
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDate dfechareg;
 	
 	@ManyToOne
 	@JoinColumn(name = "nidusuario", nullable = false, foreignKey = @ForeignKey(name = "fk_sesion_nidusuario_usuario_nidusuario"))

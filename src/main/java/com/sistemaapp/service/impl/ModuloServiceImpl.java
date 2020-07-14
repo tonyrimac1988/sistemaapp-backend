@@ -47,7 +47,7 @@ public class ModuloServiceImpl implements IModuloService{
 	@Override
 	public List<Modulo> listar() {
 		// TODO Auto-generated method stub
-		return imoduloRepo.findAll(Sort.by("nIdModulo").descending());
+		return imoduloRepo.findAll(Sort.by("nidmodulo").descending());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ModuloServiceImpl implements IModuloService{
 	@Override
 	public Page<Modulo> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdModulo").descending());		
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidmodulo").descending());		
 		return imoduloRepo.findAll(pageSortedBy);
 	}
 

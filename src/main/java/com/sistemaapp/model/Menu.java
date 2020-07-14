@@ -25,32 +25,32 @@ public class Menu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidmenu")
-	private Integer nIdMenu;
+	private Integer nidmenu;
 	
 	@Column(name = "snombremenu", nullable = false, length = 100)
-	private String sNombreMenu;
+	private String snombremenu;
 	
 	@Column(name = "siconomenu", nullable = false, length = 50)
-	private String sIconoMenu;
+	private String siconomenu;
 	
 	@Column(name = "surl", nullable = false, length = 50)
-	private String sUrl;
+	private String surl;
 	
 	@Column(name = "norden", nullable = false)
-	private Integer nOrden;
+	private Integer norden;
 	
 	@Column(name = "bactivo", nullable = true)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@ManyToOne
 	@JoinColumn(name = "nidmodulo", nullable = false, foreignKey = @ForeignKey(name = "fk_menu_nidmodulo_modulo_nidmodulo"))
 	private Modulo modulo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDate dfechareg;
 
 	@Column(name = "nidsesion")
-	private Integer nIdSesion;
+	private Integer nidsesion;
   
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "nidmenu", foreignKey = @ForeignKey(name = "fk_menu_nidmenu_submenu_nidmenu"))

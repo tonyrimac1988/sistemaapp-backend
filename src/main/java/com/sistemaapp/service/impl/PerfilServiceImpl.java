@@ -47,7 +47,7 @@ public class PerfilServiceImpl implements IPerfilService{
 	@Override
 	public List<Perfil> listar() {
 		// TODO Auto-generated method stub
-		return iperfilRepo.findAll(Sort.by("nIdPerfil").descending());
+		return iperfilRepo.findAll(Sort.by("nidperfil").descending());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class PerfilServiceImpl implements IPerfilService{
 	@Override
 	public Page<Perfil> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdPerfil").descending());
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidperfil").descending());
 		return iperfilRepo.findAll(pageSortedBy);
 	}
 

@@ -38,7 +38,7 @@ public class SedeController {
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registrarSede(@Valid @RequestBody Sede obj){
 		Sede sed = service.registrar(obj);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(sed.getNIdSede()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(sed.getNidsede()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	

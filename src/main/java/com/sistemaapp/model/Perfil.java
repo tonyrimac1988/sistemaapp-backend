@@ -19,28 +19,28 @@ public class Perfil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidperfil")
-	private Integer nIdPerfil;
+	private Integer nidperfil;
 	
 	@Column(name = "snombreperfil", nullable = false, length = 80)
-	private String sNombrePerfil;
+	private String snombreperfil;
 	
 	@Column(name = "nsesionesporusuario", nullable = false)
-	private Integer nSesionesPorUsuario;
+	private Integer nsesionesporusuario;
 	
 	@Column(name = "ntiempoconexionminuto", nullable = false)
-	private Integer nTiempoConexionMinuto;
+	private Integer ntiempoconexionminuto;
 	
 	@Column(name = "ntiempovidapasworddia", nullable = false)
-	private Integer nTiempoVidaPaswordDia;
+	private Integer ntiempovidapasworddia;
 	  
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDate dfechareg;
 
 	@Column(name = "nidsesion")
-	private Integer nIdSesion;
+	private Integer nidsesion;
 	 
 
 }

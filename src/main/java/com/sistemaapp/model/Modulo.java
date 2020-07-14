@@ -19,25 +19,25 @@ public class Modulo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidmodulo")
-	private Integer nIdModulo;
+	private Integer nidmodulo;
 	
 	@Column(name = "snombremodulo", nullable = false, length = 100)
-	private String sNombreModulo;
+	private String snombremodulo;
 	
 	@Column(name = "ssiglas", nullable = false, length = 10)
-	private String sSiglas;
+	private String ssiglas;
 	
 	@Column(name = "sobservacion", nullable = false, length = 500)
-	private String sObservacion;
+	private String sobservacion;
 	
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDate dfechareg;
 
 	@Column(name = "nidsesion")
-	private Integer nIdSesion;
+	private Integer nidsesion;
 	 
  
 	

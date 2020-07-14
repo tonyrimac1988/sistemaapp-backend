@@ -22,26 +22,26 @@ public class Area {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidarea")
-	private Integer nIdArea; 
+	private Integer nidarea; 
 	
 	@Column(name = "snombre", nullable = false, length = 100)
-	private String sNombre;
+	private String snombre;
 	
 	@Column(name = "sobservacion", nullable = false, length = 500)
-	private String sObservacion;
+	private String sobservacion;
 		
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDate dfechareg;
 
 	@ManyToOne
 	@JoinColumn(name = "nidsede", nullable = false, foreignKey = @ForeignKey(name = "fk_area_nidsede_sede_nidsede"))
 	private Sede sede;
 	 
 	@Column(name = "nidsesion")
-	private Integer nIdSesion;
+	private Integer nidsesion;
 	 
 	 
 

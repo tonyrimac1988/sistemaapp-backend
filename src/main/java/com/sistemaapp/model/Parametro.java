@@ -20,23 +20,23 @@ public class Parametro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nidparametro")
-	private Integer nIdParametro;
+	private Integer nidparametro;
 	
 	
 	@Column(name = "sclave", nullable = false, length = 50)
-	private String sClave;
+	private String sclave;
 	
 	@Column(name = "svalor", nullable = false, length = 100)
-	private String sValor;
+	private String svalor;
 	
 	@Column(name = "sdescripcion", nullable = false, length = 200)
-	private String sDescripcion;
+	private String sdescripcion;
 	
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDateTime dFechaReg;
+	private LocalDateTime dfechareg;
  
 	
 }

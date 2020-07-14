@@ -47,7 +47,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	@Override
 	public List<Usuario> listar() {
 		// TODO Auto-generated method stub
-		return iusuarioRepo.findAll(Sort.by("nIdUsuario").descending());
+		return iusuarioRepo.findAll(Sort.by("nidusuario").descending());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	@Override
 	public Page<Usuario> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdUsuario").descending());
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidusuario").descending());
 		return iusuarioRepo.findAll(pageSortedBy);
 	}
 

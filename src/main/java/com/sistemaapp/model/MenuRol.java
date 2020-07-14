@@ -23,10 +23,10 @@ public class MenuRol {
 	private Menu menu;
 	
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dfechaReg;
+	private LocalDate dfechareg;
  
 
 }

@@ -20,27 +20,27 @@ public class Usuario {
 	
 	@Id
 	@Column(name = "nidusuario")
-	private Integer nIdUsuario;
+	private Integer nidusuario;
 	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	@JoinColumn(name = "nidusuario", nullable = false)
 	private Operador operador;
 	 
 	@Column(name = "slogin", nullable = false, length = 50)
-	private String sLogin;
+	private String slogin;
 	
 	@Column(name = "spassword", nullable = false, length = 100)
-	private String sPassword;
+	private String spassword;
 	
  
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDate dfechareg;
 	
 	@Column(name = "bactivo", nullable = false)
-	private boolean bActivo;
+	private boolean bactivo;
 
 	@Column(name = "nidsesion")
-	private Integer nIdSesion;
+	private Integer nidsesion;
 	 
 	
 }

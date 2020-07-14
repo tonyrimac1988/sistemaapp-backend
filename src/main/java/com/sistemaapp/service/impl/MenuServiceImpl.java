@@ -78,7 +78,7 @@ public class MenuServiceImpl implements IMenuService {
 	@Override
 	public List<Menu> listar() {
 		// TODO Auto-generated method stub
-		return imenuRepo.findAll(Sort.by("nIdMenu").descending());
+		return imenuRepo.findAll(Sort.by("nidmenu").descending());
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class MenuServiceImpl implements IMenuService {
 	@Override
 	public Page<Menu> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdMenu").descending());
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidmenu").descending());
 		return imenuRepo.findAll(pageSortedBy);
 	}
 
@@ -105,14 +105,14 @@ public class MenuServiceImpl implements IMenuService {
 	@Override
 	public List<Menu> listarMenuPorUsuario(String nombre) {
 		String[] data = imenuRepo.MenuUsuario(nombre); // { "CONFIGURACIÓN", "ADMINISTRADOR" };
-		List<Menu> menus_ = imenuRepo.findAll(Sort.by("nOrden").ascending());
+		List<Menu> menus_ = imenuRepo.findAll(Sort.by("norden").ascending());
 
 		List<Menu> menus_resultado = new ArrayList<>();
 		for (Menu menu : menus_) {
 //			log.info("MenuServiceImpl->  " + menu.getSNombreMenu());
 			int contador = 0;
 			for (String data_ : data) {
-				if (menu.getSNombreMenu().equals(data[contador])) {
+				if (menu.getSnombremenu().equals(data[contador])) {
 					menus_resultado.add(menu);
 					break;
 				}

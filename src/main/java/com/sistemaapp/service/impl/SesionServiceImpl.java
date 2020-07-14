@@ -47,7 +47,7 @@ public class SesionServiceImpl implements ISesionService{
 	@Override
 	public List<Sesion> listar() {
 		// TODO Auto-generated method stub
-		return isesionRepo.findAll(Sort.by("nIdSesion").descending());
+		return isesionRepo.findAll(Sort.by("nidsesion").descending());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class SesionServiceImpl implements ISesionService{
 	@Override
 	public Page<Sesion> listarPageable(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nIdSesion").descending());
+		Pageable pageSortedBy = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), Sort.by("nidsesion").descending());
 		return isesionRepo.findAll(pageSortedBy);
 	}
 
