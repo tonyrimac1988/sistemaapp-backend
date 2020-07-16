@@ -1,6 +1,6 @@
 package com.sistemaapp.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +39,7 @@ public class UsuarioArea {
 	private boolean bActivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDateTime dFechaReg;
 
 	@Column(name = "nidsesion")
 	private Integer nIdSesion;

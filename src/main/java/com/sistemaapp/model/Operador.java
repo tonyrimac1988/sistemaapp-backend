@@ -1,6 +1,7 @@
 package com.sistemaapp.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,7 +48,7 @@ public class Operador {
 	private String sobservacion;
 		
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dfechareg;
+	private LocalDateTime dfechareg;
 	
 	@Column(name = "bactivo", nullable = false)
 	private boolean bactivo;

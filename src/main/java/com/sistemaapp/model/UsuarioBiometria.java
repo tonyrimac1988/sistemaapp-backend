@@ -1,6 +1,6 @@
 package com.sistemaapp.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +35,7 @@ public class UsuarioBiometria {
 	private boolean bActivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDateTime dFechaReg;
 	
 	@ManyToOne
 	@JoinColumn(name = "nidusuario", nullable = false, foreignKey = @ForeignKey(name = "fk_usuariobiometria_nidusuario_usuario_nidusuario"))

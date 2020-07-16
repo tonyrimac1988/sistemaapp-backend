@@ -1,6 +1,6 @@
 package com.sistemaapp.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +34,7 @@ public class Rol {
 	private boolean bactivo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dfechareg;
+	private LocalDateTime dfechareg;
 
 	@Column(name = "nidsesion")
 	private Integer nidsesion;

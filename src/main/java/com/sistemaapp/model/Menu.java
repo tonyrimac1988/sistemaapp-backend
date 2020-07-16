@@ -1,6 +1,6 @@
 package com.sistemaapp.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ public class Menu {
 	private Modulo modulo;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dfechareg;
+	private LocalDateTime dfechareg;
 
 	@Column(name = "nidsesion")
 	private Integer nidsesion;

@@ -1,6 +1,6 @@
 package com.sistemaapp.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +28,6 @@ public class AuditoriaProcedimiento {
 	private String sPalabraClave;
 	
 	@Column(name = "dfechareg", nullable = false)
-	private LocalDate dFechaReg;
+	private LocalDateTime dFechaReg;
 
 }
