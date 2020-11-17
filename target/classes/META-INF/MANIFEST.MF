@@ -1,6 +1,10 @@
 Manifest-Version: 1.0
 Build-Jdk-Spec: 11
 Implementation-Title: sistemaapp-backend
+<<<<<<< HEAD
 Implementation-Version: 0.0.1-SNAPSHOT
+=======
+Implementation-Version: 1.0.0
+>>>>>>> 94948014cbedb0867cc01804197a08c0825c501f
 Created-By: Maven Integration for Eclipse
 
