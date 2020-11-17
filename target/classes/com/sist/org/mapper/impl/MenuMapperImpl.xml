@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IMenuMapper">
+
+
+	<resultMap id="BaseResultMap" type="com.sist.org.modelo.Menu">
+		<id column="nidmenu" property="nidmenu" />
+		<result column="norden" property="norden" />
+		<result column="snombremenu_m" property="snombremenu" />
+		<result column="siconomenu_m" property="siconomenu" />
+		<result column="surl" property="surl" />
+		<result column="nidmodulo" property="nidmodulo" />
+		<result column="bactivo" property="bactivo" />
+		<result column="dfechareg" property="dfechareg" />
+		<result column="nidsesion" property="nidsesion" />
+		<collection property="submenu" ofType="com.sist.org.modelo.SubMenu">
+			<id column="nidsubmenu" property="nidsubmenu" />
+			<result column="norden" property="norden" />
+			<result column="snombremenu" property="snombremenu" />
+			<result column="siconomenu" property="siconomenu" />
+			<result column="surl" property="surl" />
+			<result column="nidmenu" property="nidmenu" />
+		</collection>
+	</resultMap>
+	
+	<!--LISTAR PERSONA -->
+	<select id="listarMenuPorUsuario"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT * FROM
+		public.fn_sist_listar_menu_usuario(#{user});
+	</select>
+
+
+
+
+</mapper>

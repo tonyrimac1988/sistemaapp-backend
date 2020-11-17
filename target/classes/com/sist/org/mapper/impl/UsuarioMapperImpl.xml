@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IUsuarioMapper">
+
+
+	<resultMap id="BaseResultMap"
+		type="com.sist.org.modelo.Operador">
+		<id column="nidoperador" property="nidoperador" />
+		<result column="snumdocu" property="snumdocu" />
+		<result column="snombre" property="snombre" />
+		<result column="sapepaterno" property="sapepaterno" />
+		<result column="sapematerno" property="sapematerno" />
+		<result column="sgenero" property="sgenero" />
+		<result column="dfechanac" property="dfechanac" />
+		<result column="sobservacion" property="sobservacion" />
+		<result column="bactivo" property="bactivo" />
+		<result column="estado" property="estado" />
+		<result column="dfechareg" property="dfechareg" />
+		<result column="nidsesion" property="nidsesion" />
+		<result column="nidusuario" property="usuario.nidusuario" />
+		<result column="slogin" property="usuario.slogin" />
+		<result column="spassword" property="usuario.spassword" />
+		<result column="bactivo" property="usuario.bactivo" />
+		<result column="dfechareg" property="usuario.dfechareg" />
+		<result column="nidsesion" property="usuario.nidsesion" />
+	</resultMap>
+
+
+	<!--LISTAR PERSONA -->
+	<select id="listarUsuario" resultMap="BaseResultMap"
+		parameterType="com.sist.org.modelo.Pageable">
+		SELECT
+		o.nidoperador,
+		o.snumdocu,
+		o.snombre,
+		o.sapepaterno,
+		o.sapematerno,
+		o.sgenero,
+		o.dfechanac,
+		o.sobservacion,
+		o.bactivo,
+		CASE
+		u.bactivo WHEN
+		TRUE THEN 'ACTIVO'
+		ELSE 'DESACTIVADO'
+		END AS estado,
+		o.dfechareg,
+		o.nidsesion,
+		u.nidusuario,
+		u.slogin,
+		'*********' AS spassword ,
+		u.bactivo,
+		u.dfechareg,
+		u.nidsesion
+		FROM
+		usuario u
+		INNER JOIN operador o ON
+		O.nidoperador = U.nidusuario
+		ORDER BY
+		nidusuario DESC
+		OFFSET
+		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
+
+	</select>
+
+
+	<!--LISTAR PERSONA -->
+	<select id="countElements" resultType="int">
+		SELECT count(*) FROM
+		operador u WHERE bactivo = true;
+	</select>
+
+
+</mapper>
