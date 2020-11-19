@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.ISesionMapper">
+
+	
+	<!--LISTAR PERSONA -->
+	<select id="InciarSesion"
+		parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT public.fn_sist_inicia_sesion(#{usuario});
+	</select>
+
+
+	<!--LISTAR PERSONA -->
+	<select id="CerrarSesion"
+		parameterType="int" resultType="int">
+		SELECT public.fn_sist_cerrar_sesion(#{usuario});
+	</select>
+
+
+</mapper>

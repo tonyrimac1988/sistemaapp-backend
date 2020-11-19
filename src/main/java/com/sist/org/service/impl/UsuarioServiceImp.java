@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.org.dto.UsuarioSesion;
 import com.sist.org.mapper.IUsuarioMapper;
 import com.sist.org.modelo.Operador;
 import com.sist.org.modelo.Page;
@@ -31,6 +32,13 @@ public class UsuarioServiceImp implements IUsuarioService{
 		page.setContent(iUsuarioMapper.listarUsuario(pageable));
 		page.setTotalElements(iUsuarioMapper.countElements());		
 		return page;
+	}
+
+
+	@Override
+	public UsuarioSesion ConsultaUsuariosesion(String usuario) {
+		// TODO Auto-generated method stub
+		return iUsuarioMapper.ConsultaUsuariosesion(usuario);
 	}
 	
 	 

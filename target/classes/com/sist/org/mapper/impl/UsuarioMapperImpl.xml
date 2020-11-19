@@ -48,13 +48,15 @@
 		o.nidsesion,
 		u.nidusuario,
 		u.slogin,
-		'*********' AS spassword ,
+		'*********' AS spassword
+		,
 		u.bactivo,
 		u.dfechareg,
 		u.nidsesion
 		FROM
 		usuario u
-		INNER JOIN operador o ON
+		INNER JOIN operador o
+		ON
 		O.nidoperador = U.nidusuario
 		ORDER BY
 		nidusuario DESC
@@ -69,6 +71,35 @@
 		SELECT count(*) FROM
 		operador u WHERE bactivo = true;
 	</select>
+
+
+
+	<!-- CONSULTA USUARIO SESION -->
+	<select id="ConsultaUsuariosesion"
+		parameterType="java.lang.String"
+		resultType="com.sist.org.dto.UsuarioSesion">
+		SELECT
+		o.snombre || ' ' || o.sapepaterno || ' ' || o.sapematerno AS snombre ,
+		o.scorreo ,
+		ro.snombrerol ,
+		ub.ximagen
+		FROM
+		usuario u
+		INNER JOIN operador o ON
+		u.nidusuario = o.nidoperador
+		LEFT JOIN usuario_biometria ub ON
+		ub.nidusuario = u.nidusuario
+		LEFT JOIN usuario_rol ur ON
+		ur.nidusuario = u.nidusuario
+		LEFT JOIN rol ro ON
+		ro.nidrol = ur.nidusuario
+		WHERE
+		u.slogin = #{usuario}
+		AND O.bactivo = true
+		LIMIT 1 ;
+
+	</select>
+
 
 
 </mapper>

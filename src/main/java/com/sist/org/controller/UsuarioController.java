@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sist.org.dto.UsuarioSesion;
 import com.sist.org.modelo.Operador;
 import com.sist.org.modelo.Page;
 import com.sist.org.modelo.Pageable;
-import com.sist.org.modelo.Usuario;
 import com.sist.org.service.IUsuarioService;
 
 @RestController
@@ -31,5 +31,15 @@ public class UsuarioController {
 
 		return new ResponseEntity<Page<Operador>>(listarOperador, HttpStatus.OK);
 	}
+	
+	
+	@PostMapping(value = "/consultaUsuariosesion", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UsuarioSesion> ConsultaUsuariosesion(@Validated @RequestBody String usuario) {
+ 
+		UsuarioSesion usuarioSesion = iUsuarioService.ConsultaUsuariosesion(usuario);
+
+		return new ResponseEntity<UsuarioSesion>(usuarioSesion, HttpStatus.OK);
+	}
+	
 	
 }
