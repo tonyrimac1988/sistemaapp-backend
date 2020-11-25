@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IOperadorMapper">
+
+	<!--INSERTAR PERSONA -->
+	<select id="insertarOperador"
+		parameterType="com.sist.org.modelo.Operador"
+		resultType="java.lang.String">
+		SELECT * FROM fn_insertar_operador_usuario(
+		#{dfechanac},
+		#{nidsesion},
+		#{sapematerno},
+		#{sapepaterno},
+		#{sgenero},
+		#{snombre},
+		#{snumdocu},
+		#{sobservacion},
+		#{usuario.slogin},
+		#{usuario.spassword}
+		);
+	</select>
+
+	<!--LISTAR PERSONA -->
+	<select id="listarOperador"
+		resultType="Operador">
+		SELECT
+		nidoperador,
+		snumdocu,
+		snombre,
+		sapepaterno,
+		sapematerno,
+		sgenero,
+		dfechanac,
+		sobservacion,
+		bactivo,
+		dfechareg,
+		nidsesion
+		FROM public.operador;
+
+	</select>
+
+
+	<!--ELIMINAR PERSONA -->
+	<select id="eliminarOperador"
+		parameterType="com.sist.org.modelo.Operador"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_eliminar_operador(#{nidoperador});
+	</select>
+
+
+	<!--ACTUALIZAR PERSONA -->
+	<select id="actualizarOperador"
+		parameterType="com.sist.org.modelo.Operador"
+		resultType="java.lang.String">
+		SELECT * FROM
+		public.fn_actualizar_operador_usuario(
+		#{nidoperador},
+		#{dfechanac},
+		#{nidsesion},
+		#{sapematerno},
+		#{sapepaterno},
+		#{sgenero},
+		#{snombre},
+		#{snumdocu},
+		#{sobservacion},
+		#{usuario.slogin},
+		#{usuario.spassword});
+	</select>
+
+</mapper>

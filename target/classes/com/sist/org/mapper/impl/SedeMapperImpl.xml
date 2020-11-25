@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.ISedeMapper">
+
+		<!--INSERTAR SEDE -->
+	<select id="insertarSede"
+		parameterType="com.sist.org.modelo.Sede"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_insertar_sede(
+		#{sdireccion},		
+		#{snombre},
+		#{subigeo}		
+		);
+	</select>
+	
+	<!--LISTAR SEDE -->
+	<select id="listarSede"
+		resultType="com.sist.org.modelo.Sede">
+		SELECT 
+		nidsede, 
+		snombre, 
+		sdireccion, 
+		subigeo, 
+		bactivo, 
+		dfechareg, 
+		nidsesion
+		FROM public.sede;
+	</select>
+	
+	<!--ACTUALIZAR SEDE -->
+	<select id="actualizarSede"
+		parameterType="com.sist.org.modelo.Sede"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_actualizar_sede(
+		#{nidsede},
+		#{sdireccion},		
+		#{snombre},
+		#{subigeo}
+		);
+	</select>
+	
+	<!--ELIMINAR SEDE -->
+	<select id="eliminarSede"
+		parameterType="com.sist.org.modelo.Sede"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_eliminar_sede(#{nidsede});
+	</select>
+	
+</mapper>

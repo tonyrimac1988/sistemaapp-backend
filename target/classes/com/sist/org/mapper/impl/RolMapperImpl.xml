@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IRolMapper">
+
+	<!--INSERTAR ROL -->
+	<select id="insertarRol"
+		parameterType="com.sist.org.modelo.Rol"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_insertar_rol(
+		#{nidsesion},
+		#{siglas},
+		#{snombrerol},
+		#{sobservacion}
+		);
+	</select>
+	
+	<!--LISTAR ROL -->
+	<select id="listarRol"
+		resultType="com.sist.org.modelo.Rol">
+		SELECT 
+		nidrol, 
+		snombrerol, 
+		siglas, 
+		sobservacion, 
+		bactivo, 
+		dfechareg, 
+		nidsesion
+		FROM public.rol;
+	</select>
+	
+	<!--ACTUALIZAR ROL -->
+	<select id="actualizarRol"
+		parameterType="com.sist.org.modelo.Rol"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_actualizar_rol(
+		#{nidrol},
+		#{nidsesion},
+		#{siglas},
+		#{snombrerol},
+		#{sobservacion}
+		);
+	</select>
+	
+	<!--ELIMINAR ROL -->
+	<select id="eliminarRol"
+		parameterType="com.sist.org.modelo.Rol"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_eliminar_rol(#{nidrol});
+	</select>
+</mapper>

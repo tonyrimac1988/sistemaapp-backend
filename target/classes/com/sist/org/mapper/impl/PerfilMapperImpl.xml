@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IPerfilMapper">
+
+	<!--INSERTAR PERFIL -->
+	<select id="insertarPerfil"
+		parameterType="com.sist.org.modelo.Perfil"
+		resultType="java.lang.String">
+		SELECT fn_insertar_perfil(
+		#{nidsesion},
+		#{nsesionesporusuario},
+		#{ntiempoconexionminuto},
+		#{ntiempovidapasworddia},
+		#{snombreperfil}
+		);
+	</select>
+
+	<!--LISTAR PERFIL -->
+	<select id="listarPerfil"
+		resultType="com.sist.org.modelo.Perfil">
+		SELECT 
+		nidperfil, 
+		snombreperfil, 
+		nsesionesporusuario, 
+		ntiempoconexionminuto, 
+		ntiempovidapasworddia, 
+		bactivo, 
+		dfechareg, 
+		nidsesion 
+		FROM public.perfil;
+	</select>
+
+	<!--ACTUALIZAR PERFIL -->
+	<select id="actualizarPerfil"
+		parameterType="com.sist.org.modelo.Perfil"
+		resultType="java.lang.String">
+		SELECT fn_actualizar_perfil(
+		#{nidperfil},
+		#{nidsesion},
+		#{nsesionesporusuario},
+		#{ntiempoconexionminuto},
+		#{ntiempovidapasworddia},
+		#{snombreperfil}
+		);
+	</select>
+	
+	<!--ELIMINAR PERFIL -->
+	<select id="eliminarPerfil"
+		parameterType="com.sist.org.modelo.Perfil"
+		resultType="java.lang.String">
+		SELECT public.fn_eliminar_perfil(#{nidperfil});
+	</select>
+	
+</mapper>

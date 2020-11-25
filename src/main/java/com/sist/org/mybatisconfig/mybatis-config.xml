@@ -9,6 +9,7 @@
         <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
+        <typeAlias alias ="Operador" type="com.sist.org.modelo.Operador" />
     </typeAliases>
   
 </configuration>

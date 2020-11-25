@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IAreaMapper">
+
+	<!--INSERTAR AREA -->
+	<select id="insertarArea"
+		parameterType="com.sist.org.modelo.Area"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_insertar_area(
+		#{nidsesion},		
+		#{snombre},
+		#{sobservacion},
+		#{nidsede}
+		);
+	</select>
+	
+	<!--LISTAR AREA -->
+	<select id="listarArea"
+		resultType="com.sist.org.modelo.Area">
+		SELECT 
+		nidarea, 
+		snombre, 
+		sobservacion, 
+		nidsede, 
+		bactivo, 
+		dfechareg, 
+		nidsesion 
+		FROM public.area;
+	</select>
+	
+	<!--ACTUALIZAR AREA -->
+	<select id="actualizarArea"
+		parameterType="com.sist.org.modelo.Area"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_actualizar_area(
+		#{nidarea},
+		#{nidsesion},		
+		#{snombre},
+		#{sobservacion},
+		#{nidsede}
+		);
+	</select>
+	
+	<!--ELIMINAR AREA -->
+	<select id="eliminarArea"
+		parameterType="com.sist.org.modelo.Area"
+		resultType="java.lang.String">
+		SELECT * FROM public.fn_eliminar_area(#{nidarea});
+		
+	</select>
+</mapper>
