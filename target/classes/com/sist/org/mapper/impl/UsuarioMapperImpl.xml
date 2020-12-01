@@ -3,8 +3,7 @@
 <mapper namespace="com.sist.org.mapper.IUsuarioMapper">
 
 
-	<resultMap id="BaseResultMap"
-		type="com.sist.org.modelo.Operador">
+	<resultMap id="BaseResultMap" type="Operador">
 		<id column="nidoperador" property="nidoperador" />
 		<result column="snumdocu" property="snumdocu" />
 		<result column="snombre" property="snombre" />
@@ -12,6 +11,7 @@
 		<result column="sapematerno" property="sapematerno" />
 		<result column="sgenero" property="sgenero" />
 		<result column="dfechanac" property="dfechanac" />
+		<result column="scorreo" property="scorreo" />
 		<result column="sobservacion" property="sobservacion" />
 		<result column="bactivo" property="bactivo" />
 		<result column="estado" property="estado" />
@@ -28,7 +28,7 @@
 
 	<!--LISTAR PERSONA -->
 	<select id="listarUsuario" resultMap="BaseResultMap"
-		parameterType="com.sist.org.modelo.Pageable">
+		parameterType="Pageable">
 		SELECT
 		o.nidoperador,
 		o.snumdocu,
@@ -37,26 +37,27 @@
 		o.sapematerno,
 		o.sgenero,
 		o.dfechanac,
+		o.scorreo,
 		o.sobservacion,
 		o.bactivo,
 		CASE
-		u.bactivo WHEN
-		TRUE THEN 'ACTIVO'
+		u.bactivo WHEN TRUE THEN 'ACTIVO'
 		ELSE 'DESACTIVADO'
-		END AS estado,
+		END
+		AS estado,
 		o.dfechareg,
 		o.nidsesion,
 		u.nidusuario,
 		u.slogin,
-		'*********' AS spassword
-		,
+		'*********' AS
+		spassword ,
 		u.bactivo,
 		u.dfechareg,
 		u.nidsesion
 		FROM
 		usuario u
-		INNER JOIN operador o
-		ON
+		INNER JOIN
+		operador o ON
 		O.nidoperador = U.nidusuario
 		ORDER BY
 		nidusuario DESC
@@ -75,11 +76,11 @@
 
 
 	<!-- CONSULTA USUARIO SESION -->
-	<select id="ConsultaUsuariosesion"
-		parameterType="java.lang.String"
-		resultType="com.sist.org.dto.UsuarioSesion">
+	<select id="ConsultaUsuariosesion" parameterType="String"
+		resultType="UsuarioSesion">
 		SELECT
-		o.snombre || ' ' || o.sapepaterno || ' ' || o.sapematerno AS snombre ,
+		o.snombre || ' ' || o.sapepaterno || ' ' ||
+		o.sapematerno AS snombre ,
 		o.scorreo ,
 		ro.snombrerol ,
 		ub.ximagen
@@ -87,19 +88,46 @@
 		usuario u
 		INNER JOIN operador o ON
 		u.nidusuario = o.nidoperador
-		LEFT JOIN usuario_biometria ub ON
+		LEFT JOIN
+		usuario_biometria ub ON
 		ub.nidusuario = u.nidusuario
-		LEFT JOIN usuario_rol ur ON
+		LEFT JOIN
+		usuario_rol ur ON
 		ur.nidusuario = u.nidusuario
 		LEFT JOIN rol ro ON
 		ro.nidrol = ur.nidusuario
 		WHERE
 		u.slogin = #{usuario}
-		AND O.bactivo = true
+		AND O.bactivo =
+		true
 		LIMIT 1 ;
 
 	</select>
 
 
+
+	<!-- CONSULTA USUARIO SESION -->
+	<select id="modificarUsuarioOperador"
+		parameterType="OperadorDto" resultType="String">
+
+		SELECT
+		public.fn_sist_actualiza_usuario
+		(
+		#{operador.nidoperador},
+		#{operador.usuario.slogin},
+		#{operador.usuario.spassword},
+		#{operador.dfechanac},
+		#{operador.sapematerno},  
+		#{operador.sapepaterno},   
+		#{operador.sgenero},
+		#{operador.snombre},  
+		#{operador.snumdocu},
+		#{operador.sobservacion},  
+		#{nidarea},
+		#{nidperfil}, 
+		#{nidrol}
+		);
+ 
+	</select>
 
 </mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.sist.org.mapper.IMenuMapper">
 
 
-	<resultMap id="BaseResultMap" type="com.sist.org.modelo.Menu">
+	<resultMap id="BaseResultMap" type="Menu">
 		<id column="nidmenu" property="nidmenu" />
 		<result column="norden" property="norden" />
 		<result column="snombremenu_m" property="snombremenu" />
@@ -25,7 +25,7 @@
 	
 	<!--LISTAR PERSONA -->
 	<select id="listarMenuPorUsuario"
-		parameterType="java.lang.String" resultMap="BaseResultMap">
+		parameterType="String" resultMap="BaseResultMap">
 		SELECT * FROM
 		public.fn_sist_listar_menu_usuario(#{user});
 	</select>

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,6 @@ public class AreaController {
 		String respuesta = iareaService.actualizarArea(area);
 
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
-
 	}
 	
 	@PostMapping("/eliminararea")
@@ -58,4 +58,10 @@ public class AreaController {
 
 	}
 
+	
+	@GetMapping(value = "/listarAreaUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Integer> ListarAreaUsuario(@PathVariable("id") Integer idarea) {
+		Integer idareausuario = iareaService.ListarAreaUsuario(idarea);
+		return new ResponseEntity<Integer>(idareausuario, HttpStatus.OK);
+	}
 }

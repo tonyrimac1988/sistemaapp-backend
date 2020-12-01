@@ -4,8 +4,8 @@
 
 	<!--INSERTAR PERSONA -->
 	<select id="insertarOperador"
-		parameterType="com.sist.org.modelo.Operador"
-		resultType="java.lang.String">
+		parameterType="Operador"
+		resultType="String">
 		SELECT * FROM fn_insertar_operador_usuario(
 		#{dfechanac},
 		#{nidsesion},
@@ -42,16 +42,16 @@
 
 	<!--ELIMINAR PERSONA -->
 	<select id="eliminarOperador"
-		parameterType="com.sist.org.modelo.Operador"
-		resultType="java.lang.String">
+		parameterType="Operador"
+		resultType="String">
 		SELECT * FROM public.fn_eliminar_operador(#{nidoperador});
 	</select>
 
 
 	<!--ACTUALIZAR PERSONA -->
 	<select id="actualizarOperador"
-		parameterType="com.sist.org.modelo.Operador"
-		resultType="java.lang.String">
+		parameterType="Operador"
+		resultType="String">
 		SELECT * FROM
 		public.fn_actualizar_operador_usuario(
 		#{nidoperador},

@@ -15,4 +15,6 @@ public interface IRolMapper {
 
 	String eliminarRol(@Valid Rol rol);
 
+	Integer ListarAreaUsuario(Integer idUsuario);
+
 }

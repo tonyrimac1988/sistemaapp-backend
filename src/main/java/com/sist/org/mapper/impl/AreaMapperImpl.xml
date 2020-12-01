@@ -3,49 +3,63 @@
 <mapper namespace="com.sist.org.mapper.IAreaMapper">
 
 	<!--INSERTAR AREA -->
-	<select id="insertarArea"
-		parameterType="com.sist.org.modelo.Area"
-		resultType="java.lang.String">
+	<select id="insertarArea" parameterType="Area"
+		resultType="String">
 		SELECT * FROM public.fn_insertar_area(
-		#{nidsesion},		
+		#{nidsesion},
 		#{snombre},
 		#{sobservacion},
 		#{nidsede}
 		);
 	</select>
-	
+
 	<!--LISTAR AREA -->
-	<select id="listarArea"
-		resultType="com.sist.org.modelo.Area">
-		SELECT 
-		nidarea, 
-		snombre, 
-		sobservacion, 
-		nidsede, 
-		bactivo, 
-		dfechareg, 
-		nidsesion 
+	<select id="listarArea" resultType="Area">
+		SELECT
+		nidarea,
+		snombre,
+		sobservacion,
+		nidsede,
+		bactivo,
+		dfechareg,
+		nidsesion
 		FROM public.area;
 	</select>
-	
+
 	<!--ACTUALIZAR AREA -->
-	<select id="actualizarArea"
-		parameterType="com.sist.org.modelo.Area"
-		resultType="java.lang.String">
+	<select id="actualizarArea" parameterType="Area"
+		resultType="String">
 		SELECT * FROM public.fn_actualizar_area(
 		#{nidarea},
-		#{nidsesion},		
+		#{nidsesion},
 		#{snombre},
 		#{sobservacion},
 		#{nidsede}
 		);
 	</select>
-	
+
 	<!--ELIMINAR AREA -->
-	<select id="eliminarArea"
-		parameterType="com.sist.org.modelo.Area"
-		resultType="java.lang.String">
+	<select id="eliminarArea" parameterType="Area"
+		resultType="String">
 		SELECT * FROM public.fn_eliminar_area(#{nidarea});
-		
+
 	</select>
+
+
+	<select id="ListarAreaUsuario" resultType="Integer"
+		parameterType="Integer">
+		SELECT
+		A.nidarea
+		FROM
+		usuario u
+		INNER JOIN usuario_area ua ON
+		U.nidusuario = UA.nidusuario
+		INNER JOIN area a ON
+		A.nidarea = UA.nidarea
+		WHERE
+		U.nidusuario = #{idusuario}
+		AND UA.bactivo = TRUE;
+	</select>
+
+
 </mapper>

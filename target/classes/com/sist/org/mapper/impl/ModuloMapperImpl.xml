@@ -4,8 +4,8 @@
 
 	<!--INSERTAR MODULO -->
 	<select id="insertarModulo"
-		parameterType="com.sist.org.modelo.Modulo"
-		resultType="java.lang.String">
+		parameterType="Modulo"
+		resultType="String">
 		SELECT * FROM public.fn_insertar_modulo(
 		#{nidsesion},		
 		#{snombremodulo},
@@ -16,7 +16,7 @@
 	
 	<!--LISTAR MODULO -->
 	<select id="listarModulo"
-		resultType="com.sist.org.modelo.Modulo">
+		resultType="Modulo">
 		SELECT 
 		nidmodulo, 
 		snombremodulo, 
@@ -30,8 +30,8 @@
 	
 	<!--ACTUALIZAR MODULO -->
 	<select id="actualizarModulo"
-		parameterType="com.sist.org.modelo.Modulo"
-		resultType="java.lang.String">
+		parameterType="Modulo"
+		resultType="String">
 		SELECT * FROM public.fn_actualizar_modulo(
 		#{nidmodulo},
 		#{snombremodulo},
@@ -42,8 +42,8 @@
 	
 	<!--ELIMINAR MODULO -->
 	<select id="eliminarModulo"
-		parameterType="com.sist.org.modelo.Modulo"
-		resultType="java.lang.String">
+		parameterType="Modulo"
+		resultType="String">
 		SELECT * FROM public.fn_eliminar_modulo(#{nidmodulo});
 	</select>
 </mapper>

@@ -14,5 +14,7 @@ public interface IPerfilMapper {
 	String actualizarPerfil(@Valid Perfil perfil);
 
 	String eliminarPerfil(@Valid Perfil perfil);
+
+	Integer listarMenuPorUsuario(Integer idusuario);
 	
 }

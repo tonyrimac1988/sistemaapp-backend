@@ -41,4 +41,10 @@ public class AreaServiceImpl implements IAreaService{
 		return areamapper.eliminarArea(area);
 	}
 
+	@Override
+	public Integer ListarAreaUsuario(Integer idarea) {
+		// TODO Auto-generated method stub
+		return areamapper.ListarAreaUsuario(idarea);
+	}
+
 }

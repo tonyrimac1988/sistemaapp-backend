@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import com.sist.org.modelo.Rol;
 import com.sist.org.service.IRolService;
 
 @RestController
-@RequestMapping("/rol")
+@RequestMapping("/roles")
 public class RolController {	
 
 	@Autowired
@@ -56,4 +57,13 @@ public class RolController {
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 
 	}
+	
+	
+	@GetMapping(value = "/listarRolUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Integer> ListarAreaUsuario(@PathVariable("id") Integer idUsuario) {
+		Integer idrolusuario = irolService.ListarAreaUsuario(idUsuario);
+		return new ResponseEntity<Integer>(idrolusuario, HttpStatus.OK);
+	}
+	
+	
 }

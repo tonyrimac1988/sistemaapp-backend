@@ -5,7 +5,7 @@
 	
 	<!--LISTAR PERSONA -->
 	<select id="InciarSesion"
-		parameterType="java.lang.String" resultType="java.lang.String">
+		parameterType="String" resultType="String">
 		SELECT public.fn_sist_inicia_sesion(#{usuario});
 	</select>
 

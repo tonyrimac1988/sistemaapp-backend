@@ -45,5 +45,11 @@ public class PerfilServiceImpl implements IPerfilService{
 		return perfilmapper.eliminarPerfil(perfil);
 	}
 
+	@Override
+	public Integer listarMenuPorUsuario(Integer idusuario) {
+		// TODO Auto-generated method stub
+		return perfilmapper.listarMenuPorUsuario(idusuario);
+	}
+
 	
 }

@@ -17,7 +17,7 @@ import com.sist.org.modelo.Sede;
 import com.sist.org.service.ISedeService;
 
 @RestController
-@RequestMapping("/sede")
+@RequestMapping("/sedes")
 public class SedeController {
 	
 	@Autowired

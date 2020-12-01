@@ -5,12 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.org.dto.OperadorDto;
 import com.sist.org.dto.UsuarioSesion;
 import com.sist.org.mapper.IUsuarioMapper;
 import com.sist.org.modelo.Operador;
-import com.sist.org.modelo.Page;
-import com.sist.org.modelo.Pageable;
 import com.sist.org.service.IUsuarioService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @Service
 public class UsuarioServiceImp implements IUsuarioService{
@@ -39,6 +40,13 @@ public class UsuarioServiceImp implements IUsuarioService{
 	public UsuarioSesion ConsultaUsuariosesion(String usuario) {
 		// TODO Auto-generated method stub
 		return iUsuarioMapper.ConsultaUsuariosesion(usuario);
+	}
+
+
+	@Override
+	public String modificarUsuarioOperador(OperadorDto operadorDto) {
+		// TODO Auto-generated method stub
+		return iUsuarioMapper.modificarUsuarioOperador(operadorDto);
 	}
 	
 	 

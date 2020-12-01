@@ -40,4 +40,10 @@ public class RolServiceImpl implements IRolService{
 		return rolmapper.eliminarRol(rol);
 	}
 
+	@Override
+	public Integer ListarAreaUsuario(Integer idUsuario) {
+		// TODO Auto-generated method stub
+		return rolmapper.ListarAreaUsuario(idUsuario);
+	}
+
 }

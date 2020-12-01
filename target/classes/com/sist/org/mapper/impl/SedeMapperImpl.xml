@@ -4,8 +4,8 @@
 
 		<!--INSERTAR SEDE -->
 	<select id="insertarSede"
-		parameterType="com.sist.org.modelo.Sede"
-		resultType="java.lang.String">
+		parameterType="Sede"
+		resultType="String">
 		SELECT * FROM public.fn_insertar_sede(
 		#{sdireccion},		
 		#{snombre},
@@ -15,7 +15,7 @@
 	
 	<!--LISTAR SEDE -->
 	<select id="listarSede"
-		resultType="com.sist.org.modelo.Sede">
+		resultType="Sede">
 		SELECT 
 		nidsede, 
 		snombre, 
@@ -29,8 +29,8 @@
 	
 	<!--ACTUALIZAR SEDE -->
 	<select id="actualizarSede"
-		parameterType="com.sist.org.modelo.Sede"
-		resultType="java.lang.String">
+		parameterType="Sede"
+		resultType="String">
 		SELECT * FROM public.fn_actualizar_sede(
 		#{nidsede},
 		#{sdireccion},		
@@ -41,8 +41,8 @@
 	
 	<!--ELIMINAR SEDE -->
 	<select id="eliminarSede"
-		parameterType="com.sist.org.modelo.Sede"
-		resultType="java.lang.String">
+		parameterType="Sede"
+		resultType="String">
 		SELECT * FROM public.fn_eliminar_sede(#{nidsede});
 	</select>
 	

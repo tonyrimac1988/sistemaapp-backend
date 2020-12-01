@@ -4,8 +4,8 @@
 
 	<!--INSERTAR PERFIL -->
 	<select id="insertarPerfil"
-		parameterType="com.sist.org.modelo.Perfil"
-		resultType="java.lang.String">
+		parameterType="Perfil"
+		resultType="String">
 		SELECT fn_insertar_perfil(
 		#{nidsesion},
 		#{nsesionesporusuario},
@@ -17,23 +17,23 @@
 
 	<!--LISTAR PERFIL -->
 	<select id="listarPerfil"
-		resultType="com.sist.org.modelo.Perfil">
-		SELECT 
-		nidperfil, 
-		snombreperfil, 
-		nsesionesporusuario, 
-		ntiempoconexionminuto, 
-		ntiempovidapasworddia, 
-		bactivo, 
-		dfechareg, 
-		nidsesion 
+		resultType="Perfil">
+		SELECT
+		nidperfil,
+		snombreperfil,
+		nsesionesporusuario,
+		ntiempoconexionminuto,
+		ntiempovidapasworddia,
+		bactivo,
+		dfechareg,
+		nidsesion
 		FROM public.perfil;
 	</select>
 
 	<!--ACTUALIZAR PERFIL -->
 	<select id="actualizarPerfil"
-		parameterType="com.sist.org.modelo.Perfil"
-		resultType="java.lang.String">
+		parameterType="Perfil"
+		resultType="String">
 		SELECT fn_actualizar_perfil(
 		#{nidperfil},
 		#{nidsesion},
@@ -43,12 +43,32 @@
 		#{snombreperfil}
 		);
 	</select>
-	
+
 	<!--ELIMINAR PERFIL -->
 	<select id="eliminarPerfil"
-		parameterType="com.sist.org.modelo.Perfil"
+		parameterType="Perfil"
 		resultType="java.lang.String">
 		SELECT public.fn_eliminar_perfil(#{nidperfil});
 	</select>
-	
+
+
+	<select id="listarMenuPorUsuario" 
+		resultType="Integer"
+		parameterType="Integer">
+		SELECT
+		P.nidperfil
+		FROM
+		usuario u
+		INNER JOIN usuario_perfil
+		up ON
+		UP.nidusuario = U.nidusuario
+		INNER JOIN perfil p ON
+		UP.nidperfil =
+		P.nidperfil
+		WHERE
+		U.nidusuario = #{idusuario}
+		AND UP.bactivo = TRUE;
+	</select>
+
+
 </mapper>

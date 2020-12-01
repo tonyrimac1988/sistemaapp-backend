@@ -15,5 +15,7 @@ public interface IPerfilService {
 
 	String eliminarPerfil(@Valid Perfil perfil);
 
+	Integer listarMenuPorUsuario(Integer idusuario);
+
 
 }

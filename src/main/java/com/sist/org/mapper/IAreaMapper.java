@@ -16,4 +16,6 @@ public interface IAreaMapper {
 
 	String eliminarArea(@Valid Area area);
 
+	Integer ListarAreaUsuario(Integer idarea);
+
 }

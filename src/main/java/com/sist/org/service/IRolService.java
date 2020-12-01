@@ -15,4 +15,6 @@ public interface IRolService {
 
 	String eliminarRol(@Valid Rol rol);
 
+	Integer ListarAreaUsuario(Integer idUsuario);
+
 }

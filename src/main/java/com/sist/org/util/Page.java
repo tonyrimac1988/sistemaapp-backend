@@ -1,4 +1,4 @@
-package com.sist.org.modelo;
+package com.sist.org.util;
 
 import java.util.ArrayList;
 import java.util.List;

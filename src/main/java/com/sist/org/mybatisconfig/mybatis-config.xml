@@ -3,13 +3,37 @@
 <configuration>
 
     <typeAliases>
+    
+    	<!--TIPOS DE DATOS -->
         <typeAlias alias="Integer" type="java.lang.Integer" />
+        <typeAlias alias ="String" type="java.lang.String" />
         <typeAlias alias="Long" type="java.lang.Long" />
         <typeAlias alias="HashMap" type="java.util.HashMap" />
         <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
-        <typeAlias alias ="Operador" type="com.sist.org.modelo.Operador" />
+                		
+		<!--MODELO -->
+		<typeAlias alias ="Area" type="com.sist.org.modelo.Area" />
+		<typeAlias alias ="Menu" type="com.sist.org.modelo.Menu" />
+		<typeAlias alias ="Modulo" type="com.sist.org.modelo.Modulo" />
+		<typeAlias alias ="Operador" type="com.sist.org.modelo.Operador" />
+
+		<typeAlias alias ="Parametro" type="com.sist.org.modelo.Parametro" />
+		<typeAlias alias ="Perfil" type="com.sist.org.modelo.Perfil" />
+		<typeAlias alias ="Rol" type="com.sist.org.modelo.Rol" />
+		<typeAlias alias ="Sede" type="com.sist.org.modelo.Sede" />
+		<typeAlias alias ="SubMenu" type="com.sist.org.modelo.SubMenu" />
+		<typeAlias alias ="Usuario" type="com.sist.org.modelo.Usuario" />
+		
+		<!--CLASE DTO -->
+		<typeAlias alias ="UsuarioSesion" type="com.sist.org.dto.UsuarioSesion" />
+		<typeAlias alias ="OperadorDto" type="com.sist.org.dto.OperadorDto" />
+					
+		<!-- UTILITARIOS -->
+		<typeAlias alias ="Page" type="com.sist.org.util.Page" />
+		<typeAlias alias ="Pageable" type="com.sist.org.util.Pageable" />
+		
     </typeAliases>
   
 </configuration>

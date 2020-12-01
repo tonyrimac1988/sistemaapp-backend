@@ -20,7 +20,7 @@ import com.sist.org.modelo.Operador;
 import com.sist.org.service.IOperadorService;
 
 @RestController
-@RequestMapping("/operador")
+@RequestMapping("/operadores")
 public class OperadorController {
 
 

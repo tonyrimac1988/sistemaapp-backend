@@ -18,5 +18,6 @@ public class Operador {
 	private String estado;
 	private Date dfechareg;
 	private int nidsesion;
+	private String scorreo;
 	private Usuario usuario;
 }
