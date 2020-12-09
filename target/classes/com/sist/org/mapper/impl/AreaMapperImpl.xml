@@ -60,6 +60,30 @@
 		U.nidusuario = #{idusuario}
 		AND UA.bactivo = TRUE;
 	</select>
+	
+	
+	
+	<!--LISTAR AREA PAGE -->
+	<select id="listarAreaPage" resultType="Area"
+		parameterType="Pageable">
+		SELECT
+		nidarea,
+		snombre,
+		sobservacion,
+		nidsede,
+		bactivo,
+		dfechareg,
+		nidsesion
+		FROM public.area
+		OFFSET
+		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
 
+	</select>
 
+	<!--LISTAR AREA -->
+	<select id="countElements" resultType="int">
+		SELECT count(*) FROM
+		area u WHERE bactivo = true;
+	</select>
+	
 </mapper>

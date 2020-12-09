@@ -4,6 +4,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.sist.org.modelo.Perfil;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 public interface IPerfilService {
 
@@ -16,6 +18,8 @@ public interface IPerfilService {
 	String eliminarPerfil(@Valid Perfil perfil);
 
 	Integer listarMenuPorUsuario(Integer idusuario);
+
+	Page<Perfil> listarPerfilPage(Pageable pageable);
 
 
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.sist.org.mapper.IRolMapper;
 import com.sist.org.modelo.Rol;
 import com.sist.org.service.IRolService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @Service
 public class RolServiceImpl implements IRolService{
@@ -44,6 +46,15 @@ public class RolServiceImpl implements IRolService{
 	public Integer ListarAreaUsuario(Integer idUsuario) {
 		// TODO Auto-generated method stub
 		return rolmapper.ListarAreaUsuario(idUsuario);
+	}
+
+	@Override
+	public Page<Rol> listarRolPage(Pageable pageable) {
+		// TODO Auto-generated method stub
+		Page<Rol> page = new Page<>();
+		page.setContent(rolmapper.listarRolPage(pageable));
+		page.setTotalElements(rolmapper.countElements());
+		return page;
 	}
 
 }

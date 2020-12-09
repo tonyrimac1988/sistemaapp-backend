@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.org.modelo.Rol;
 import com.sist.org.service.IRolService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @RestController
 @RequestMapping("/roles")
@@ -65,5 +68,12 @@ public class RolController {
 		return new ResponseEntity<Integer>(idrolusuario, HttpStatus.OK);
 	}
 	
+	@PostMapping(value = "/listarRolPage", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<Rol>> listarRolPage(@Validated @RequestBody Pageable pageable) {
+
+		Page<Rol> listarRol = irolService.listarRolPage(pageable);
+
+		return new ResponseEntity<Page<Rol>>(listarRol, HttpStatus.OK);
+	}
 	
 }

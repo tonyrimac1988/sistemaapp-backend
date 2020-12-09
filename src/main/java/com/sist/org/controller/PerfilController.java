@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.org.modelo.Perfil;
 import com.sist.org.service.IPerfilService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @RestController
 @RequestMapping("/perfiles")
@@ -63,6 +66,15 @@ public class PerfilController {
 	public ResponseEntity<Integer> listarMenuPorUsuario(@PathVariable("id") Integer idusuario) {
 		Integer idperfil = iperfilService.listarMenuPorUsuario(idusuario);
 		return new ResponseEntity<Integer>(idperfil, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping(value = "/listarPerfilPage", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<Perfil>> listarPerfilPage(@Validated @RequestBody Pageable pageable) {
+
+		Page<Perfil> listarPerfil = iperfilService.listarPerfilPage(pageable);
+
+		return new ResponseEntity<Page<Perfil>>(listarPerfil, HttpStatus.OK);
 	}
 
 }

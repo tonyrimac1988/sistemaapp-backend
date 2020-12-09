@@ -69,6 +69,31 @@
 		U.nidusuario = #{idusuario}
 		AND UP.bactivo = TRUE;
 	</select>
+	
+	
+	<!--LISTAR PERFIL PAGE -->
+	<select id="listarPerfilPage" resultType="Perfil"
+		parameterType="Pageable">
+		SELECT
+		nidperfil,
+		snombreperfil,
+		nsesionesporusuario,
+		ntiempoconexionminuto,
+		ntiempovidapasworddia,
+		bactivo,
+		dfechareg,
+		nidsesion
+		FROM public.perfil
+		OFFSET
+		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
+
+	</select>
+	
+	<!--LISTAR COUNT PERFIL -->
+	<select id="countElements" resultType="int">
+		SELECT count(*) FROM
+		perfil p WHERE bactivo = true;
+	</select>
 
 
 </mapper>

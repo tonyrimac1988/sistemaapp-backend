@@ -4,6 +4,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.sist.org.modelo.Rol;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 public interface IRolService {
 
@@ -16,5 +18,7 @@ public interface IRolService {
 	String eliminarRol(@Valid Rol rol);
 
 	Integer ListarAreaUsuario(Integer idUsuario);
+
+	Page<Rol> listarRolPage(Pageable pageable);
 
 }

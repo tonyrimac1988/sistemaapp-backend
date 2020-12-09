@@ -4,6 +4,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.sist.org.modelo.Sede;
+import com.sist.org.util.Pageable;
 
 public interface ISedeMapper {
 
@@ -14,5 +15,9 @@ public interface ISedeMapper {
 	String actualizarSede(@Valid Sede sede);
 
 	String eliminarSede(@Valid Sede sede);
+
+	List<Sede> listarSedePage(Pageable pageable);
+
+	int countElements();
 
 }

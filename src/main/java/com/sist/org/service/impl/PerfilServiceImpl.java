@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.sist.org.mapper.IPerfilMapper;
 import com.sist.org.modelo.Perfil;
 import com.sist.org.service.IPerfilService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @Service
 public class PerfilServiceImpl implements IPerfilService{
@@ -49,6 +51,15 @@ public class PerfilServiceImpl implements IPerfilService{
 	public Integer listarMenuPorUsuario(Integer idusuario) {
 		// TODO Auto-generated method stub
 		return perfilmapper.listarMenuPorUsuario(idusuario);
+	}
+
+	@Override
+	public Page<Perfil> listarPerfilPage(Pageable pageable) {
+		// TODO Auto-generated method stub
+		Page<Perfil> page = new Page<>();
+		page.setContent(perfilmapper.listarPerfilPage(pageable));
+		page.setTotalElements(perfilmapper.countElements());
+		return page;
 	}
 
 	

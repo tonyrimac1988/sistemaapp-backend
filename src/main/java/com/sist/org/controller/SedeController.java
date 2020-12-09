@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.org.modelo.Sede;
 import com.sist.org.service.ISedeService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @RestController
 @RequestMapping("/sedes")
@@ -53,6 +56,14 @@ public class SedeController {
 		String respuesta = isedeService.eliminarSede(sede);
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 
+	}
+	
+	@PostMapping(value = "/listarSedePage", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<Sede>> listarSedePage(@Validated @RequestBody Pageable pageable) {
+
+		Page<Sede> listarSede = isedeService.listarSedePage(pageable);
+
+		return new ResponseEntity<Page<Sede>>(listarSede, HttpStatus.OK);
 	}
 
 }

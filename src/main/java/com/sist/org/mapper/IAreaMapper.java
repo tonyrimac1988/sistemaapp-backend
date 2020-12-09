@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.sist.org.modelo.Area;
+import com.sist.org.util.Pageable;
 
 public interface IAreaMapper {
 
@@ -17,5 +18,9 @@ public interface IAreaMapper {
 	String eliminarArea(@Valid Area area);
 
 	Integer ListarAreaUsuario(Integer idarea);
+
+	List<Area> listarAreaPage(Pageable pageable);
+
+	int countElements();
 
 }

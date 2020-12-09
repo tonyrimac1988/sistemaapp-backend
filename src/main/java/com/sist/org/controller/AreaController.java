@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.org.modelo.Area;
 import com.sist.org.service.IAreaService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @RestController
 @RequestMapping("/areas")
@@ -63,5 +66,14 @@ public class AreaController {
 	public ResponseEntity<Integer> ListarAreaUsuario(@PathVariable("id") Integer idarea) {
 		Integer idareausuario = iareaService.ListarAreaUsuario(idarea);
 		return new ResponseEntity<Integer>(idareausuario, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping(value = "/listarAreaPage", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<Area>> listarAreaPage(@Validated @RequestBody Pageable pageable) {
+
+		Page<Area> listarArea = iareaService.listarAreaPage(pageable);
+
+		return new ResponseEntity<Page<Area>>(listarArea, HttpStatus.OK);
 	}
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.sist.org.mapper.IAreaMapper;
 import com.sist.org.modelo.Area;
 import com.sist.org.service.IAreaService;
+import com.sist.org.util.Page;
+import com.sist.org.util.Pageable;
 
 @Service
 public class AreaServiceImpl implements IAreaService{
@@ -45,6 +47,15 @@ public class AreaServiceImpl implements IAreaService{
 	public Integer ListarAreaUsuario(Integer idarea) {
 		// TODO Auto-generated method stub
 		return areamapper.ListarAreaUsuario(idarea);
+	}
+
+	@Override
+	public Page<Area> listarAreaPage(Pageable pageable) {
+		// TODO Auto-generated method stub
+		Page<Area> page = new Page<>();
+		page.setContent(areamapper.listarAreaPage(pageable));
+		page.setTotalElements(areamapper.countElements());
+		return page;
 	}
 
 }

@@ -60,6 +60,26 @@
 		AND UR.bactivo = TRUE;
 	</select>
 
+	<!--LISTAR ROL PAGE -->
+	<select id="listarRolPage" resultType="Rol"
+		parameterType="Pageable">
+		SELECT
+		nidrol,
+		snombrerol,
+		siglas,
+		sobservacion,
+		bactivo,
+		dfechareg,
+		nidsesion
+		FROM public.rol
+		OFFSET
+		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
 
-
+	</select>
+	
+	<!--LISTAR COUNT ROL -->
+	<select id="countElements" resultType="int">
+		SELECT count(*) FROM
+		rol r WHERE bactivo = true;
+	</select>
 </mapper>

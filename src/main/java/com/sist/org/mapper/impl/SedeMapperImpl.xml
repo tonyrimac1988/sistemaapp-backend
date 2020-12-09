@@ -46,4 +46,28 @@
 		SELECT * FROM public.fn_eliminar_sede(#{nidsede});
 	</select>
 	
+	
+	<!--LISTAR SEDE PAGE -->
+	<select id="listarSedePage" resultType="Sede"
+		parameterType="Pageable">
+		SELECT 
+		nidsede, 
+		snombre, 
+		sdireccion, 
+		subigeo, 
+		bactivo, 
+		dfechareg, 
+		nidsesion
+		FROM public.sede
+		OFFSET
+		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
+
+	</select>
+	
+	<!--LISTAR COUNT PERFIL -->
+	<select id="countElements" resultType="int">
+		SELECT count(*) FROM
+		sede s WHERE bactivo = true;
+	</select>
+	
 </mapper>

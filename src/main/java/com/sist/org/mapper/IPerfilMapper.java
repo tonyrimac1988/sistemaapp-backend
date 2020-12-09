@@ -4,6 +4,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.sist.org.modelo.Perfil;
+import com.sist.org.util.Pageable;
 
 public interface IPerfilMapper {
 
@@ -16,5 +17,9 @@ public interface IPerfilMapper {
 	String eliminarPerfil(@Valid Perfil perfil);
 
 	Integer listarMenuPorUsuario(Integer idusuario);
+
+	List<Perfil> listarPerfilPage(Pageable pageable);
+
+	int countElements();
 	
 }
