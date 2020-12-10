@@ -1,5 +1,7 @@
 package com.sist.org.controller;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -24,20 +26,20 @@ import com.sist.org.util.Pageable;
 
 @RestController
 @RequestMapping("/roles")
-public class RolController {	
+public class RolController {
 
 	@Autowired
 	IRolService irolService;
-	
-	@PostMapping(value= "/insertarRol", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> insertarRol(@Valid @RequestBody Rol rol){
+
+	@PostMapping(value = "/insertarRol", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> insertarRol(@Valid @RequestBody Rol rol) {
 
 		String respuesta = irolService.insertarRol(rol);
 
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 
 	}
-	
+
 	@GetMapping(value = "/listarRol", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Rol>> listarRol() {
 
@@ -54,7 +56,7 @@ public class RolController {
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 
 	}
-	
+
 	@PostMapping("/eliminarol")
 	public ResponseEntity<String> eliminarRol(@Valid @RequestBody Rol rol) {
 
@@ -62,44 +64,33 @@ public class RolController {
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 
 	}
-	
-	
+
 	@GetMapping(value = "/listarRolUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> ListarAreaUsuario(@PathVariable("id") Integer idUsuario) {
 		Integer idrolusuario = irolService.ListarAreaUsuario(idUsuario);
 		return new ResponseEntity<Integer>(idrolusuario, HttpStatus.OK);
 	}
-	
-	
-	@PostMapping(value = "/listarRolPage", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity< RespuestaBase<Page<Rol>> > listarRolPage(@Validated @RequestBody Pageable pageable) {
 
-		RespuestaBase<Page<Rol>> respuesta = new  RespuestaBase<>();
-		  
+	@PostMapping(value = "/listarRolPage", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RespuestaBase<Page<Rol>>> listarRolPage(@Validated @RequestBody Pageable pageable) {
+
 		try {
-			
-			List<Page<Rol>> ejemploLista = new ArrayList<Page<Rol>>();			
-			ejemploLista.add(irolService.listarRolPage(pageable));
-			
-			respuesta.setEstado( HttpStatus.OK.toString());
-			respuesta.setMensaje("Respuesta  OK");
-			respuesta.setData(ejemploLista);
-			
-			return new ResponseEntity<RespuestaBase< Page<Rol>>>(respuesta, HttpStatus.OK);
-			
+
+			//int x = 10 /0;
+			return new ResponseEntity<RespuestaBase<Page<Rol>>>(new RespuestaBase<Page<Rol>>(HttpStatus.OK.toString(),
+					"Respuesta OK", Arrays.asList(irolService.listarRolPage(pageable))), HttpStatus.OK);
+
 		} catch (Exception e) {
-			respuesta.setEstado(HttpStatus.BAD_REQUEST.toString());
-			respuesta.setMensaje("Hubo un error en el metodo listarRolPage");
-			respuesta.setData(null);
-			
-			return new ResponseEntity<RespuestaBase< Page<Rol>>>(respuesta, HttpStatus.BAD_REQUEST);
-		} 
+
+			return new ResponseEntity<RespuestaBase<Page<Rol>>>(
+					new RespuestaBase<Page<Rol>>(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+							"Hubo un error el metodo listarRolPage -> " + e.toString(), null),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 //		
-		
-		//Page<Rol> listarRol = irolService.listarRolPage(pageable);
-		 
-		
-		
+
+		// Page<Rol> listarRol = irolService.listarRolPage(pageable);
+
 	}
-	
+
 }

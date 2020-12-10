@@ -54,6 +54,7 @@ public class RolServiceImpl implements IRolService{
 		Page<Rol> page = new Page<>();
 		page.setContent(rolmapper.listarRolPage(pageable));
 		page.setTotalElements(rolmapper.countElements());
+		
 		return page;
 	}
 

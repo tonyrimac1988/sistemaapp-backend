@@ -12,4 +12,18 @@ public class RespuestaBase<T> {
 	private String mensaje;
 	private List<T> data;
 	
+	
+	public RespuestaBase(String estado, String mensaje, List<T> data) {
+		this.estado = estado;
+		this.mensaje = mensaje;
+		this.data = data;
+	}
+
+
+	public RespuestaBase() {
+		
+	}
+	
+	
+	
 }
