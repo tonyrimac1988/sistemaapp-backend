@@ -1,4 +1,5 @@
 package com.sist.org.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sist.org.dto.RespuestaBase;
 import com.sist.org.modelo.Rol;
 import com.sist.org.service.IRolService;
 import com.sist.org.util.Page;
@@ -68,12 +70,36 @@ public class RolController {
 		return new ResponseEntity<Integer>(idrolusuario, HttpStatus.OK);
 	}
 	
+	
 	@PostMapping(value = "/listarRolPage", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Page<Rol>> listarRolPage(@Validated @RequestBody Pageable pageable) {
+	public ResponseEntity< RespuestaBase<Page<Rol>> > listarRolPage(@Validated @RequestBody Pageable pageable) {
 
-		Page<Rol> listarRol = irolService.listarRolPage(pageable);
-
-		return new ResponseEntity<Page<Rol>>(listarRol, HttpStatus.OK);
+		RespuestaBase<Page<Rol>> respuesta = new  RespuestaBase<>();
+		  
+		try {
+			
+			List<Page<Rol>> ejemploLista = new ArrayList<Page<Rol>>();			
+			ejemploLista.add(irolService.listarRolPage(pageable));
+			
+			respuesta.setEstado( HttpStatus.OK.toString());
+			respuesta.setMensaje("Respuesta  OK");
+			respuesta.setData(ejemploLista);
+			
+			return new ResponseEntity<RespuestaBase< Page<Rol>>>(respuesta, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			respuesta.setEstado(HttpStatus.BAD_REQUEST.toString());
+			respuesta.setMensaje("Hubo un error en el metodo listarRolPage");
+			respuesta.setData(null);
+			
+			return new ResponseEntity<RespuestaBase< Page<Rol>>>(respuesta, HttpStatus.BAD_REQUEST);
+		} 
+//		
+		
+		//Page<Rol> listarRol = irolService.listarRolPage(pageable);
+		 
+		
+		
 	}
 	
 }

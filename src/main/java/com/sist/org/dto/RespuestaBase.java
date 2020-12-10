@@ -12,5 +12,4 @@ public class RespuestaBase<T> {
 	private String mensaje;
 	private List<T> data;
 	
-	
 }
