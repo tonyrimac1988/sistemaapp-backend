@@ -1,8 +1,6 @@
 package com.sist.org.dto;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 
 @Data
