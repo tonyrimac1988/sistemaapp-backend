@@ -64,10 +64,8 @@ public class UsuarioController {
 	@PostMapping(value = "/modificarUsuarioOperador", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> modificarUsuarioOperador(@Validated @RequestBody OperadorDto operadorDto) {
  
-		RespuestaBase<Object> respuestabase = new RespuestaBase<>() ;
-		//String respuesta = iUsuarioService.modificarUsuarioOperador(operadorDto);
-		//respuestabase.setMensaje(respuesta);
-		//return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
+		//RespuestaBase<Object> respuestabase = new RespuestaBase<>() ;
+	 
 		try {
 			
 			String respuesta = iUsuarioService.modificarUsuarioOperador(operadorDto);

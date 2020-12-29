@@ -88,9 +88,14 @@ public class AreaController {
 
 	
 	@GetMapping(value = "/listarAreaUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> ListarAreaUsuario(@PathVariable("id") Integer idarea) {
-		Integer idareausuario = iareaService.ListarAreaUsuario(idarea);
-		return new ResponseEntity<Integer>(idareausuario, HttpStatus.OK);
+	public ResponseEntity<RespuestaBase<Object>> ListarAreaUsuario(@PathVariable("id") Integer idarea) {
+
+		try {
+			 
+			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iareaService.ListarAreaUsuario(idarea).toString(), null), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método eliminarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	

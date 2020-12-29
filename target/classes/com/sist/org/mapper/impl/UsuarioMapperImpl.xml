@@ -5,6 +5,7 @@
 
 	<resultMap id="BaseResultMap" type="Operador">
 		<id column="nidoperador" property="nidoperador" />
+		<result column="sidtipodoc" property="sidtipodoc" />
 		<result column="snumdocu" property="snumdocu" />
 		<result column="snombre" property="snombre" />
 		<result column="sapepaterno" property="sapepaterno" />
@@ -12,7 +13,9 @@
 		<result column="sgenero" property="sgenero" />
 		<result column="dfechanac" property="dfechanac" />
 		<result column="scorreo" property="scorreo" />
+		<result column="stelefono" property="stelefono" />
 		<result column="sobservacion" property="sobservacion" />
+		<result column="sdireccion" property="sdireccion" />		
 		<result column="bactivo" property="bactivo" />
 		<result column="estado" property="estado" />
 		<result column="dfechareg" property="dfechareg" />
@@ -31,6 +34,7 @@
 		parameterType="Pageable">
 		SELECT
 		o.nidoperador,
+		o.sidtipodoc,
 		o.snumdocu,
 		o.snombre,
 		o.sapepaterno,
@@ -38,7 +42,9 @@
 		o.sgenero,
 		o.dfechanac,
 		o.scorreo,
+		o.stelefono,
 		o.sobservacion,
+		o.sdireccion,
 		o.bactivo,
 		CASE
 		u.bactivo WHEN TRUE THEN 'ACTIVO'
@@ -70,7 +76,7 @@
 	<!--LISTAR PERSONA -->
 	<select id="countElements" resultType="int">
 		SELECT count(*) FROM
-		operador u WHERE bactivo = true;
+		operador;
 	</select>
 
 

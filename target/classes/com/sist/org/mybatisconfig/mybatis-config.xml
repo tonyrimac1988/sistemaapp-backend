@@ -25,6 +25,7 @@
 		<typeAlias alias ="Sede" type="com.sist.org.modelo.Sede" />
 		<typeAlias alias ="SubMenu" type="com.sist.org.modelo.SubMenu" />
 		<typeAlias alias ="Usuario" type="com.sist.org.modelo.Usuario" />
+		<typeAlias alias ="TipoDocumento" type="com.sist.org.modelo.TipoDocumento" />
 		
 		<!--CLASE DTO -->
 		<typeAlias alias ="UsuarioSesion" type="com.sist.org.dto.UsuarioSesion" />

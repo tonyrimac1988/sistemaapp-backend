@@ -82,9 +82,16 @@ public class PerfilController {
 	}
 
 	@GetMapping(value = "/listarPerfilUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> listarMenuPorUsuario(@PathVariable("id") Integer idusuario) {
-		Integer idperfil = iperfilService.listarMenuPorUsuario(idusuario);
-		return new ResponseEntity<Integer>(idperfil, HttpStatus.OK);
+	public ResponseEntity<RespuestaBase<Object>> listarMenuPorUsuario(@PathVariable("id") Integer idusuario) {
+		
+		try {
+ 
+			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iperfilService.listarMenuPorUsuario(idusuario).toString(), null), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método eliminarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+  
+		
 	}
 	
 	

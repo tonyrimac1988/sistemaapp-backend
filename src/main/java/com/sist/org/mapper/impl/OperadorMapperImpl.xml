@@ -4,24 +4,31 @@
 
 	<!--INSERTAR PERSONA -->
 	<select id="insertarOperador"
-		parameterType="Operador"
-		resultType="String">
-		SELECT * FROM fn_insertar_operador_usuario(
-		#{dfechanac},
-		#{nidsesion},
-		#{sapematerno},
-		#{sapepaterno},
-		#{sgenero},
-		#{snombre},
-		#{snumdocu},
-		#{sobservacion},
-		#{usuario.slogin},
-		#{usuario.spassword}
-		);
+		parameterType="OperadorDto"
+		resultType="String">	
+		SELECT * FROM public.fn_insertar_operador_usuario (
+		#{operador.sidtipodoc},
+		#{operador.snumdocu},
+		#{operador.snombre},
+		#{operador.sapepaterno},
+		#{operador.sapematerno},
+		#{operador.sgenero},
+		#{operador.dfechanac},
+		#{operador.sdireccion},
+		#{operador.scorreo},
+		#{operador.stelefono},
+		#{operador.sobservacion},
+		#{operador.usuario.slogin},
+		#{operador.usuario.spassword},
+		#{nidperfil},
+		#{nidarea},
+		#{nidrol},
+		#{operador.nidsesion});
 	</select>
 
+
 	<!--LISTAR PERSONA -->
-	<select id="listarOperador"
+	<!-- <select id="listarOperador"
 		resultType="Operador">
 		SELECT
 		nidoperador,
@@ -36,13 +43,12 @@
 		dfechareg,
 		nidsesion
 		FROM public.operador;
-
-	</select>
+	</select> -->
 
 
 	<!--ELIMINAR PERSONA -->
 	<select id="eliminarOperador"
-		parameterType="Operador"
+		parameterType="int"
 		resultType="String">
 		SELECT * FROM public.fn_eliminar_operador(#{nidoperador});
 	</select>
@@ -52,19 +58,137 @@
 	<select id="actualizarOperador"
 		parameterType="Operador"
 		resultType="String">
-		SELECT * FROM
-		public.fn_actualizar_operador_usuario(
+	
+		SELECT * FROM public.fn_actualizar_operador_usuario (
 		#{nidoperador},
-		#{dfechanac},
-		#{nidsesion},
-		#{sapematerno},
-		#{sapepaterno},
-		#{sgenero},
-		#{snombre},
-		#{snumdocu},
-		#{sobservacion},
-		#{usuario.slogin},
-		#{usuario.spassword});
+		#{sidtipodoc},
+		#{numdocu},
+		#{nombre},
+		#{apepaterno},
+		#{apematerno},
+		#{genero},
+		#{fechanac},
+		#{scorreo},
+		#{stelefono},
+		#{sdireccion},
+		#{observacion},
+		#{usuario.login},
+		#{usuario.password},
+		#{idsesion});
 	</select>
+
+
+
+	<!-- CONSULTA USUARIO SESION -->
+	<select id="modificarUsuarioOperador"
+		parameterType="OperadorDto" resultType="String">
+
+ 		SELECT * FROM public.fn_actualizar_operador_usuario (
+ 		#{operador.nidoperador},
+ 		#{operador.sidtipodoc},
+ 		#{operador.snumdocu},
+ 		#{operador.snombre},
+ 		#{operador.sapepaterno},
+ 		#{operador.sapematerno},
+ 		#{operador.sgenero},
+ 		#{operador.dfechanac},
+ 		#{operador.scorreo},
+ 		#{operador.stelefono},
+ 		#{operador.sdireccion},
+ 		#{operador.sobservacion},
+ 		#{operador.usuario.slogin},
+ 		#{operador.usuario.spassword},
+ 		#{nidarea},
+ 		#{nidperfil},
+ 		#{nidrol});
+ 		
+	</select>
+	
+	
+	
+	<!--LISTAR PERSONA -->
+		<resultMap id="BaseResultMap" type="OperadorDto">
+		<id column="nidoperador" property="operador.nidoperador" />
+		<result column="sidtipodoc" property="operador.sidtipodoc" />
+		<result column="snumdocu" property="operador.snumdocu" />
+		<result column="snombre" property="operador.snombre" />
+		<result column="sapepaterno" property="operador.sapepaterno" />
+		<result column="sapematerno" property="operador.sapematerno" />
+		<result column="sgenero" property="operador.sgenero" />
+		<result column="dfechanac" property="operador.dfechanac" />
+		<result column="scorreo" property="operador.scorreo" />
+		<result column="stelefono" property="operador.stelefono" />
+		<result column="sobservacion" property="operador.sobservacion" />
+		<result column="sdireccion" property="operador.sdireccion" />		
+		<result column="bactivo" property="operador.bactivo" />
+		<result column="estado" property="operador.estado" />
+		<result column="dfechareg" property="operador.dfechareg" />
+		<result column="nidsesion" property="operador.nidsesion" />
+		<result column="nidusuario" property="operador.usuario.nidusuario" />
+		<result column="slogin" property="operador.usuario.slogin" />
+		<result column="spassword" property="operador.usuario.spassword" />
+		<result column="bactivo" property="operador.usuario.bactivo" />
+		<result column="dfechareg" property="operador.usuario.dfechareg" />
+		<result column="nidsesion" property="operador.usuario.nidsesion" />
+		<result column="nidperfil" property="nidperfil" />
+		<result column="nidarea" property="nidarea" />		
+		<result column="nidrol" property="nidrol" />
+				
+	</resultMap>
+	
+	<select id="listarOperador" resultMap="BaseResultMap"
+		parameterType="Pageable">
+		SELECT
+		o.nidoperador,
+		o.sidtipodoc,
+		o.snumdocu,
+		o.snombre,
+		o.sapepaterno,
+		o.sapematerno,
+		o.sgenero,
+		o.dfechanac,
+		o.scorreo,
+		o.stelefono,
+		o.sobservacion,
+		o.sdireccion,
+		o.bactivo,
+		CASE
+		u.bactivo WHEN TRUE THEN 'ACTIVO'
+		ELSE 'DESACTIVADO'
+		END
+		AS estado,
+		o.dfechareg,
+		o.nidsesion,
+		u.nidusuario,
+		u.slogin,
+		u.spassword AS spassword ,
+		spassword ,
+		u.bactivo,
+		u.dfechareg,
+		u.nidsesion,
+		up.nidperfil ,
+		ua.nidarea ,
+		ur.nidrol 
+		FROM
+		usuario u
+		INNER JOIN operador o ON O.nidoperador = U.nidusuario
+		LEFT JOIN usuario_perfil up ON up.nidusuario =u.nidusuario 
+		LEFT JOIN usuario_area ua ON ua.nidusuario = u.nidusuario  
+		LEFT JOIN usuario_rol ur ON ur.nidusuario = u.nidusuario 
+		ORDER BY
+		nidusuario DESC
+		OFFSET
+		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
+	</select>
+	
+	
+	<!--LISTAR PERSONA -->
+	<select id="countElements" resultType="int">
+		SELECT count(*) FROM
+		operador;
+	</select>
+	
+
+
 
 </mapper>

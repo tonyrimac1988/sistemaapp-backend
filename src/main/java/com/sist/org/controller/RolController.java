@@ -88,9 +88,15 @@ public class RolController {
 	}
 
 	@GetMapping(value = "/listarRolUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> ListarAreaUsuario(@PathVariable("id") Integer idUsuario) {
-		Integer idrolusuario = irolService.ListarAreaUsuario(idUsuario);
-		return new ResponseEntity<Integer>(idrolusuario, HttpStatus.OK);
+	public ResponseEntity<RespuestaBase<Object>> ListarAreaUsuario(@PathVariable("id") Integer idUsuario) {
+		  
+		try {
+			 
+			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), irolService.ListarAreaUsuario(idUsuario).toString(), null), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método eliminarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 
 	@PostMapping(value = "/listarRolPage", produces = MediaType.APPLICATION_JSON_VALUE)
