@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-//import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +20,7 @@ import com.sist.org.dto.RespuestaBase;
 import com.sist.org.service.IOperadorService;
 import com.sist.org.util.Page;
 import com.sist.org.util.Pageable;
+import com.sist.org.util.ReporteRespuesta;
 
 @RestController
 @RequestMapping("/operadores")
@@ -53,8 +52,7 @@ public class OperadorController {
 			return new ResponseEntity<RespuestaBase<Page<OperadorDto>>>( respuesabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
 	}
-	
- 
+	 
 	
 	@PostMapping("/eliminaroperador")
 	public ResponseEntity<RespuestaBase<Object>> EliminarOperador(@Valid @RequestBody int operador) {
@@ -109,4 +107,29 @@ public class OperadorController {
 			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método insertarOperador -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@PostMapping(value = "/generarReporte", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "text/plain")
+	public ResponseEntity<RespuestaBase<ReporteRespuesta>> generarReporte(@RequestBody String tipoReporte) {
+		
+		log.info(tipoReporte);
+		
+		RespuestaBase<ReporteRespuesta> respuestabase= new RespuestaBase<>();
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iOperadorService.generarReporte(tipoReporte)));
+			
+			return new ResponseEntity<RespuestaBase<ReporteRespuesta>>(respuestabase, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error el metodo listarUsuario -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<ReporteRespuesta>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+		
+	}
+	
+	
 }

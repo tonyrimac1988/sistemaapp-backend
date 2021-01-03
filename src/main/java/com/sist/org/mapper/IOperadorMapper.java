@@ -9,6 +9,8 @@ public interface IOperadorMapper {
 
 	List<OperadorDto> listarOperador(Pageable pageable);
 
+	List<OperadorDto> buscaroperador(Pageable pageable);
+	
 	String eliminarOperador(int operador);
 
 	String actualizarOperador(Operador operador);
@@ -18,5 +20,7 @@ public interface IOperadorMapper {
 	String modificarUsuarioOperador(OperadorDto operadorDto);
 
 	int countElements();
+
+	
 		
 }

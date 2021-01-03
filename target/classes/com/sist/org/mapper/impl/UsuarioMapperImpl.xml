@@ -92,16 +92,10 @@
 		ub.ximagen
 		FROM
 		usuario u
-		INNER JOIN operador o ON
-		u.nidusuario = o.nidoperador
-		LEFT JOIN
-		usuario_biometria ub ON
-		ub.nidusuario = u.nidusuario
-		LEFT JOIN
-		usuario_rol ur ON
-		ur.nidusuario = u.nidusuario
-		LEFT JOIN rol ro ON
-		ro.nidrol = ur.nidusuario
+		INNER JOIN operador o ON u.nidusuario = o.nidoperador
+		LEFT JOIN usuario_biometria ub ON ub.nidusuario = u.nidusuario
+		LEFT JOIN usuario_rol ur ON ur.nidusuario = u.nidusuario
+		LEFT JOIN rol ro ON ro.nidrol = ur.nidrol 
 		WHERE
 		u.slogin = #{usuario}
 		AND O.bactivo =

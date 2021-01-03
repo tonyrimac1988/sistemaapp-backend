@@ -3,6 +3,7 @@ import com.sist.org.dto.OperadorDto;
 import com.sist.org.modelo.Operador;
 import com.sist.org.util.Page;
 import com.sist.org.util.Pageable;
+import com.sist.org.util.ReporteRespuesta;
 
 public interface IOperadorService {
 
@@ -15,4 +16,7 @@ public interface IOperadorService {
 	String insertarOperador(OperadorDto operador);
 
 	String modificarUsuarioOperador(OperadorDto operadorDto);
+
+	ReporteRespuesta generarReporte(String tipoReporte);
+ 
 }
