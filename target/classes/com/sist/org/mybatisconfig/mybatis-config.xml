@@ -30,6 +30,9 @@
 		<!--CLASE DTO -->
 		<typeAlias alias ="UsuarioSesion" type="com.sist.org.dto.UsuarioSesion" />
 		<typeAlias alias ="OperadorDto" type="com.sist.org.dto.OperadorDto" />
+		<typeAlias alias ="ImagenOperadorDto" type="com.sist.org.dto.ImagenOperadorDto" />
+					
+					
 					
 		<!-- UTILITARIOS -->
 		<typeAlias alias ="Page" type="com.sist.org.util.Page" />

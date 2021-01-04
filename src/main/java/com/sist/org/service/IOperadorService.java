@@ -1,4 +1,5 @@
 package com.sist.org.service;
+import com.sist.org.dto.ImagenOperadorDto;
 import com.sist.org.dto.OperadorDto;
 import com.sist.org.modelo.Operador;
 import com.sist.org.util.Page;
@@ -18,5 +19,7 @@ public interface IOperadorService {
 	String modificarUsuarioOperador(OperadorDto operadorDto);
 
 	ReporteRespuesta generarReporte(String tipoReporte);
+
+	ImagenOperadorDto consultarimagenoperador(int idoperador);
  
 }

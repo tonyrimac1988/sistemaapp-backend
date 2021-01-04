@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import com.sist.org.dto.ImagenOperadorDto;
 import com.sist.org.dto.OperadorDto;
 import com.sist.org.mapper.IOperadorMapper;
 import com.sist.org.modelo.Operador;
@@ -106,6 +107,12 @@ public class OperadorServiceImpl implements IOperadorService{
 		respuesta.setReporte(data);
 		
 		return respuesta;
+	}
+
+	@Override
+	public ImagenOperadorDto consultarimagenoperador(int idoperador) {
+		// TODO Auto-generated method stub
+		return iOperadorMapper.consultarimagenoperador(idoperador);
 	}
 
  

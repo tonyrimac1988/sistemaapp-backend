@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sist.org.dto.ImagenOperadorDto;
 import com.sist.org.dto.OperadorDto;
 import com.sist.org.dto.RespuestaBase;
 import com.sist.org.service.IOperadorService;
@@ -98,7 +99,7 @@ public class OperadorController {
 
 		//String respuesta = iPersonaService.insertarOperador(operador);
 		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
-		log.info(operador.toString());
+		 
 		
 		try {
 			
@@ -111,7 +112,6 @@ public class OperadorController {
 	@PostMapping(value = "/generarReporte", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "text/plain")
 	public ResponseEntity<RespuestaBase<ReporteRespuesta>> generarReporte(@RequestBody String tipoReporte) {
 		
-		log.info(tipoReporte);
 		
 		RespuestaBase<ReporteRespuesta> respuestabase= new RespuestaBase<>();
 		try {
@@ -126,6 +126,30 @@ public class OperadorController {
 			respuestabase.setMensaje("Hubo un error el metodo listarUsuario -> " + e.toString());
 			respuestabase.setData(null);
 			return new ResponseEntity<RespuestaBase<ReporteRespuesta>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+		
+	}
+	
+	
+	@PostMapping( "/consultarimagenoperador")
+	public ResponseEntity<RespuestaBase<ImagenOperadorDto>> consultarimagenoperador(@Valid @RequestBody int idoperador) {
+		
+		
+		RespuestaBase<ImagenOperadorDto> respuestabase= new RespuestaBase<>();
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iOperadorService.consultarimagenoperador(idoperador)));
+			
+			log.info(respuestabase.toString());
+			return new ResponseEntity<RespuestaBase<ImagenOperadorDto>>(respuestabase, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error el metodo listarUsuario -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<ImagenOperadorDto>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 			
 		}
 		

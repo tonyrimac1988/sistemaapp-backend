@@ -228,17 +228,26 @@
 		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
 	</select>
 	
-	<!--LISTAR PERSONA -->
+	<!--  CONTAR OPERADOR -->
 	<select id="countElements" resultType="int">
 		SELECT count(*) FROM
 		operador;
 	</select>
 	
 
-
-
-
-
+	<!--CONSULTAR IMAGEN OPERADOR-->
+	<select id="consultarimagenoperador" 
+			parameterType="int"  
+			resultType="ImagenOperadorDto">
+			
+		SELECT
+			ub.ximagen
+		FROM
+			operador o
+		INNER JOIN usuario u ON O.nidoperador = U.nidusuario
+		INNER JOIN usuario_biometria ub ON ub.nidusuario = u.nidusuario
+		WHERE o.nidoperador = #{idoperador} AND ub.bactivo = TRUE ;
+	</select>
 
 
 
