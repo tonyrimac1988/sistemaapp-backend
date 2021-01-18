@@ -15,16 +15,10 @@ import com.sist.org.dto.RespuestaBase;
 import com.sist.org.modelo.Ubigeo;
 import com.sist.org.service.IUbigeoService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @RestController
 @RequestMapping("/ubigeos")
 public class UbigeoController {
-	
-
-	
-	private static final Logger log = LoggerFactory.getLogger(UbigeoController.class);
+	 
 	
 	@Autowired
 	IUbigeoService ibigeoService;
@@ -53,10 +47,7 @@ public class UbigeoController {
 	
 	@PostMapping(value = "/listarprovincia", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Ubigeo>> listarprovincia(@Validated @RequestBody String iddepartamento) {
-
-		//
-		log.info("->>>>>>>> "+iddepartamento);
-		
+ 
 		RespuestaBase<Ubigeo> respuesabase = new RespuestaBase<Ubigeo>();
 		try {
 			respuesabase.setMensaje( "Respuesta OK");
@@ -77,8 +68,7 @@ public class UbigeoController {
 	
 	@PostMapping(value = "/listardistrito", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Ubigeo>> listardistrito(@Validated @RequestBody String idprovincia) {
-
-		//
+ 
 		RespuestaBase<Ubigeo> respuesabase = new RespuestaBase<Ubigeo>();
 		try {
 			respuesabase.setMensaje( "Respuesta OK");

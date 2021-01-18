@@ -16,7 +16,7 @@
 		FROM
 			public.ubigeo
 		WHERE
-			sidubigeo LIKE '__0100'
+			sidubigeo LIKE '__0000'
 			AND bactivo = TRUE 
 		ORDER BY
 			snombre ASC;
@@ -41,7 +41,7 @@
 			AND sidubigeo NOT LIKE '____00'
 			AND LEFT (sidubigeo, 2) = LEFT ('' || #{palabraClave} || '', 2)
 		ORDER BY
-			sidubigeo ASC;
+			snombre ASC;
 	</select>
 
 
@@ -64,6 +64,6 @@
 			AND sidubigeo NOT LIKE '____00'
 			AND LEFT (sidubigeo, 4) = LEFT ('' || #{palabraClave} || '', 4)
 		ORDER BY
-			sidubigeo ASC;
+			snombre ASC;
 	</select>
 </mapper>
