@@ -135,54 +135,9 @@
 		<result column="nidrol" property="nidrol" />
 				
 	</resultMap>
-	
-	<select id="listarOperador" resultMap="BaseResultMap"
-		parameterType="Pageable">
-		SELECT
-		o.nidoperador,
-		o.sidtipodoc,
-		o.snumdocu,
-		o.snombre,
-		o.sapepaterno,
-		o.sapematerno,
-		o.sgenero,
-		o.dfechanac,
-		o.scorreo,
-		o.stelefono,
-		o.sobservacion,
-		o.sdireccion,
-		o.bactivo,
-		CASE
-		u.bactivo WHEN TRUE THEN 'ACTIVO'
-		ELSE 'DESACTIVADO'
-		END
-		AS estado,
-		o.dfechareg,
-		o.nidsesion,
-		u.nidusuario,
-		u.slogin,
-		u.spassword AS spassword ,
-		spassword ,
-		u.bactivo,
-		u.dfechareg,
-		u.nidsesion,
-		up.nidperfil ,
-		ua.nidarea ,
-		ur.nidrol 
-		FROM
-		usuario u
-		INNER JOIN operador o ON O.nidoperador = U.nidusuario
-		LEFT JOIN usuario_perfil up ON up.nidusuario =u.nidusuario 
-		LEFT JOIN usuario_area ua ON ua.nidusuario = u.nidusuario  
-		LEFT JOIN usuario_rol ur ON ur.nidusuario = u.nidusuario 
-		ORDER BY
-		nidusuario DESC
-		OFFSET
-		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
-	</select>
-	
+ 
 	<!--buscar operador -->
-	<select id="buscaroperador" resultMap="BaseResultMap"
+	<select id="listarOperador" resultMap="BaseResultMap"
 		parameterType="Pageable">
 		SELECT
 		o.nidoperador,
@@ -229,9 +184,13 @@
 	</select>
 	
 	<!--  CONTAR OPERADOR -->
-	<select id="countElements" resultType="int">
+	<select id="countElements" resultType="int" 
+		parameterType="Pageable">
 		SELECT count(*) FROM
-		operador;
+		operador o
+		LEFT JOIN usuario u ON u.nidusuario =o.nidoperador 
+		WHERE upper(o.snombre || ' '|| o.sapepaterno || ' '|| o.sapematerno || ' '|| u.slogin || ' '|| o.snumdocu)  LIKE  upper('%'|| #{palabraClave} ||'%')
+		;
 	</select>
 	
 

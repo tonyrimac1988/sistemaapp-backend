@@ -18,7 +18,6 @@
 		<typeAlias alias ="Menu" type="com.sist.org.modelo.Menu" />
 		<typeAlias alias ="Modulo" type="com.sist.org.modelo.Modulo" />
 		<typeAlias alias ="Operador" type="com.sist.org.modelo.Operador" />
-
 		<typeAlias alias ="Parametro" type="com.sist.org.modelo.Parametro" />
 		<typeAlias alias ="Perfil" type="com.sist.org.modelo.Perfil" />
 		<typeAlias alias ="Rol" type="com.sist.org.modelo.Rol" />
@@ -26,6 +25,7 @@
 		<typeAlias alias ="SubMenu" type="com.sist.org.modelo.SubMenu" />
 		<typeAlias alias ="Usuario" type="com.sist.org.modelo.Usuario" />
 		<typeAlias alias ="TipoDocumento" type="com.sist.org.modelo.TipoDocumento" />
+		<typeAlias alias ="Ubigeo" type="com.sist.org.modelo.Ubigeo" />
 		
 		<!--CLASE DTO -->
 		<typeAlias alias ="UsuarioSesion" type="com.sist.org.dto.UsuarioSesion" />

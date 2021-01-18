@@ -62,16 +62,13 @@ public class OperadorServiceImpl implements IOperadorService{
 	public Page<OperadorDto> listarOperador(Pageable pageable) {
 		
 		Page<OperadorDto> page = new Page<>();
-		//log.info(pageable.toString());
-		if(pageable.getPalabraClave()== null || pageable.getPalabraClave()== "") {			
-			/*consulta normal*/			
+		
+		if(pageable.getPalabraClave()== null ) {
+			  pageable.setPalabraClave("");
+		}
 			page.setContent(iOperadorMapper.listarOperador(pageable));	
-			page.setTotalElements(iOperadorMapper.countElements());
-		}else {			
-			/*consulta con filtro*/
-			page.setContent(iOperadorMapper.buscaroperador(pageable));	
-			page.setTotalElements(iOperadorMapper.countElements()); 			
-		}			
+			page.setTotalElements(iOperadorMapper.countElements(pageable));
+				
 		
 		return page;
 	}

@@ -17,30 +17,44 @@ import com.sist.org.service.ISesionService;
 @RequestMapping("/sesiones")
 public class SesionController {
 
+		
+	
 	@Autowired
 	ISesionService iSesionService;
 
+	
 	@PostMapping(value = "/inciarsesion", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> InciarSesion(@Validated @RequestBody String usuario) {
-		//String idsesion = iSesionService.InciarSesion(usuario);
-		//return new ResponseEntity<String>(idsesion, HttpStatus.OK);
-		try {
-			
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iSesionService.InciarSesion(usuario), null), HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método InciarSesion -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		RespuestaBase<Object> respuestabase = new RespuestaBase<Object>();		
+		try {			
+			respuestabase.setMensaje(iSesionService.InciarSesion(usuario));
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setData(null);						
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);					
+		} catch (Exception e) {			
+			respuestabase.setMensaje("Hubo un error en el método InciarSesion -> "+e.toString());
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setData(null);			
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);					
 		}
 	}
 
 	@PostMapping(value = "/cerrarsesion", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> CerrarSesion(@Validated @RequestBody int usuario) {
-		//Integer idsesion = iSesionService.CerrarSesion(usuario);
-		//return new ResponseEntity<Integer>(idsesion, HttpStatus.OK);
-		try {
+				
+		RespuestaBase<Object> respuestabase = new RespuestaBase<Object>();				
+		try {			
+			respuestabase.setMensaje(iSesionService.CerrarSesion(usuario).toString());
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setData(null);						
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
+		} catch (Exception e) {			
+			respuestabase.setMensaje("Hubo un error en el método CerrarSesion -> "+e.toString());
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setData(null);
 			
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iSesionService.CerrarSesion(usuario).toString(), null), HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método CerrarSesion -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

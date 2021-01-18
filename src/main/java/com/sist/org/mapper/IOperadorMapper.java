@@ -20,7 +20,7 @@ public interface IOperadorMapper {
 
 	String modificarUsuarioOperador(OperadorDto operadorDto);
 
-	int countElements();
+	int countElements(Pageable pageable);
 
 	ImagenOperadorDto consultarimagenoperador(int idoperador);
 

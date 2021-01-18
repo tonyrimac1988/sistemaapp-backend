@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IUbigeoMapper">
+
+
+	<!--LISTAR DEPARTAMENTO -->
+	<select id="listarDepartamento"
+		resultType="Ubigeo">
+		SELECT
+			sidubigeo,
+			snombre,
+			scodanterior,
+			bactivo,
+			nidsesion,
+			dfechahoraaud
+		FROM
+			public.ubigeo
+		WHERE
+			sidubigeo LIKE '__0100'
+			AND bactivo = TRUE 
+		ORDER BY
+			snombre ASC;
+	</select>
+
+
+	<!--LISTAR PRIVINCIA -->
+	<select id="listarprovincia"
+		parameterType="String"
+		resultType="Ubigeo">
+	  	SELECT
+			sidubigeo,
+			snombre,
+			scodanterior,
+			bactivo,
+			nidsesion,
+			dfechahoraaud
+		FROM
+			Ubigeo
+		WHERE
+			bactivo = TRUE
+			AND sidubigeo NOT LIKE '____00'
+			AND LEFT (sidubigeo, 2) = LEFT ('' || #{palabraClave} || '', 2)
+		ORDER BY
+			sidubigeo ASC;
+	</select>
+
+
+
+	<!--LISTAR DISTRITOS -->
+	<select id="listardistrito"
+		parameterType="String"
+		resultType="Ubigeo">
+	  	SELECT
+			sidubigeo,
+			snombre,
+			scodanterior,
+			bactivo,
+			nidsesion,
+			dfechahoraaud
+		FROM
+			Ubigeo
+		WHERE
+			bactivo = TRUE
+			AND sidubigeo NOT LIKE '____00'
+			AND LEFT (sidubigeo, 4) = LEFT ('' || #{palabraClave} || '', 4)
+		ORDER BY
+			sidubigeo ASC;
+	</select>
+</mapper>
