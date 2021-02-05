@@ -1,6 +1,8 @@
 package com.sist.org.mapper;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.sist.org.dto.ImagenOperadorDto;
 import com.sist.org.dto.OperadorDto;
 import com.sist.org.modelo.Operador;
@@ -23,6 +25,8 @@ public interface IOperadorMapper {
 	int countElements(Pageable pageable);
 
 	ImagenOperadorDto consultarimagenoperador(int idoperador);
+
+	String reactivaroperador(@Valid int operador);
 
 	
 		

@@ -9,6 +9,6 @@ public class UsuarioSesion {
 	private String scorreo;
 	private String snombrerol;
 	private byte[] ximagen;
-	
+	private int nidrol;
 	
 }

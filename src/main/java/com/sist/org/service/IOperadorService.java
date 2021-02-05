@@ -1,4 +1,6 @@
 package com.sist.org.service;
+import javax.validation.Valid;
+
 import com.sist.org.dto.ImagenOperadorDto;
 import com.sist.org.dto.OperadorDto;
 import com.sist.org.modelo.Operador;
@@ -21,5 +23,7 @@ public interface IOperadorService {
 	ReporteRespuesta generarReporte(String tipoReporte);
 
 	ImagenOperadorDto consultarimagenoperador(int idoperador);
+
+	String reactivaroperador(@Valid int operador);
  
 }

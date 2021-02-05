@@ -31,6 +31,79 @@
 	</select>
 
 
+	<resultMap id="menusubmentubase" type="Menu">
+		<id column="nidmenugrupo" property="nidmenu" />		
+		<result column="menugrupo" property="snombremenu" />		
+		<collection property="submenu" ofType="com.sist.org.modelo.SubMenu">
+			<id column="nidmenu" property="nidsubmenu" />			
+			<result column="menu" property="snombremenu" />
+		</collection>
+	</resultMap>
+	
+	
+	<!--LISTAR MENU SUBMENU -->
+	<select id="listarmenusubmenu"
+		parameterType="String" resultMap="menusubmentubase">
+			SELECT
+				m.nidmenugrupo ,
+				m.snombremenu as menugrupo ,
+				s.nidmenu ,
+				s.snombremenu  as menu
+			FROM
+				menugrupo m 
+			INNER JOIN menu s ON
+				S.nidmenugrupo = m.nidmenugrupo 
+			WHERE m.bactivo =TRUE ;	
+	</select>
 
+
+	<!-- LISTAER PERMISOS DE MENU -->
+	<select id="consultapermisomenu"
+		parameterType="RolMenuDTO" resultType="Procedimiento">  						
+			SELECT
+				TRUE bactivo ,
+				p.nidprocedimiento ,
+				p.setiqueta ,
+				p.sdescripcion 
+			FROM
+				menu m 
+			INNER JOIN procedimiento p ON p.nidmenu = m.nidmenu
+			INNER  JOIN rol_procedimiento rp ON rp.nidprocedimiento =p.nidprocedimiento
+			WHERE
+			 rp.nidrol =#{nidrol} and m.nidmenu = #{nidmenu}  AND rp.bactivo = TRUE 
+			 UNION all
+			SELECT
+				FALSE permiso ,
+				p.nidprocedimiento ,
+				p.setiqueta ,
+				p.sdescripcion
+			FROM
+				menu m
+			INNER JOIN procedimiento p ON
+				p.nidmenu = m.nidmenu
+			WHERE
+				m.nidmenu = #{nidmenu} 
+				AND p.nidprocedimiento NOT IN (
+								SELECT
+									p.nidprocedimiento
+								FROM
+									menu m
+								INNER JOIN procedimiento p ON
+									p.nidmenu = m.nidmenu
+								INNER JOIN rol_procedimiento rp ON
+									rp.nidprocedimiento = p.nidprocedimiento
+								WHERE
+									rp.nidrol = #{nidrol}
+									AND m.nidmenu =  #{nidmenu}   AND rp.bactivo = TRUE 
+									)	
+				ORDER BY nidprocedimiento ASC 	 													
+	</select>
+	
+	
+	<!-- VALIDA PERMISOS DEL ROL CON SUS PROCEDIMIENTOS -->	 
+	<select id="validarpermisosrolmenu"
+		parameterType="RolMenuDTO" resultType="Procedimiento">  						
+			  	SELECT * FROM   public.fn_sist_validarPermisoMenuProcedimiento(#{nidrol},#{nidmenu}) 													
+	</select>
 
 </mapper>

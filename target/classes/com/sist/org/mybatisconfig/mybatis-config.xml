@@ -26,12 +26,16 @@
 		<typeAlias alias ="Usuario" type="com.sist.org.modelo.Usuario" />
 		<typeAlias alias ="TipoDocumento" type="com.sist.org.modelo.TipoDocumento" />
 		<typeAlias alias ="Ubigeo" type="com.sist.org.modelo.Ubigeo" />
+		<typeAlias alias ="Procedimiento" type="com.sist.org.modelo.Procedimiento" />
+		<typeAlias alias ="RolProcedimiento" type="com.sist.org.modelo.RolProcedimiento" />
 		
+
 		<!--CLASE DTO -->
 		<typeAlias alias ="UsuarioSesion" type="com.sist.org.dto.UsuarioSesion" />
 		<typeAlias alias ="OperadorDto" type="com.sist.org.dto.OperadorDto" />
 		<typeAlias alias ="ImagenOperadorDto" type="com.sist.org.dto.ImagenOperadorDto" />
-					
+		<typeAlias alias ="RolMenuDTO" type="com.sist.org.dto.RolMenuDTO" />
+		<typeAlias alias ="SedeDTO" type="com.sist.org.dto.SedeDTO" />
 					
 					
 		<!-- UTILITARIOS -->

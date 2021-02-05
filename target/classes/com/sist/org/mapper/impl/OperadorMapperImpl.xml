@@ -207,7 +207,14 @@
 		INNER JOIN usuario_biometria ub ON ub.nidusuario = u.nidusuario
 		WHERE o.nidoperador = #{idoperador} AND ub.bactivo = TRUE ;
 	</select>
+ 
 
-
-
+	<!--REACTIVAR IMAGEN OPERADOR-->
+	<select id="reactivaroperador" 
+			parameterType="int"  
+			resultType="String">			
+		SELECT * FROM public.fn_reactivar_operador(#{idoperador}) ;
+	</select>
+ 
+ 
 </mapper>

@@ -72,6 +72,7 @@
 		dfechareg,
 		nidsesion
 		FROM public.rol
+		ORDER BY nidrol ASC
 		OFFSET
 		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
 
@@ -82,4 +83,13 @@
 		SELECT count(*) FROM
 		rol r WHERE bactivo = true;
 	</select>
+
+	
+	<!-- REGISTRAR ROL PROCEDIMIENTO -->
+	<select id="registrarrolprocedimiento" parameterType="RolProcedimiento" resultType="String">
+		SELECT * FROM public.fn_registrar_rol_procedimiento(#{nidrol}, #{nidprocedimiento}, #{bactivo});
+	</select>
+	
+	
+	
 </mapper>

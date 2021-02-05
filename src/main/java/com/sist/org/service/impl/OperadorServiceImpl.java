@@ -3,6 +3,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,6 +112,12 @@ public class OperadorServiceImpl implements IOperadorService{
 	public ImagenOperadorDto consultarimagenoperador(int idoperador) {
 		// TODO Auto-generated method stub
 		return iOperadorMapper.consultarimagenoperador(idoperador);
+	}
+
+	@Override
+	public String reactivaroperador(@Valid int operador) {
+		// TODO Auto-generated method stub
+		return iOperadorMapper.reactivaroperador(operador);
 	}
 
  

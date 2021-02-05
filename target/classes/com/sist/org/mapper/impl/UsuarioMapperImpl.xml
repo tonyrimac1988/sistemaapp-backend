@@ -88,6 +88,7 @@
 		o.snombre || ' ' || o.sapepaterno || ' ' ||
 		o.sapematerno AS snombre ,
 		o.scorreo ,
+		ro.nidrol ,		
 		ro.snombrerol ,
 		ub.ximagen
 		FROM

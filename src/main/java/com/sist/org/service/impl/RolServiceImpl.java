@@ -5,16 +5,20 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sist.org.mapper.IRolMapper;
 import com.sist.org.modelo.Rol;
+import com.sist.org.modelo.RolProcedimiento;
 import com.sist.org.service.IRolService;
 import com.sist.org.util.Page;
 import com.sist.org.util.Pageable;
 
+
 @Service
 public class RolServiceImpl implements IRolService{
 
+		
 	@Autowired
 	IRolMapper rolmapper;
 	
@@ -56,6 +60,24 @@ public class RolServiceImpl implements IRolService{
 		page.setTotalElements(rolmapper.countElements());
 		
 		return page;
+	}
+
+	@Override
+	public String registrarrolprocedimiento(@Valid RolProcedimiento rolprocedimiento) {
+		// TODO Auto-generated method stub
+		return rolmapper.registrarrolprocedimiento(rolprocedimiento);
+	}
+
+	@Transactional
+	@Override
+	public String registrarrolprocedimientoLista(@Valid List<RolProcedimiento> listarolprocedimiento) {
+		// TODO Auto-generated method stub
+		
+		String respuesta ="registrado correctamente";
+		listarolprocedimiento.forEach( rolprocedimiento ->{
+			  rolmapper.registrarrolprocedimiento(rolprocedimiento);
+		} );		
+		return respuesta;
 	}
 
 }

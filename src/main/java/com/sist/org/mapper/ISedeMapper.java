@@ -3,20 +3,20 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.sist.org.modelo.Sede;
+import com.sist.org.dto.SedeDTO;
 import com.sist.org.util.Pageable;
 
 public interface ISedeMapper {
 
-	String insertarSede(@Valid Sede sede);
+	String insertarSede(@Valid SedeDTO sede);
 
-	List<Sede> listarSede();
+	List<SedeDTO> listarSede();
 
-	String actualizarSede(@Valid Sede sede);
+	String actualizarSede(@Valid SedeDTO sede);
 
-	String eliminarSede(@Valid Sede sede);
+	String eliminarSede(@Valid SedeDTO sede);
 
-	List<Sede> listarSedePage(Pageable pageable);
+	List<SedeDTO> listarSedePage(Pageable pageable);
 
 	int countElements();
 

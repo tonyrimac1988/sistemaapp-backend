@@ -6,8 +6,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.org.dto.SedeDTO;
 import com.sist.org.mapper.ISedeMapper;
-import com.sist.org.modelo.Sede;
 import com.sist.org.service.ISedeService;
 import com.sist.org.util.Page;
 import com.sist.org.util.Pageable;
@@ -19,33 +19,33 @@ public class SedeServiceImpl implements ISedeService{
 	ISedeMapper sedemapper;
 	
 	@Override
-	public String insertarSede(@Valid Sede sede) {
+	public String insertarSede(@Valid SedeDTO sede) {
 		// TODO Auto-generated method stub
 		return sedemapper.insertarSede(sede);
 	}
 
 	@Override
-	public List<Sede> listarSede() {
+	public List<SedeDTO> listarSede() {
 		// TODO Auto-generated method stub
 		return sedemapper.listarSede();
 	}
 
 	@Override
-	public String actualizarSede(@Valid Sede sede) {
+	public String actualizarSede(@Valid SedeDTO sede) {
 		// TODO Auto-generated method stub
 		return sedemapper.actualizarSede(sede);
 	}
 
 	@Override
-	public String eliminarSede(@Valid Sede sede) {
+	public String eliminarSede(@Valid SedeDTO sede) {
 		// TODO Auto-generated method stub
 		return sedemapper.eliminarSede(sede);
 	}
 
 	@Override
-	public Page<Sede> listarSedePage(Pageable pageable) {
+	public Page<SedeDTO> listarSedePage(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Page<Sede> page = new Page<>();
+		Page<SedeDTO> page = new Page<>();
 		page.setContent(sedemapper.listarSedePage(pageable));
 		page.setTotalElements(sedemapper.countElements());
 		return page;

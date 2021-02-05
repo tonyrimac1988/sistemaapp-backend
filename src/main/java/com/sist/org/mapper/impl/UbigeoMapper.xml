@@ -38,7 +38,7 @@
 			Ubigeo
 		WHERE
 			bactivo = TRUE
-			AND sidubigeo NOT LIKE '____00'
+			AND sidubigeo LIKE '____00'
 			AND LEFT (sidubigeo, 2) = LEFT ('' || #{palabraClave} || '', 2)
 		ORDER BY
 			snombre ASC;

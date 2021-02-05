@@ -4,6 +4,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.sist.org.modelo.Rol;
+import com.sist.org.modelo.RolProcedimiento;
 import com.sist.org.util.Pageable;
 
 public interface IRolMapper {
@@ -21,5 +22,7 @@ public interface IRolMapper {
 	List<Rol> listarRolPage(Pageable pageable);
 
 	int countElements();
+
+	String registrarrolprocedimiento(@Valid RolProcedimiento rolprocedimiento);
 
 }

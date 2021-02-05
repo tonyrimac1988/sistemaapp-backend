@@ -48,17 +48,20 @@
 	
 	
 	<!--LISTAR SEDE PAGE -->
-	<select id="listarSedePage" resultType="Sede"
+	<select id="listarSedePage" resultType="SedeDTO"
 		parameterType="Pageable">
 		SELECT 
-		nidsede, 
-		snombre, 
-		sdireccion, 
-		subigeo, 
-		bactivo, 
-		dfechareg, 
-		nidsesion
-		FROM public.sede
+		s.nidsede, 
+		s.snombre, 
+		s.sdireccion ,
+		(SELECT snombre FROM ubigeo WHERE sidubigeo= LEFT(s.subigeo,2)||'0000') || ' / ' || 
+		(SELECT snombre FROM ubigeo WHERE sidubigeo= LEFT(s.subigeo,4)||'00')||' / ' || 
+		(SELECT snombre FROM ubigeo WHERE sidubigeo= LEFT(s.subigeo,6)||'')|| ' / '|| s.sdireccion  AS sdireccioncompleta,
+		s.subigeo, 
+		s.bactivo, 
+		s.dfechareg, 
+		s.nidsesion
+		FROM public.sede s
 		OFFSET
 		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
 

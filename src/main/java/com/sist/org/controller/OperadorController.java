@@ -3,8 +3,6 @@ import java.util.Arrays;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,10 +26,6 @@ import com.sist.org.util.ReporteRespuesta;
 public class OperadorController {
 
 
-	
-	private static final Logger log = LoggerFactory.getLogger(OperadorController.class);
-	
-	
 	@Autowired
 	IOperadorService iOperadorService;
 
@@ -48,7 +42,7 @@ public class OperadorController {
 		} catch (Exception e) {
 			
 			respuesabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
-			respuesabase.setMensaje("Hubo un error el metodo listarUsuario -> " + e.toString());
+			respuesabase.setMensaje("Hubo un error el método listarUsuario -> " + e.toString());
 			respuesabase.setData(null);
 			return new ResponseEntity<RespuestaBase<Page<OperadorDto>>>( respuesabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
@@ -58,23 +52,51 @@ public class OperadorController {
 	@PostMapping("/eliminaroperador")
 	public ResponseEntity<RespuestaBase<Object>> EliminarOperador(@Valid @RequestBody int operador) {
 
-		log.info("operador - > "+operador);
-		//operador.setNidoperador(2);
-		
-		//String respuesta = iPersonaService.eliminarOperador(operador);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>(); 
 		try {
-
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iOperadorService.eliminarOperador(operador), null), HttpStatus.OK);
+			
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iOperadorService.eliminarOperador(operador));
+			respuestabase.setData(null);
+			
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el meotodo eliminarOperador -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el método eliminarOperador -> "+e.toString());
+			respuestabase.setData(null);
+			
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@PostMapping("/reactivaroperador")
+	public ResponseEntity<RespuestaBase<Object>> reactivaroperador(@Valid @RequestBody int operador) {
+
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>(); 
+		
+		try {
+			
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iOperadorService.reactivaroperador(operador));
+			respuestabase.setData(null);
+			
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
+		} catch (Exception e) {
+			
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el método reactivaroperador -> "+e.toString());
+			respuestabase.setData(null);
+			
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
 	
 	@PostMapping(value = "/modificarUsuarioOperador", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> modificarUsuarioOperador(@Validated @RequestBody OperadorDto operadorDto) {
  
-		log.info(operadorDto.toString());
 		
 		RespuestaBase<Object> respuestabase = new RespuestaBase<>() ;
 	 
@@ -97,15 +119,21 @@ public class OperadorController {
 	@PostMapping(value= "/insertaroperador", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> InsertarOperador(@Valid @RequestBody OperadorDto operador) {
 
-		//String respuesta = iPersonaService.insertarOperador(operador);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
-		 
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>() ;
 		
 		try {
+			respuestabase.setData(null);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iOperadorService.insertarOperador(operador));
 			
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iOperadorService.insertarOperador(operador), null), HttpStatus.OK);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método insertarOperador -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			respuestabase.setData(null);
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el método InsertarOperador -> "+e.toString());
+						
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -123,7 +151,7 @@ public class OperadorController {
 			
 		} catch (Exception e) {
 			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
-			respuestabase.setMensaje("Hubo un error el metodo listarUsuario -> " + e.toString());
+			respuestabase.setMensaje("Hubo un error el método listarUsuario -> " + e.toString());
 			respuestabase.setData(null);
 			return new ResponseEntity<RespuestaBase<ReporteRespuesta>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 			
@@ -142,12 +170,11 @@ public class OperadorController {
 			respuestabase.setMensaje("Respuesta OK");
 			respuestabase.setData(Arrays.asList(iOperadorService.consultarimagenoperador(idoperador)));
 			
-			log.info(respuestabase.toString());
 			return new ResponseEntity<RespuestaBase<ImagenOperadorDto>>(respuestabase, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
-			respuestabase.setMensaje("Hubo un error el metodo listarUsuario -> " + e.toString());
+			respuestabase.setMensaje("Hubo un error el método listarUsuario -> " + e.toString());
 			respuestabase.setData(null);
 			return new ResponseEntity<RespuestaBase<ImagenOperadorDto>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 			
