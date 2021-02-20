@@ -1,5 +1,7 @@
 package com.sist.org.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,11 +18,13 @@ import com.sist.org.dto.RolMenuDTO;
 import com.sist.org.modelo.Menu;
 import com.sist.org.modelo.Procedimiento;
 import com.sist.org.service.IMenuService;
-
+	
 @RestController
 @RequestMapping("/menus")
 public class MenuController {
 
+	private static final Logger log = LoggerFactory.getLogger(MenuController.class);
+	
 	@Autowired
 	IMenuService iMenuService;
 	
@@ -28,16 +32,24 @@ public class MenuController {
 	@PostMapping(value = "/menuusuario", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Menu>> listarMenuPorUsuario(@Validated @RequestBody String usuario) {
  
-		//List<Menu> listarmenu = iMenuService.listarMenuPorUsuario(usuario);
-		//return new ResponseEntity<List<Menu>>(listarmenu, HttpStatus.OK);
-		try {
-			
-			return new ResponseEntity<RespuestaBase<Menu>>(new RespuestaBase<Menu>(HttpStatus.OK.toString(), "Respuesta OK", iMenuService.listarMenuPorUsuario(usuario)), HttpStatus.OK);			
-		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<RespuestaBase<Menu>>(new RespuestaBase<Menu>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el meotodo listarMenuPorUsuario -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		RespuestaBase<Menu> respuestabase = new RespuestaBase<>();
 
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(iMenuService.listarMenuPorUsuario(usuario));
+
+			return new ResponseEntity<RespuestaBase<Menu>>(respuestabase, HttpStatus.OK);
+		} catch (Exception e) {
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarMenuPorUsuario -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Menu>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		 
 	}
 	
 	
@@ -99,10 +111,11 @@ public class MenuController {
 		} catch (Exception e) {
 
 			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
-			respuestabase.setMensaje( "Hubo un error en el meotodo validarpermisosrolmenu -> "+e.toString());
+			respuestabase.setMensaje( "Hubo un error en el meotodo validar permisos rol menu -> "+e.toString());
 			respuestabase.setData(null);			
 			return new ResponseEntity<RespuestaBase<Procedimiento>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		  
 
 	}
 	

@@ -6,7 +6,7 @@
 	<select id="insertarOperador"
 		parameterType="OperadorDto"
 		resultType="String">	
-		SELECT * FROM public.fn_insertar_operador_usuario (
+		SELECT * FROM sist.fn_insertar_operador_usuario (
 		#{operador.sidtipodoc},
 		#{operador.snumdocu},
 		#{operador.snombre},
@@ -42,7 +42,7 @@
 		bactivo,
 		dfechareg,
 		nidsesion
-		FROM public.operador;
+		FROM sist.operador;
 	</select> -->
 
 
@@ -50,7 +50,7 @@
 	<select id="eliminarOperador"
 		parameterType="int"
 		resultType="String">
-		SELECT * FROM public.fn_eliminar_operador(#{nidoperador});
+		SELECT * FROM sist.fn_eliminar_operador(#{nidoperador});
 	</select>
 
 
@@ -59,7 +59,7 @@
 		parameterType="Operador"
 		resultType="String">
 	
-		SELECT * FROM public.fn_actualizar_operador_usuario (
+		SELECT * FROM sist.fn_actualizar_operador_usuario (
 		#{nidoperador},
 		#{sidtipodoc},
 		#{numdocu},
@@ -83,7 +83,7 @@
 	<select id="modificarUsuarioOperador"
 		parameterType="OperadorDto" resultType="String">
 
- 		SELECT * FROM public.fn_actualizar_operador_usuario (
+ 		SELECT * FROM sist.fn_actualizar_operador_usuario (
  		#{operador.nidoperador},
  		#{operador.sidtipodoc},
  		#{operador.snumdocu},
@@ -171,11 +171,11 @@
 		ua.nidarea ,
 		ur.nidrol 
 		FROM
-		usuario u
-		INNER JOIN operador o ON O.nidoperador = U.nidusuario
-		LEFT JOIN usuario_perfil up ON up.nidusuario =u.nidusuario 
-		LEFT JOIN usuario_area ua ON ua.nidusuario = u.nidusuario  
-		LEFT JOIN usuario_rol ur ON ur.nidusuario = u.nidusuario
+		sist.usuario u
+		INNER JOIN sist.operador o ON O.nidoperador = U.nidusuario
+		LEFT JOIN sist.usuario_perfil up ON up.nidusuario =u.nidusuario 
+		LEFT JOIN sist.usuario_area ua ON ua.nidusuario = u.nidusuario  
+		LEFT JOIN sist.usuario_rol ur ON ur.nidusuario = u.nidusuario
 		WHERE upper(o.snombre || ' '|| o.sapepaterno || ' '|| o.sapematerno || ' '|| u.slogin || ' '|| o.snumdocu)  LIKE  upper('%'|| #{palabraClave} ||'%') 
 		ORDER BY
 		nidusuario DESC
@@ -187,8 +187,8 @@
 	<select id="countElements" resultType="int" 
 		parameterType="Pageable">
 		SELECT count(*) FROM
-		operador o
-		LEFT JOIN usuario u ON u.nidusuario =o.nidoperador 
+		sist.operador o
+		LEFT JOIN sist.usuario u ON u.nidusuario =o.nidoperador 
 		WHERE upper(o.snombre || ' '|| o.sapepaterno || ' '|| o.sapematerno || ' '|| u.slogin || ' '|| o.snumdocu)  LIKE  upper('%'|| #{palabraClave} ||'%')
 		;
 	</select>
@@ -202,9 +202,9 @@
 		SELECT
 			ub.ximagen
 		FROM
-			operador o
-		INNER JOIN usuario u ON O.nidoperador = U.nidusuario
-		INNER JOIN usuario_biometria ub ON ub.nidusuario = u.nidusuario
+			sist.operador o
+		INNER JOIN sist.usuario u ON O.nidoperador = U.nidusuario
+		INNER JOIN sist.usuario_biometria ub ON ub.nidusuario = u.nidusuario
 		WHERE o.nidoperador = #{idoperador} AND ub.bactivo = TRUE ;
 	</select>
  
@@ -213,7 +213,7 @@
 	<select id="reactivaroperador" 
 			parameterType="int"  
 			resultType="String">			
-		SELECT * FROM public.fn_reactivar_operador(#{idoperador}) ;
+		SELECT * FROM sist.fn_reactivar_operador(#{idoperador}) ;
 	</select>
  
  

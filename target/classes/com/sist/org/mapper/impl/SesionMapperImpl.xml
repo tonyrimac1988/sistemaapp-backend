@@ -6,14 +6,14 @@
 	<!--LISTAR PERSONA -->
 	<select id="InciarSesion"
 		parameterType="String" resultType="String">
-		SELECT public.fn_sist_inicia_sesion(#{usuario});
+		SELECT sist.fn_sist_inicia_sesion(#{usuario});
 	</select>
 
 
 	<!--LISTAR PERSONA -->
 	<select id="CerrarSesion"
 		parameterType="int" resultType="int">
-		SELECT public.fn_sist_cerrar_sesion(#{usuario});
+		SELECT sist.fn_sist_cerrar_sesion(#{usuario});
 	</select>
 
 

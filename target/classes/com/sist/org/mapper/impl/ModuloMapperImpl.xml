@@ -6,7 +6,7 @@
 	<select id="insertarModulo"
 		parameterType="Modulo"
 		resultType="String">
-		SELECT * FROM public.fn_insertar_modulo(
+		SELECT * FROM sist.fn_insertar_modulo(
 		#{nidsesion},		
 		#{snombremodulo},
 		#{sobservacion},
@@ -25,14 +25,14 @@
 		bactivo, 
 		dfechareg, 
 		nidsesion
-		FROM public.modulo;
+		FROM sist.modulo;
 	</select>
 	
 	<!--ACTUALIZAR MODULO -->
 	<select id="actualizarModulo"
 		parameterType="Modulo"
 		resultType="String">
-		SELECT * FROM public.fn_actualizar_modulo(
+		SELECT * FROM sist.fn_actualizar_modulo(
 		#{nidmodulo},
 		#{snombremodulo},
 		#{sobservacion},
@@ -44,6 +44,6 @@
 	<select id="eliminarModulo"
 		parameterType="Modulo"
 		resultType="String">
-		SELECT * FROM public.fn_eliminar_modulo(#{nidmodulo});
+		SELECT * FROM sist.fn_eliminar_modulo(#{nidmodulo});
 	</select>
 </mapper>

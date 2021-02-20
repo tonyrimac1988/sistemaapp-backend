@@ -14,7 +14,7 @@
 			nidsesion,
 			dfechahoraaud
 		FROM
-			public.ubigeo
+			sist.ubigeo
 		WHERE
 			sidubigeo LIKE '__0000'
 			AND bactivo = TRUE 
@@ -35,7 +35,7 @@
 			nidsesion,
 			dfechahoraaud
 		FROM
-			Ubigeo
+			sist.Ubigeo
 		WHERE
 			bactivo = TRUE
 			AND sidubigeo LIKE '____00'
@@ -58,7 +58,7 @@
 			nidsesion,
 			dfechahoraaud
 		FROM
-			Ubigeo
+			sist.Ubigeo
 		WHERE
 			bactivo = TRUE
 			AND sidubigeo NOT LIKE '____00'

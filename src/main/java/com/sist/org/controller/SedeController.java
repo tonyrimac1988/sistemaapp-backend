@@ -50,57 +50,91 @@ public class SedeController {
 
 	@GetMapping(value = "/listarsede", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<SedeDTO>> listarSede() {
+ 
+		
+		RespuestaBase<SedeDTO> respuestabase = new RespuestaBase<>();
 
-		//List<Sede> listasede = isedeService.listarSede();
-		//return new ResponseEntity<List<Sede>>(listasede, HttpStatus.OK);
 		try {
-			
-			return new ResponseEntity<RespuestaBase<SedeDTO>>(new RespuestaBase<SedeDTO>(HttpStatus.OK.toString(), "Respuesta OK", isedeService.listarSede()), HttpStatus.OK);
-			
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(isedeService.listarSede());
+
+			return new ResponseEntity<RespuestaBase<SedeDTO>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<RespuestaBase<SedeDTO>>(new RespuestaBase<SedeDTO>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el meotodo listarSede -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarSede -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<SedeDTO>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		 
 	}
 	
 	@PostMapping("/actualizarsede")
 	public ResponseEntity<RespuestaBase<Object>> actualizarSede(@Valid @RequestBody SedeDTO sede) {
 
-		//String respuesta = isedeService.actualizarSede(sede);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
+
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
+
 		try {
-			
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(),isedeService.actualizarSede(sede), null), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(isedeService.actualizarSede(sede));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el meotodo actualizarSede -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo actualizarSede -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
+		
 	}
 	
 	@PostMapping("/eliminarsede")
 	public ResponseEntity<RespuestaBase<Object>> eliminarSede(@Valid @RequestBody SedeDTO sede) {
+ 
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
 
-		//String respuesta = isedeService.eliminarSede(sede);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(isedeService.eliminarSede(sede));
+			respuestabase.setData(null);
 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), isedeService.eliminarSede(sede), null), HttpStatus.OK);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el metodo eliminarSede -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo eliminarSede -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
 
 	}
 	
 	@PostMapping(value = "/listarSedePage", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Page<SedeDTO>>> listarSedePage(@Validated @RequestBody Pageable pageable) {
 
-		//Page<Sede> listarSede = isedeService.listarSedePage(pageable);
-		//return new ResponseEntity<Page<Sede>>(listarSede, HttpStatus.OK);
-		try {
-			return new ResponseEntity<RespuestaBase<Page<SedeDTO>>>(new RespuestaBase<Page<SedeDTO>>(HttpStatus.OK.toString(), "Respuesta OK", Arrays.asList(isedeService.listarSedePage(pageable))), HttpStatus.OK);
+		RespuestaBase<Page<SedeDTO>> respuestabase = new RespuestaBase<>();
 
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(isedeService.listarSedePage(pageable)));
+
+			return new ResponseEntity<RespuestaBase<Page<SedeDTO>>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Page<SedeDTO>>>( new RespuestaBase<Page<SedeDTO>>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error el metodo listarRolPage -> " + e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarSedePage -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Page<SedeDTO>>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
 	}
 
 }

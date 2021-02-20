@@ -61,10 +61,8 @@
 		u.dfechareg,
 		u.nidsesion
 		FROM
-		usuario u
-		INNER JOIN
-		operador o ON
-		O.nidoperador = U.nidusuario
+		sist.usuario u
+		INNER JOIN sist.operador o ON O.nidoperador = U.nidusuario
 		ORDER BY
 		nidusuario DESC
 		OFFSET
@@ -75,8 +73,7 @@
 
 	<!--LISTAR PERSONA -->
 	<select id="countElements" resultType="int">
-		SELECT count(*) FROM
-		operador;
+		SELECT count(*) FROM sist.operador;
 	</select>
 
 
@@ -92,11 +89,11 @@
 		ro.snombrerol ,
 		ub.ximagen
 		FROM
-		usuario u
-		INNER JOIN operador o ON u.nidusuario = o.nidoperador
-		LEFT JOIN usuario_biometria ub ON ub.nidusuario = u.nidusuario
-		LEFT JOIN usuario_rol ur ON ur.nidusuario = u.nidusuario
-		LEFT JOIN rol ro ON ro.nidrol = ur.nidrol 
+		sist.usuario u
+		INNER JOIN sist.operador o ON u.nidusuario = o.nidoperador
+		LEFT JOIN sist.usuario_biometria ub ON ub.nidusuario = u.nidusuario
+		LEFT JOIN sist.usuario_rol ur ON ur.nidusuario = u.nidusuario
+		LEFT JOIN sist.rol ro ON ro.nidrol = ur.nidrol 
 		WHERE
 		u.slogin = #{usuario}
 		AND O.bactivo =
@@ -112,7 +109,7 @@
 		parameterType="OperadorDto" resultType="String">
 
 		SELECT
-		public.fn_sist_actualiza_usuario
+		sist.fn_sist_actualiza_usuario
 		(
 		#{operador.nidoperador},
 		#{operador.usuario.slogin},

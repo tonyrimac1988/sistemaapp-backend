@@ -33,82 +33,137 @@ public class AreaController {
 	@PostMapping(value= "/insertararea", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> insertarArea(@Valid @RequestBody Area area){
 
-		//String respuesta = iareaService.insertarArea(area);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
+
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
+
 		try {
-			
-			String respuesta = iareaService.insertarArea(area);
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), respuesta, null), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iareaService.insertarArea(area));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el metodo insertarArea -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
-		}	
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo insertarArea -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		 
 	}
 
 	@GetMapping(value = "/listararea", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Area>> listarArea() {
+		
+		RespuestaBase<Area> respuestabase = new RespuestaBase<>();
 
-		//List<Area> listarea = iareaService.listarArea();
-		//return new ResponseEntity<List<Area>>(listarea, HttpStatus.OK);
 		try {
-			
-			return new ResponseEntity<RespuestaBase<Area>>(new RespuestaBase<Area>(HttpStatus.OK.toString(), "Respuesta OK", iareaService.listarArea()), HttpStatus.OK);
-			
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(iareaService.listarArea());
+
+			return new ResponseEntity<RespuestaBase<Area>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<RespuestaBase<Area>>(new RespuestaBase<Area>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el metodo listarArea -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
-		}	
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarArea -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Area>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		 	
 	}
 	
 	@PostMapping("/actualizararea")
 	public ResponseEntity<RespuestaBase<Object>> actualizarArea(@Valid @RequestBody Area area) {
 
-		//String respuesta = iareaService.actualizarArea(area);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
+		
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
+
 		try {
-			
-			String respuesta = iareaService.actualizarArea(area);
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), respuesta, null), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iareaService.actualizarArea(area));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el metodo actualizarArea -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo actualizarArea -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
 	}
 	
 	@PostMapping("/eliminararea")
 	public ResponseEntity<RespuestaBase<Object>> eliminarArea(@Valid @RequestBody Area area) {
+ 
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
 
-		//String respuesta = iareaService.eliminarArea(area);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iareaService.eliminarArea(area));
+			respuestabase.setData(null);
 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iareaService.eliminarArea(area), null), HttpStatus.OK);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el metodo eliminarArea -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo eliminarArea -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
+		 
 	}
 
 	
 	@GetMapping(value = "/listarAreaUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> ListarAreaUsuario(@PathVariable("id") Integer idarea) {
 
+		
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
+
 		try {
-			 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iareaService.ListarAreaUsuario(idarea).toString(), null), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iareaService.ListarAreaUsuario(idarea).toString());
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método eliminarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo ListarAreaUsuario -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		 
 	}
 	
 	
 	@PostMapping(value = "/listarAreaPage", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Page<Area>>> listarAreaPage(@Validated @RequestBody Pageable pageable) {
 
-		//Page<Area> listarArea = iareaService.listarAreaPage(pageable);
-		//return new ResponseEntity<Page<Area>>(listarArea, HttpStatus.OK);
-		try {
-			return new ResponseEntity<RespuestaBase<Page<Area>>>(new RespuestaBase<Page<Area>>(HttpStatus.OK.toString(), "Respuesta OK", Arrays.asList(iareaService.listarAreaPage(pageable))), HttpStatus.OK);
 
+		RespuestaBase<Page<Area>> respuestabase = new RespuestaBase<>();
+		
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iareaService.listarAreaPage(pageable)));
+		
+			return new ResponseEntity<RespuestaBase<Page<Area>>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Page<Area>>>( new RespuestaBase<Page<Area>>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error el metodo listarRolPage -> " + e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarAreaPage -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Page<Area>>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		 
 	}
 }

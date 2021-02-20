@@ -6,7 +6,7 @@
 	<select id="insertarPerfil"
 		parameterType="Perfil"
 		resultType="String">
-		SELECT fn_insertar_perfil(
+		SELECT sist.fn_insertar_perfil(
 		#{nidsesion},
 		#{nsesionesporusuario},
 		#{ntiempoconexionminuto},
@@ -27,14 +27,14 @@
 		bactivo,
 		dfechareg,
 		nidsesion
-		FROM public.perfil;
+		FROM sist.perfil;
 	</select>
 
 	<!--ACTUALIZAR PERFIL -->
 	<select id="actualizarPerfil"
 		parameterType="Perfil"
 		resultType="String">
-		SELECT fn_actualizar_perfil(
+		SELECT sist.fn_actualizar_perfil(
 		#{nidperfil},
 		#{nidsesion},
 		#{nsesionesporusuario},
@@ -48,7 +48,7 @@
 	<select id="eliminarPerfil"
 		parameterType="Perfil"
 		resultType="java.lang.String">
-		SELECT public.fn_eliminar_perfil(#{nidperfil});
+		SELECT sist.fn_eliminar_perfil(#{nidperfil});
 	</select>
 
 
@@ -59,12 +59,8 @@
 		P.nidperfil
 		FROM
 		usuario u
-		INNER JOIN usuario_perfil
-		up ON
-		UP.nidusuario = U.nidusuario
-		INNER JOIN perfil p ON
-		UP.nidperfil =
-		P.nidperfil
+		INNER JOIN sist.usuario_perfil up ON UP.nidusuario = U.nidusuario
+		INNER JOIN sist.perfil p ON UP.nidperfil = P.nidperfil
 		WHERE
 		U.nidusuario = #{idusuario}
 		AND UP.bactivo = TRUE;
@@ -83,7 +79,7 @@
 		bactivo,
 		dfechareg,
 		nidsesion
-		FROM public.perfil
+		FROM sist.perfil
 		OFFSET
 		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
 
@@ -92,7 +88,7 @@
 	<!--LISTAR COUNT PERFIL -->
 	<select id="countElements" resultType="int">
 		SELECT count(*) FROM
-		perfil p WHERE bactivo = true;
+		sist.perfil p WHERE bactivo = true;
 	</select>
 
 

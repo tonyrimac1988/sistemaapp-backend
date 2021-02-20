@@ -6,7 +6,7 @@
 	<select id="insertarSede"
 		parameterType="Sede"
 		resultType="String">
-		SELECT * FROM public.fn_insertar_sede(
+		SELECT * FROM sist.fn_insertar_sede(
 		#{sdireccion},		
 		#{snombre},
 		#{subigeo}		
@@ -24,14 +24,14 @@
 		bactivo, 
 		dfechareg, 
 		nidsesion
-		FROM public.sede;
+		FROM sist.sede;
 	</select>
 	
 	<!--ACTUALIZAR SEDE -->
 	<select id="actualizarSede"
 		parameterType="Sede"
 		resultType="String">
-		SELECT * FROM public.fn_actualizar_sede(
+		SELECT * FROM sist.fn_actualizar_sede(
 		#{nidsede},
 		#{sdireccion},		
 		#{snombre},
@@ -43,7 +43,7 @@
 	<select id="eliminarSede"
 		parameterType="Sede"
 		resultType="String">
-		SELECT * FROM public.fn_eliminar_sede(#{nidsede});
+		SELECT * FROM sist.fn_eliminar_sede(#{nidsede});
 	</select>
 	
 	
@@ -54,14 +54,14 @@
 		s.nidsede, 
 		s.snombre, 
 		s.sdireccion ,
-		(SELECT snombre FROM ubigeo WHERE sidubigeo= LEFT(s.subigeo,2)||'0000') || ' / ' || 
-		(SELECT snombre FROM ubigeo WHERE sidubigeo= LEFT(s.subigeo,4)||'00')||' / ' || 
-		(SELECT snombre FROM ubigeo WHERE sidubigeo= LEFT(s.subigeo,6)||'')|| ' / '|| s.sdireccion  AS sdireccioncompleta,
+		(SELECT snombre FROM sist.ubigeo WHERE sidubigeo= LEFT(s.subigeo,2)||'0000') || ' / ' || 
+		(SELECT snombre FROM sist.ubigeo WHERE sidubigeo= LEFT(s.subigeo,4)||'00')||' / ' || 
+		(SELECT snombre FROM sist.ubigeo WHERE sidubigeo= LEFT(s.subigeo,6)||'')|| ' / '|| s.sdireccion  AS sdireccioncompleta,
 		s.subigeo, 
 		s.bactivo, 
 		s.dfechareg, 
 		s.nidsesion
-		FROM public.sede s
+		FROM sist.sede s
 		OFFSET
 		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
 
@@ -70,7 +70,7 @@
 	<!--LISTAR COUNT PERFIL -->
 	<select id="countElements" resultType="int">
 		SELECT count(*) FROM
-		sede s WHERE bactivo = true;
+		sist.sede s WHERE bactivo = true;
 	</select>
 	
 </mapper>

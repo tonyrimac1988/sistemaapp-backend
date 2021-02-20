@@ -1,6 +1,7 @@
 package com.sist.org.controller;
 
 import java.util.Arrays;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,87 +26,141 @@ import com.sist.org.util.Pageable;
 @RequestMapping("/perfiles")
 public class PerfilController {
 
-	//private static final Logger log = LoggerFactory.getLogger(PerfilController.class);
-
+ 
 	@Autowired
 	IPerfilService iperfilService;
 
 	@PostMapping(value = "/insertarperfil", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> insertarPerfil(@Valid @RequestBody Perfil perfil) {
+  
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
 
-		//String respuesta = iperfilService.insertarPerfil(perfil);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iperfilService.insertarPerfil(perfil));
+			respuestabase.setData(null);
 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iperfilService.insertarPerfil(perfil), null), HttpStatus.OK);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método insertarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo insertarPerfil -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+		} 
+		
 	}
 
 	@GetMapping(value = "/listarperfil", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Perfil>> listarPerfil() {
-		//List<Perfil> listaperfil = iperfilService.listarPerfil();
-		//return new ResponseEntity<List<Perfil>>(listaperfil, HttpStatus.OK);
+ 
+		
+		RespuestaBase<Perfil> respuestabase = new RespuestaBase<>();
+
 		try {
-			
-			return new ResponseEntity<RespuestaBase<Perfil>>(new RespuestaBase<Perfil>(HttpStatus.OK.toString(), "Respuesta OK", iperfilService.listarPerfil()), HttpStatus.OK);
-			
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(iperfilService.listarPerfil());
+
+			return new ResponseEntity<RespuestaBase<Perfil>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<RespuestaBase<Perfil>>(new RespuestaBase<Perfil>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el meotodo listarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarPerfil -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Perfil>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		
+		 
 	}
 
 	@PostMapping("/actualizarperfil")
 	public ResponseEntity<RespuestaBase<Object>> actualizarPerfil(@Valid @RequestBody Perfil perfil) {
-		//String respuesta = iperfilService.actualizarPerfil(perfil);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
-		try {
+	  
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iperfilService.actualizarPerfil(perfil), null), HttpStatus.OK);
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iperfilService.actualizarPerfil(perfil));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método actualizarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo actualizarPerfil -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
 	}
 
 	@PostMapping("/eliminarperfil")
 	public ResponseEntity<RespuestaBase<Object>> eliminarPerfil(@Valid @RequestBody Perfil perfil) {
-		//String respuesta = iperfilService.eliminarPerfil(perfil);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
-		try {
+		 
+		
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iperfilService.eliminarPerfil(perfil), null), HttpStatus.OK);
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iperfilService.eliminarPerfil(perfil));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método eliminarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo eliminarPerfil -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		 
 	}
 
 	@GetMapping(value = "/listarPerfilUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> listarMenuPorUsuario(@PathVariable("id") Integer idusuario) {
 		
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
+
 		try {
- 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), iperfilService.listarMenuPorUsuario(idusuario).toString(), null), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(iperfilService.listarMenuPorUsuario(idusuario).toString());
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el método eliminarPerfil -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarMenuPorUsuario -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
   
-		
 	}
 	
 	
 	@PostMapping(value = "/listarPerfilPage", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Page<Perfil>>> listarPerfilPage(@Validated @RequestBody Pageable pageable) {
+ 
+		RespuestaBase<Page<Perfil>> respuestabase = new RespuestaBase<>();
 
-		//Page<Perfil> listarPerfil = iperfilService.listarPerfilPage(pageable);
-		//return new ResponseEntity<Page<Perfil>>(listarPerfil, HttpStatus.OK);
 		try {
-			return new ResponseEntity<RespuestaBase<Page<Perfil>>>(new RespuestaBase<Page<Perfil>>(HttpStatus.OK.toString(), "Respuesta OK", Arrays.asList(iperfilService.listarPerfilPage(pageable))), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iperfilService.listarPerfilPage(pageable)));
 
+			return new ResponseEntity<RespuestaBase<Page<Perfil>>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Page<Perfil>>>( new RespuestaBase<Page<Perfil>>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error el metodo listarPerfilPage -> " + e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarPerfilPage -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Page<Perfil>>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		 
 	}
 
 }

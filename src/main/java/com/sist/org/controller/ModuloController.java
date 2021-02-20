@@ -24,55 +24,89 @@ public class ModuloController {
 	
 	@PostMapping(value= "/insertarmodulo", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Object>> insertarModulo(@Valid @RequestBody Modulo modulo){
+  
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
 
-		//String respuesta = imoduloService.insertarModulo(modulo);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 		try {
-			
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), imoduloService.insertarModulo(modulo), null), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(imoduloService.insertarModulo(modulo));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el metodo imoduloService -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo insertarModulo -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		
+		 
 	}
 
 	@GetMapping(value = "/listarmodulo", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaBase<Modulo>> listarModulo() {
+		
+		RespuestaBase<Modulo> respuestabase = new RespuestaBase<>();
 
-		//List<Modulo> listamodulo = imoduloService.listarModulo();
-		//return new ResponseEntity<List<Modulo>>(listamodulo, HttpStatus.OK);
 		try {
-			
-			return new ResponseEntity<RespuestaBase<Modulo>>(new RespuestaBase<Modulo>(HttpStatus.OK.toString(), "Respuesta OK", imoduloService.listarModulo()), HttpStatus.OK);			
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(imoduloService.listarModulo());
+
+			return new ResponseEntity<RespuestaBase<Modulo>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<RespuestaBase<Modulo>>(new RespuestaBase<Modulo>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el meotodo listarModulo -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo listarModulo -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Modulo>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
+		} 
+ 
 	}
 	
 	@PostMapping("/actualizarmodulo")
 	public ResponseEntity<RespuestaBase<Object>> actualizarModulo(@Valid @RequestBody Modulo modulo) {
 
-		//String respuesta = imoduloService.actualizarModulo(modulo);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
+
 		try {
-			
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), imoduloService.actualizarModulo(modulo), null), HttpStatus.OK);
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje( imoduloService.actualizarModulo(modulo));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el metodo actualizarModulo -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo NOMBRE_FUNCION -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
 	}
 	
 	@PostMapping("/eliminarmodulo")
 	public ResponseEntity<RespuestaBase<Object>> eliminarModulo(@Valid @RequestBody Modulo modulo) {
 
-		//String respuesta = imoduloService.eliminarModulo(modulo);
-		//return new ResponseEntity<String>(respuesta, HttpStatus.OK);
-		try {
 
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.OK.toString(), imoduloService.eliminarModulo(modulo), null), HttpStatus.OK);
+		RespuestaBase<Object> respuestabase = new RespuestaBase<>();
+
+		try {
+			respuestabase.setEstado(HttpStatus.OK.toString());
+			respuestabase.setMensaje(imoduloService.eliminarModulo(modulo));
+			respuestabase.setData(null);
+
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<RespuestaBase<Object>>(new RespuestaBase<Object>(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Hubo un error en el meotodo eliminarModulo -> "+e.toString(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+
+			respuestabase.setEstado(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			respuestabase.setMensaje("Hubo un error en el metodo NOMBRE_FUNCION -> " + e.toString());
+			respuestabase.setData(null);
+			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+ 
 	}
 	
 	

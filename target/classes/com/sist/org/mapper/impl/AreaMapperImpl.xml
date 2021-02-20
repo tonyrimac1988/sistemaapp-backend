@@ -5,7 +5,7 @@
 	<!--INSERTAR AREA -->
 	<select id="insertarArea" parameterType="Area"
 		resultType="String">
-		SELECT * FROM public.fn_insertar_area(
+		SELECT * FROM sist.fn_insertar_area(
 		#{nidsesion},
 		#{snombre},
 		#{sobservacion},
@@ -23,13 +23,13 @@
 		bactivo,
 		dfechareg,
 		nidsesion
-		FROM public.area;
+		FROM sist.area;
 	</select>
 
 	<!--ACTUALIZAR AREA -->
 	<select id="actualizarArea" parameterType="Area"
 		resultType="String">
-		SELECT * FROM public.fn_actualizar_area(
+		SELECT * FROM sist.fn_actualizar_area(
 		#{nidarea},
 		#{nidsesion},
 		#{snombre},
@@ -41,7 +41,7 @@
 	<!--ELIMINAR AREA -->
 	<select id="eliminarArea" parameterType="Area"
 		resultType="String">
-		SELECT * FROM public.fn_eliminar_area(#{nidarea});
+		SELECT * FROM sist.fn_eliminar_area(#{nidarea});
 
 	</select>
 
@@ -74,16 +74,16 @@
 		bactivo,
 		dfechareg,
 		nidsesion
-		FROM public.area
+		FROM sist.area
 		OFFSET
 		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
-
 	</select>
+	
 
 	<!--LISTAR AREA -->
 	<select id="countElements" resultType="int">
 		SELECT count(*) FROM
-		area u WHERE bactivo = true;
+		sist.area u WHERE bactivo = true;
 	</select>
 	
 </mapper>

@@ -5,7 +5,7 @@
 	<!--INSERTAR ROL -->
 	<select id="insertarRol" parameterType="Rol" resultType="String">
 		SELECT *
-		FROM public.fn_insertar_rol(
+		FROM sist.fn_insertar_rol(
 		#{nidsesion},
 		#{siglas},
 		#{snombrerol},
@@ -23,13 +23,13 @@
 		bactivo,
 		dfechareg,
 		nidsesion
-		FROM public.rol;
+		FROM sist.rol;
 	</select>
 
 	<!--ACTUALIZAR ROL -->
 	<select id="actualizarRol" parameterType="Rol"
 		resultType="String">
-		SELECT * FROM public.fn_actualizar_rol(
+		SELECT * FROM sist.fn_actualizar_rol(
 		#{nidrol},
 		#{nidsesion},
 		#{siglas},
@@ -41,7 +41,7 @@
 	<!--ELIMINAR ROL -->
 	<select id="eliminarRol" parameterType="Rol" resultType="String">
 		SELECT *
-		FROM public.fn_eliminar_rol(#{nidrol});
+		FROM sist.fn_eliminar_rol(#{nidrol});
 	</select>
 
 	<!-- CONSULTA AREA DEL USUAIRO -->
@@ -51,10 +51,8 @@
 		R.nidrol
 		FROM
 		usuario u
-		INNER JOIN usuario_rol ur ON
-		U.nidusuario = UR.nidusuario
-		INNER JOIN rol r ON
-		UR.nidrol = R.nidrol
+		INNER JOIN sist.usuario_rol ur ON U.nidusuario = UR.nidusuario
+		INNER JOIN sist.rol r ON UR.nidrol = R.nidrol
 		WHERE
 		U.nidusuario = #{nidusuario}
 		AND UR.bactivo = TRUE;
@@ -71,7 +69,7 @@
 		bactivo,
 		dfechareg,
 		nidsesion
-		FROM public.rol
+		FROM sist.rol
 		ORDER BY nidrol ASC
 		OFFSET
 		#{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
@@ -81,13 +79,13 @@
 	<!--LISTAR COUNT ROL -->
 	<select id="countElements" resultType="int">
 		SELECT count(*) FROM
-		rol r WHERE bactivo = true;
+		sist.rol r WHERE bactivo = true;
 	</select>
 
 	
 	<!-- REGISTRAR ROL PROCEDIMIENTO -->
 	<select id="registrarrolprocedimiento" parameterType="RolProcedimiento" resultType="String">
-		SELECT * FROM public.fn_registrar_rol_procedimiento(#{nidrol}, #{nidprocedimiento}, #{bactivo});
+		SELECT * FROM sist.fn_registrar_rol_procedimiento(#{nidrol}, #{nidprocedimiento});
 	</select>
 	
 	
