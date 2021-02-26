@@ -100,7 +100,9 @@
  		#{operador.usuario.spassword},
  		#{nidarea},
  		#{nidperfil},
- 		#{nidrol});
+ 		#{nidrol},
+ 		#{operador.nidsesion}
+ 		);
  		
 	</select>
 	

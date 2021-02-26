@@ -38,8 +38,8 @@ public class AreaController {
 
 		try {
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iareaService.insertarArea(area));
-			respuestabase.setData(null);
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iareaService.insertarArea(area)));
 
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
@@ -83,8 +83,8 @@ public class AreaController {
 
 		try {
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iareaService.actualizarArea(area));
-			respuestabase.setData(null);
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iareaService.actualizarArea(area)));
 
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
@@ -104,8 +104,8 @@ public class AreaController {
 
 		try {
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iareaService.eliminarArea(area));
-			respuestabase.setData(null);
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iareaService.eliminarArea(area)));
 
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {

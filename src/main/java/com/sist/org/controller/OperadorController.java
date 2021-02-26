@@ -101,9 +101,10 @@ public class OperadorController {
 		RespuestaBase<Object> respuestabase = new RespuestaBase<>() ;
 	 
 		try {
-			respuestabase.setData(null);
+			
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iOperadorService.modificarUsuarioOperador(operadorDto));
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iOperadorService.modificarUsuarioOperador(operadorDto)));
 			 
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
@@ -122,9 +123,10 @@ public class OperadorController {
 		RespuestaBase<Object> respuestabase = new RespuestaBase<>() ;
 		
 		try {
-			respuestabase.setData(null);
+			
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iOperadorService.insertarOperador(operador));
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iOperadorService.insertarOperador(operador)));
 			
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {

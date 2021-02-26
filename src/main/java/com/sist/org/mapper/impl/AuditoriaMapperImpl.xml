@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.org.mapper.IAuditoriaMapper">
+
+ 
+ 
+	<!--LISTAR SESIONES Y BUSCAR SESION -->
+	<select id="listarSesiones" resultType="SesionDTO"
+		parameterType="Pageable">		  
+			SELECT
+				S.nidsesion,
+				u.slogin ,
+				o.snombre || ' ' || o.sapepaterno || '' || o.sapematerno AS snombres,
+				s.dfechainicio ,
+				s.dfechafin ,
+				s.ssistemaversion,
+				CASE s.bactivo WHEN TRUE THEN 'Activo' ELSE 'Inactivo' END  AS estadosesion
+			FROM
+				sist.sesion s
+			INNER JOIN sist.usuario u ON s.nidusuario = u.nidusuario
+			INNER JOIN sist.operador o ON o.nidoperador = u.nidusuario
+			WHERE upper(o.snombre || ' '|| o.sapepaterno || ' '|| o.sapematerno || ' '|| u.slogin || ' '|| o.snumdocu)  LIKE  upper('%'|| #{palabraClave} ||'%')	
+			ORDER BY S.nidsesion DESC 
+			OFFSET #{pageNumber} ROWS FETCH FIRST #{pageSize} ROWS ONLY;
+	</select>
+	
+	
+	<!--  CONTAR SESIONES -->
+	<select id="countSesiones" resultType="int" 
+		parameterType="Pageable">
+		SELECT
+		count(*)
+		FROM
+			sist.sesion s
+		INNER JOIN sist.usuario u ON
+			s.nidusuario = u.nidusuario
+		INNER JOIN sist.operador o ON
+			o.nidoperador = u.nidusuario
+		WHERE upper(o.snombre || ' '|| o.sapepaterno || ' '|| o.sapematerno || ' '|| u.slogin || ' '|| o.snumdocu)  LIKE  upper('%'|| #{palabraClave} ||'%')
+	</select>
+	
+
+</mapper>

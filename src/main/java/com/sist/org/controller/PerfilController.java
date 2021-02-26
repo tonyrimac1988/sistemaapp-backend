@@ -37,8 +37,8 @@ public class PerfilController {
 
 		try {
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iperfilService.insertarPerfil(perfil));
-			respuestabase.setData(null);
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iperfilService.insertarPerfil(perfil)));
 
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
@@ -82,8 +82,8 @@ public class PerfilController {
 
 		try {
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iperfilService.actualizarPerfil(perfil));
-			respuestabase.setData(null);
+			respuestabase.setMensaje("Respuesta OK");
+			respuestabase.setData(Arrays.asList(iperfilService.actualizarPerfil(perfil)));
 
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
@@ -104,8 +104,8 @@ public class PerfilController {
 
 		try {
 			respuestabase.setEstado(HttpStatus.OK.toString());
-			respuestabase.setMensaje(iperfilService.eliminarPerfil(perfil));
-			respuestabase.setData(null);
+			respuestabase.setMensaje("Respuesta ok");
+			respuestabase.setData(Arrays.asList(iperfilService.eliminarPerfil(perfil)));
 
 			return new ResponseEntity<RespuestaBase<Object>>(respuestabase, HttpStatus.OK);
 		} catch (Exception e) {
